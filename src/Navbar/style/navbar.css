@@ -1,0 +1,125 @@
+.navbar-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--backgroundnavbar);
+    border: 1px solid  var(--border);
+    backdrop-filter: blur(8px);
+}
+
+.navbar-content{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    font-weight: 700;
+    font-size: large;
+}
+
+.logosection-container{
+width: 33%;
+display: flex;
+justify-content: start;
+}
+
+.nav-section{
+    width: 33%;
+}
+
+.nav-section ul{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+
+.btn-section{
+width: 33%;
+display: flex;
+flex-direction: row;
+justify-content: end;
+gap: 1rem;
+}
+
+.modal{
+background-color: rgb(235, 235, 235);
+border-bottom-left-radius: 12px;
+z-index: 10;
+width: 350px;
+padding-top: 12px;
+padding-bottom: 12px;
+height: 85svh;
+position: absolute;
+top: 60px;
+right: 0px;
+z-index: -5;
+display: flex;
+opacity: 0;
+justify-content: space-between;
+flex-direction: column;
+align-items: center;
+transition: opacity ease 300ms , right ease 300ms;
+}
+
+.active.modal {
+    top: 60px;
+    right: 0px; 
+    opacity: 1;
+    z-index: 5;
+}
+
+
+.mobile-container{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap: 3rem;
+}
+
+.modal-btn-section{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+@media (min-width: 1800px){
+    .navbar-content{
+        max-width: 1800px;
+    }
+
+}
+
+
+@media (width < 970px){
+    .navbar-content{
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--backgroundnavbar);
+        border: 1px solid  var(--border);
+        backdrop-filter: blur(8px);
+    }
+    .nav-section {
+        width: auto;
+    }
+    .btn-section {
+        width: auto;
+        
+    }
+    .nav-section ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+}
