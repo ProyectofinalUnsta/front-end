@@ -4,7 +4,6 @@ import './style/navbar.css'
 import { Link } from 'react-router'
 import { useWidth } from '../hooks/useWidth'
 import { useMenu } from '../hooks/useMenu'
-import { use } from 'react'
 import { LogoIcon } from '../icons/LogoIcon'
 
 export function NavBar () {
@@ -28,10 +27,11 @@ export const LogoSection = () => {
 }
 
 export const NavSection = () => {
+
     return(
         <>
         <section className='nav-section'>
-            <ul>
+            <ul >
                 <li><Link to={'/'}>Home</Link></li>
                 <li><Link to={'/Eventos'}>Eventos</Link></li>
                 <li><Link to={'/sobrenosotros'}>Sobre Nosotros</Link></li>
