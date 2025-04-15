@@ -1,6 +1,7 @@
 import '../global/global.css'
 import '../global/Layout.css'
 import { NavBar } from '../Navbar/NavBar'
+import { Footer } from '../footer/footer'
 export const Layout = ({children, banner}) => {
     return(
         <>
@@ -15,6 +16,8 @@ export const Layout = ({children, banner}) => {
         <section className='sections-container'>
           {children}
         </section>
+        <Footer></Footer>
+
         </div>
         </>
     )

@@ -4,10 +4,10 @@ import { PlaceIcon } from '../../icons/PlaceIcon'
 import { RelojIcon } from '../../icons/RelojIcon'
 
 export const Card = ({products}) => {
-    const {id,nombre,descripcion,fecha,hora,lugar} = products
+    const {_id,nombre,descripcion,fecha,hora,lugar} = products
     return(
         <>
-        <div className="event-card" key={id}>
+        <div className="event-card" key={_id}>
             <figure >
                 <img className='img-container' src="https://kzmo4ra0ji5m2etf47ef.lite.vusercontent.net/placeholder.svg?height=400&width=600" alt="" />
             </figure>

@@ -7,7 +7,7 @@ export function useProducts () {
     const [products,setProducts] = useState([])
 
     const getitems = async  () => {
-        let res = await axios.get('http://localhost:3032/').then((res)=> {return res})
+        let res = await axios.get('https://back-end-fiq8.onrender.com/api/').then((res)=> {return res})
        
         setProducts(res.data)
     }

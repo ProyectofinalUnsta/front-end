@@ -29,3 +29,4 @@ documentacion de react-router: https://reactrouter.com/home
 <Route path="/someruta" element={<MiComponente/>}/>
 </Routes>
 </BrowserRouter>
+
