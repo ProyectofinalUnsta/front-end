@@ -3,7 +3,7 @@
     width: 100%;
     height: auto;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0rem;
 }
 
 .sections-container {
@@ -15,7 +15,7 @@
 .banner-container{
     width: 100%;
     height: auto;
-    background-color: var(--background);
+    background-color: #f4f4f5;
     padding-top: 12rem;
     padding-bottom: 12rem;
 }
