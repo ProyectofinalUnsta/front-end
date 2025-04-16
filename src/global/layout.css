@@ -71,3 +71,15 @@
     
  
 }
+
+
+
+@media (width < 600px) {
+    .banner-container{
+        width: 100%;
+        height: auto;
+        background-color: #f4f4f5;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    } 
+}
