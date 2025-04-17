@@ -16,8 +16,7 @@ export const Layout = ({children, banner}) => {
         <section className='sections-container'>
           {children}
         </section>
-        <Footer></Footer>
-
+        <Footer/>
         </div>
         </>
     )

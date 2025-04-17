@@ -1,0 +1,11 @@
+.paginacion-container{
+
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+    justify-content: center;
+    align-items: center;
+}
