@@ -29,13 +29,13 @@ export const MobileFooter = () => {
         </div>
         <ul>
           <li>
-            <a href="/politicas">Políticas</a>
+            <a href="/">Políticas</a>
           </li>
           <li>
             <a href="/SobreNosotros">Sobre Nosotros</a>
           </li>
           <li>
-            <a href="/contacto">Contactanos:</a>
+            <a href="/">Contactanos:</a>
             <div class="mb-4">
               <a
                 href="#"
@@ -87,14 +87,14 @@ export const NormalFooter = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <a href="/politicas">Políticas</a>
+              <a href="/Error404">Políticas</a>
             </li>
             <li>
               <a href="/SobreNosotros">Sobre Nosotros</a>
             </li>
             <li>
               <div class="mb-4">
-                <a href="/contacto">Contactanos:</a>
+                <a href="/Error404">Contactanos:</a>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white mx-2"

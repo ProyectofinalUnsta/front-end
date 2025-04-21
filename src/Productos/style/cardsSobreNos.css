@@ -1,13 +1,38 @@
-.imgNos{
-    height: 480px;
+.imgNos {
+  width: 480;
+  height: 340px;
+  grid-auto-rows: auto;
+}
+
+.text {
+  font-size: 60px;
+  font-weight: 250;
+  font-family: var(--font);
+  color: black;
+}
+
+.description {
+  font-size: 25px;
+  color: rgb(157, 155, 155);
+  margin-top: 10px;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .imgNos {
+    height: 240px;
     object-fit: cover;
     display: Auto;
+    grid-auto-rows: auto;
   }
-  
-  @media screen and (max-width:767px){
-    .imgNos{
-        height: 480px;
-        object-fit: cover;
-        display: Auto;
-    }
-  }
+}

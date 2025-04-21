@@ -6,9 +6,10 @@ import "../style/cardsSobreNos.css";
 export function CardSobreNosotros({ imageSource, title, text, url }) {
   return (
 <section>
-<div className="text-center my-4">
+
+<div className="article">
       <div>
-        <img src={imageSource} alt="Alumno" className="card-img-top imgNos"/>
+        <img src={imageSource} alt="Alumno" className="card-img-top card-img-top imgNos"/>
       </div>
       <div className="card-body text-light">
         <h4 className="card-title">{title}</h4>
@@ -26,7 +27,9 @@ export function CardSobreNosotros({ imageSource, title, text, url }) {
           </a>
         </b>
       </div>
-    </div></section>
+    </div> 
+    
+    </section>
     );
 }
 
