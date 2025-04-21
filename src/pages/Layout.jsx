@@ -2,6 +2,7 @@ import '../global/global.css'
 import '../global/Layout.css'
 import { NavBar } from '../Navbar/NavBar'
 import { Footer } from '../footer/footer'
+// import { SobreNosotros } from '../pages/SobreNosotros'
 export const Layout = ({children, banner}) => {
     return(
         <>
@@ -12,11 +13,14 @@ export const Layout = ({children, banner}) => {
         {banner ? <section className='banner-container'>
            {banner}
         </section> : null}
+  
         
         <section className='sections-container'>
           {children}
         </section>
-        <Footer/>
+
+        <section> <Footer/> </section>
+       
         </div>
         </>
     )

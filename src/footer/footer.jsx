@@ -6,17 +6,6 @@ export const Footer = () => {
 
   return (
     <>
-      {/* <footer class="bg-gray-800 text-white py-8">
-<div class="container mx-auto text-center">
-<div class="mb-4">
-<a href="#" class="text-gray-400 hover:text-white mx-2">Facebook</a>
-<a href="#" class="text-gray-400 hover:text-white mx-2">Twitter</a>
-<a href="#" class="text-gray-400 hover:text-white mx-2">Instagram</a>
-</div>
-<p>© 2023 Your Company. All rights reserved.</p>
-</div>
-</footer> */}
-
       <footer className="footer-container">
         {width < 970 ? <MobileFooter /> : <NormalFooter />}
       </footer>
@@ -43,7 +32,7 @@ export const MobileFooter = () => {
             <a href="/politicas">Políticas</a>
           </li>
           <li>
-            <a href="/privacidad">Sobre Nosotros</a>
+            <a href="/SobreNosotros">Sobre Nosotros</a>
           </li>
           <li>
             <a href="/contacto">Contactanos:</a>
@@ -101,10 +90,11 @@ export const NormalFooter = () => {
               <a href="/politicas">Políticas</a>
             </li>
             <li>
-              <a href="/privacidad">Sobre Nosotros</a>
+              <a href="/SobreNosotros">Sobre Nosotros</a>
             </li>
             <li>
-                <div class="mb-4"><a href="/contacto">Contactanos:</a> 
+              <div class="mb-4">
+                <a href="/contacto">Contactanos:</a>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white mx-2"
@@ -133,7 +123,6 @@ export const NormalFooter = () => {
 
         <div className="footer-copy">
           <p>&copy; Todos los derechos reservados</p>
-
           <p>© 2025 - PROYECTO FINAL</p>
         </div>
       </section>

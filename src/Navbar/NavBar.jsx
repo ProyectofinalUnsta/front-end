@@ -34,7 +34,7 @@ export const NavSection = () => {
             <ul >
                 <li><Link to={'/'}>Home</Link></li>
                 <li><Link to={'/Eventos'}>Eventos</Link></li>
-                <li><Link to={'/sobrenosotros'}>Sobre Nosotros</Link></li>
+                <li><Link to={'/Sobrenosotros'}>Sobre Nosotros</Link></li>
             </ul>
         </section>
         </>
