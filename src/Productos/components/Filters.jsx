@@ -3,7 +3,7 @@ import {FilterIcon} from '../../icons/FilterIcon'
 import { FilteredRowCategory, FilteredRows } from './FilteredRows'
 import { useFilters } from '../../hooks/useFilters'
 export const Filters = () => {
-    const {resetfilters} = useFilters()
+    const {clearFilters} = useFilters()
     return(
         <>
         <div className="filter-container">
@@ -16,7 +16,7 @@ export const Filters = () => {
               <FilteredRowCategory nombre={'Categoria'} id={'Categoria'} />
             </aside>
             <footer className='footer-filters'>
-                <button className='btn-clear-filters' onClick={()=> resetfilters()}>Limpiar filtros</button>
+                <button className='btn-clear-filters' onClick={()=> clearFilters('Categoria','Buscar')}>Limpiar filtros</button>
             </footer>
         </div>
         </>

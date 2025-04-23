@@ -2,15 +2,12 @@ import '../style/filter.css'
 import { useFilters } from '../../hooks/useFilters'
 
 export const FilteredRows = ({nombre, id}) => {
-
         const {handlefilter} = useFilters()
-
     return (
-
     <>
     <article className='rowed-filters'>
         <label htmlFor={id} >{nombre}</label>
-         <input id={id} type="text"  placeholder='Buscar Eventos.' className='input' onChange={(e)=> handlefilter(e)}/>
+         <input id={id} type="text"  placeholder='Buscar Eventos.' className='input' onChange={(e)=> handlefilter(e,id)}/>
      </article>
     </>
     
@@ -23,7 +20,7 @@ export const FilteredRowCategory = ({nombre,id}) => {
         <>
           <article className='rowed-filters'>
         <label htmlFor={id} >{nombre}</label>
-        <select name={nombre} id={id} className="input" onChange={(e)=>handlefilter(e)}>
+        <select name={nombre} id={id} className="input" onChange={(e)=>handlefilter(e,id)}>
             <option className="option" value="all">Todas</option>
             <option className="option" value="Medicina">Medicina</option>
             <option className="option" value="Bebidas">Bebidas</option>

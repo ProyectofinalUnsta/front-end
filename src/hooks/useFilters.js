@@ -10,22 +10,23 @@ const {itemsinPage} = useProducts()
 const timeoutRef = useRef(null);
 
 
-const handlefilter = (event) => {
+const handlefilter = (event,input) => {
   const { id, value } = event.target;
 
   if (timeoutRef.current) {
     clearTimeout(timeoutRef.current);
   }
 
+ if(value == ''){
+ resetfilters()
+ return
+ }
+
   timeoutRef.current = setTimeout(() => {
     setFilters((prev) => {
       const updated = { ...prev };
 
       if (id === "Buscar") {
-        if(value === ""){
-         
-          resetfilters()
-        }
         updated.nombre = value;
         handlefilterNombre(value); 
       } else {
@@ -39,20 +40,11 @@ const handlefilter = (event) => {
 
       return updated;
     });
-  }, [500]); 
+  }, [200]); 
 };
 
 const resetfilters = () => {
-
-  const initialState ={
-    category:'all',
-    nombre:'',
-    date:''
-  }
-
   setFilteredProducts(itemsinPage)
-  setFilters(initialState)
-
 }
 
  const handlefilterNombre = (value) => {
@@ -69,6 +61,14 @@ const resetfilters = () => {
 
  }
 
-return {handlefilter, resetfilters, filteredProducts}
+ const clearFilters = (input1,input2) => {
+let select = document.getElementById(input1)
+select.value = 'all'
+let input = document.getElementById(input2)
+input.value = ''
+setFilteredProducts(itemsinPage)
+ }
+
+return {handlefilter, resetfilters, filteredProducts, clearFilters}
 
 }
