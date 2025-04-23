@@ -7,7 +7,20 @@
     height: 100vh;
     background-color: #f8f9fa;
   }
-  
+  .font-404-text {
+  font-size: 12rem;
+  font-weight: 600;
+  background: linear-gradient(
+    to top,
+    #2e2e2e 0%,
+    #4d4d4d 25%,
+    #000000 40%,
+    #003f5c 60%,
+    #3399ff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
   .loading-logo {
     width: 150px;
     height: auto;
@@ -43,3 +56,28 @@
   .home-link:hover {
     background-color: #0056b3;
   }
+
+
+  @media (width < 1200px) {
+    .font-404-text {
+      font-size: 10rem;
+      } 
+  }
+
+  @media (width < 800px) {
+    .font-404-text {
+      font-size: 8rem;
+      } 
+  }
+
+  @media (width < 500px) {
+    .font-404-text {
+      font-size: 5rem;
+      } 
+      .descripcion-text {
+        font-size: 1.4rem;
+      }
+    .small-text {
+      font-size: 1rem;
+    }
+    }
