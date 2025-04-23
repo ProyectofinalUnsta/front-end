@@ -2,7 +2,6 @@ import { Children, createContext, useState } from 'react'
 import { intialProducts } from '../reducer/InitialProducts'
 export const ProductContext = createContext()
 
-
 export const ProductProvider = ({children}) => {
 const [products,setProducts] = useState(intialProducts)
 const itemsPerPage = 12;
@@ -23,8 +22,6 @@ const inicio = (currenntPage - 1) * itemsPerPage
 const fin = inicio + itemsPerPage
 const itemsinPage = products.slice(inicio,fin)
 
-
-
     return(
         <ProductContext.Provider value={{
            products,
@@ -36,4 +33,4 @@ const itemsinPage = products.slice(inicio,fin)
           {children}
         </ProductContext.Provider>
     )
-}
+} 
