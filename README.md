@@ -8,7 +8,6 @@
 - Control en tiempo real de tus eventos
 - Ui facil de entender y utilizar
 - Facilidad para subir y utilizar archivos!!
-- 
 
 ## 📧 Contact
 
