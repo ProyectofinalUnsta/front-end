@@ -1,0 +1,26 @@
+{"ventajas":[
+    {
+    "id":1,
+    "emoji":"🧭",
+    "titulo":"sin Complicaciones",
+    "ventaja":"Gestiona horarios, salas y actividades desde un solo lugar."
+    },
+    {
+    "id":2,
+    "emoji":"📁",
+    "titulo":"Carga Inteligente",
+    "ventaja":"Los disertantes suben sus presentaciones fácilmente y sin complicaciones." 
+    },
+    {
+    "id":3,
+    "emoji":"🎤",
+    "titulo":"Control Total",
+    "ventaja":"Cada expositor gestiona su contenido y agenda en su propio panel." 
+    },
+    {
+    "id":4,
+    "emoji":"⚙️",
+    "titulo":"Experiencia Fluida",
+    "ventaja":"Presentaciones listas y sincronizadas en el momento exacto." 
+    }
+]}

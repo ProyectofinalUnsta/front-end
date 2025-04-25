@@ -3,7 +3,7 @@ import '../global/Layout.css'
 import { NavBar } from '../Navbar/NavBar'
 import { Footer } from '../footer/footer'
 // import { SobreNosotros } from '../pages/SobreNosotros'
-export const Layout = ({children, banner}) => {
+export const Layout = ({children, banner, explore, why }) => {
     return(
         <>
         <div className='padre-container'>
@@ -13,8 +13,13 @@ export const Layout = ({children, banner}) => {
         {banner ? <section className='banner-container'>
            {banner}
         </section> : null}
-  
         
+         {explore ? <section className='explore-container'>
+               {explore}
+           </section> : null}
+        {why ? <section className='why-container'>
+           {why}
+        </section> : null}
         <section className='sections-container'>
           {children}
         </section>

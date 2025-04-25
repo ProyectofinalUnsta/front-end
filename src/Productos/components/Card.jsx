@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router'
 export const Card = ({products}) => {
     const {_id,nombre,descripcion,fecha,hora,lugar} = products
     const navegar = useNavigate()
-    const navigate = (_id) => {
-      navegar(`/eventos/${_id}`)
+    const navigate = (_id,lugar,fecha,hora,nombre,descripcion) => {
+      const href = `/eventos/${_id}`
+      navegar(href,{state:{_id,lugar,fecha,hora,nombre,descripcion}})
     }
     return(
         <>
@@ -37,7 +38,7 @@ export const Card = ({products}) => {
               </article>
             </section>
             <section className='event-btn'>
-               <a className='btn-event' onClick={()=>navigate(_id)}>Ver detalles</a>
+               <a className='btn-event' onClick={()=>navigate(_id,lugar,fecha,hora,nombre,descripcion)}>Ver detalles</a>
               </section>
         </div>
         </>

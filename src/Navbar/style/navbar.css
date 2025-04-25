@@ -37,7 +37,12 @@ justify-content: start;
     flex-direction: row;
     gap: 2rem;
 }
-
+.nav-section ul li{
+    transition: color ease 250ms;
+}
+.nav-section ul li:hover {
+    color: #256dda;
+}
 
 .btn-section{
 width: 33%;

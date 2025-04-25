@@ -1,0 +1,235 @@
+.card-details-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0rem;
+}
+
+.info-side{
+    padding-top: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items:start;
+}
+.articule-descripcion{
+    display: flex;
+    width: 100%;
+
+}
+.descripcion-event{
+    padding-right: 0px;
+}
+
+.event-name{
+    color: rgb(29, 29, 29);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.details-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.options-side{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 20px;
+    padding-top: 80px;
+    background-color: #F4F4F5;
+    padding-bottom: 30px;
+}
+
+.img-detail-event{
+    align-self: center;
+    background-color: white;
+    width: 360px;
+    height: 400px;
+    border-radius: 12px;
+    object-fit: cover;
+  
+}
+
+.btn-container-event-details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.place-event{
+display: flex;
+flex-direction: row;
+gap: 0.3rem;
+justify-content: center;
+align-items: center;
+color: #000;
+}
+
+.dark-btn.dark {
+    padding: 0.8rem;
+    border-radius: 12px;
+    font-size: large;
+}
+
+
+@media (width < 1450px) {
+    .card-details-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    
+    }
+    .info-side{
+        padding-top: 20px;
+        padding-right: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .options-side{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-left: 20px;
+        padding-top: 80px;
+        padding-bottom: 30px;
+        background-color: #F4F4F5;
+       
+    }
+
+    .img-detail-event{
+        align-self: center;
+        background-color: white;
+       
+        width: 70%;
+        height: 500px;
+        border-radius: 12px;
+        object-fit: cover;
+      
+    }
+
+}
+
+@media (width < 650px) {
+
+    .info-side{
+        padding-top: 20px;
+        padding-right: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .event-name{
+        color: rgb(29, 29, 29);
+        font-family: var(--font);
+        font-size: 1.75rem;
+        font-weight: 500;
+    }
+
+    .details-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2rem;
+        font-size: 1rem;
+    }
+
+    .img-detail-event{
+        align-self: center;
+        background-color: white;
+        width: 90%;
+        height: 400px;
+        border-radius: 12px;
+        object-fit: cover;
+      
+    }
+
+    .options-side{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: #F4F4F5;
+        z-index: 10;
+    }
+
+    
+}
+
+@media (width < 500px) {
+    .event-name{
+        color: rgb(29, 29, 29);
+        font-family: var(--font);
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .details-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2rem;
+        font-size: 0.75rem;
+    }
+
+    .img-detail-event{
+        background-color: white;
+        width: 90%;
+        height: 300px;
+        border-radius: 12px;
+        object-fit: cover;
+      
+    }
+
+    .btn-container-event-details{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .options-side{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: #F4F4F5;
+        z-index: 10;
+    }
+
+    .dark-btn.dark {
+        padding: 0.5rem;
+        border-radius: 8px;
+        font-size: medium;
+    }
+
+    .descripcion-event{
+        padding-right: 0px;
+        font-size: 0.80rem;
+    }
+
+}

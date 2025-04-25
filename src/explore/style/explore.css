@@ -1,0 +1,124 @@
+.header-explore{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-title{
+color: #020817;
+font-family: var(--font);
+font-weight: 600;
+font-size: 60px;
+}
+
+.paragraph-container{
+    width: 65%;
+    display: flex;
+    text-align: center;
+}
+
+.explore-paragraph {
+    color: #64748B;
+    font-family: var(--font);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+
+.btn-container{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-btn{
+    background-color: #131313;
+    color: white;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    border-radius: 24px;
+    transition: transform ease 350ms;
+}
+
+
+.explore-btn:hover {
+background-color: #303030;
+transform: scale(1.08);
+}
+
+@media (width < 1000px) {
+    .explore-title{
+        color: #020817;
+        font-family: var(--font);
+        font-weight: 600;
+        font-size: 45px;
+        }
+
+    .explore-paragraph {
+            color: #64748B;
+            font-family: var(--font);
+            font-size: 18px;
+            font-weight: 500;
+       }
+    
+}
+
+@media (width < 600px) {
+    .explore-title{
+        color: #020817;
+        font-family: var(--font);
+        font-weight: 600;
+        font-size: 30px;
+        }
+
+    .explore-paragraph {
+        color: #64748B;
+        font-family: var(--font);
+        font-size: 14px;
+        font-weight: 500;
+       }
+       .btn-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (width < 500px) {
+    .explore-title{
+        color: #020817;
+        font-family: var(--font);
+        font-weight: 600;
+        font-size: 22px;
+        }
+
+    .explore-paragraph {
+        color: #64748B;
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 500;
+        }
+
+    .explore-btn{
+        background-color: #131313;
+        color: white;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 0.50rem;
+        padding-top: 0.50rem;
+        display: flex;
+        flex-direction: row;
+        gap: 0.3rem;
+        border-radius: 24px;
+        transition: transform ease 350ms;
+        }
+}
