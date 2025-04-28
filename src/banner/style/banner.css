@@ -30,6 +30,7 @@
 }
 
 .text-banner {
+margin-top: 20px;
 font-size: 60px;
 font-weight: 600;
 font-family: var(--font);
@@ -169,6 +170,7 @@ background: linear-gradient(
 
 @media (width < 600px) {
   .text-banner {
+    margin-top: 60px;
     text-align: start;
     font-size: 1.75rem;
     line-height: 1;
@@ -196,6 +198,7 @@ background: linear-gradient(
       }
  
       .banner{
+        padding-top: 130px;
         width: 100%;
         height: auto;
         display: flex;

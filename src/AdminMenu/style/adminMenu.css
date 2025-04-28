@@ -1,0 +1,118 @@
+.admin-menu-container{
+    margin-top: 15px;
+    margin-right: 1rem;
+    width: 85%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: width ease 0.8s;
+    border-radius: 10px;
+}
+
+.options-admin-menu {
+width: 65%;
+
+}
+
+.options-admin-menu ul {
+    padding-left: 15px;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.user-options-admin-menu{
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding-right: 15px;
+    gap: 0.7rem;
+}
+
+.user-options-admin-menu-details{
+    display: flex;
+    flex-direction: column;
+  align-items: end;
+}
+
+.admin-name{
+    font-family: var(--font);
+    color: rgb(32, 32, 32);
+    font-size: 16px;
+    transition: display ease 0.8s;
+}
+
+.admin-role-name{
+    font-family: var(--font);
+    color: gray;
+    font-size: 13px;
+    transition: display ease 0.8s;
+}
+
+.img-container-user{
+    border: 1px solid rgb(39, 39, 39);
+    background-color: rgb(241, 241, 241);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+@media (width < 660px){
+    .options-admin-menu {
+        width: 0%;
+        }
+
+    .options-admin-menu ul {
+        display: none;
+    }
+    .user-options-admin-menu{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        padding-right: 15px;
+        gap: 0.7rem;
+    }
+}
+
+@media (width < 450px) {
+    .user-options-admin-menu{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-right: 15px;
+        gap: 0.7rem;
+    }
+
+    .admin-name{
+        font-family: var(--font);
+        color: rgb(32, 32, 32);
+        font-size: 13px;
+    } 
+
+    .admin-role-name{
+        font-family: var(--font);
+        color: gray;
+        font-size: 10px;
+    }
+    
+    .img-container-user{
+        border: 1px solid rgb(39, 39, 39);
+        background-color: rgb(241, 241, 241);
+        width: 34px;
+        height: 34px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+    }
+
+}

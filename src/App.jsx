@@ -5,6 +5,7 @@ import { ProductsPage } from './pages/ProductsPage'
 import { SobreNosotros } from "./pages/SobreNosotros"
 import {ErrorPage} from './pages/ErrorPage'
 import { EventDetailsPage } from './pages/EventDetailsPage'
+import { AdminPage } from './pages/AdminPage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/Eventos' element={<ProductsPage/>}/>
           <Route path='/Eventos/:id' element={<EventDetailsPage/>}/>
           <Route path="/SobreNosotros" element={<SobreNosotros />} />
+          <Route path='/Admin' element={<AdminPage/>}/>
           <Route path='*' element={<ErrorPage/>}/>
         </Routes>
         </BrowserRouter>

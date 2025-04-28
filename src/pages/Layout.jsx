@@ -2,17 +2,26 @@ import '../global/global.css'
 import '../global/Layout.css'
 import { NavBar } from '../Navbar/NavBar'
 import { Footer } from '../footer/footer'
-// import { SobreNosotros } from '../pages/SobreNosotros'
+import { useNebulosaBackground } from '../hooks/useNebulosaBackground'
+import { SobreNosotros } from '../pages/SobreNosotros'
+
 export const Layout = ({children, banner, explore, why }) => {
+    
+  const mountRef = useNebulosaBackground() 
+
     return(
         <>
         <div className='padre-container'>
         <nav className='nav-container'>
             <NavBar/>
         </nav>
-        {banner ? <section className='banner-container'>
+        {banner ? 
+        <div >
+        <section ref={mountRef} className='banner-container'>
            {banner}
-        </section> : null}
+        </section>  
+        </div>
+       : null}
         
          {explore ? <section className='explore-container'>
                {explore}

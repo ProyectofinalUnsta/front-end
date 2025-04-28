@@ -14,9 +14,12 @@ export const Banner = () => {
             </div>
           </aside>
           <aside  className='article-banner'>
-            <img  className='img-banner' src="https://kzmo4ra0ji5m2etf47ef.lite.vusercontent.net/placeholder.svg?height=400&width=600" alt="" />
+          <spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/L8F-Pg4OoU1tqpEb/scene.splinecode"></spline-viewer>
+            {/* <img  className='img-banner' src="https://kzmo4ra0ji5m2etf47ef.lite.vusercontent.net/placeholder.svg?height=400&width=600" alt="" /> */}
           </aside>
         </div>
         </>
     )
 }
+
+

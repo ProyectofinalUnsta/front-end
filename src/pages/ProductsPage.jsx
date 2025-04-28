@@ -4,7 +4,7 @@ export function ProductsPage  () {
 
     return(
         <>
-        <Layout children={<ProductContainer/>}/>
+        <Layout children={<ProductContainer/>} banner={false}/>
         </>
     )
 }

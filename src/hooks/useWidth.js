@@ -6,9 +6,7 @@ import { useLocation } from "react-router"
     const [width,setwidth] = useState(0)
     const location = useLocation()
     const handlewidth  = () => {
-       
         setwidth(window.innerWidth)
-        console.log(window.innerWidth)
         }
 
        

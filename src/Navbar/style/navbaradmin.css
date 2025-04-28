@@ -1,0 +1,201 @@
+.navbar-admin-container{
+
+    display: flex;
+    flex-direction:column;
+    gap: 1rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: width ease 0.8s;
+}
+
+.displayed {
+    width: 250px;
+    height: 100vh;
+}
+
+.closed {
+    width: 80px;
+    height: 100vh;  
+}
+
+.show {
+
+opacity: 1;
+display: flex;
+}
+
+.hide {
+    opacity: 0;
+    display: none;
+}
+
+.pestana{
+    transition: transform ease 300ms;
+}
+
+.point{
+    transition: fill ease 300ms;
+}
+
+.navbar-admin-header{
+    width: 100%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Logo-admin-container{
+    width: 100%;
+    height: 35%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.logo-text-admin{
+    font-family: var(--font);
+    font-size: 1.35rem;
+    font-weight: 500;
+     transition: opacity 1s ease , display ease 300ms; 
+}
+
+.main-options-admin{
+width: 100%;
+height: 65%;
+display: flex;
+flex-direction: column;
+gap: 0rem;
+
+}
+
+.defualt-select-admin{
+    align-self: center;
+    width: 95%;
+    background-color: #b9b9c338;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-left: 20px;
+    align-items: center;
+
+    gap: 2.90rem;
+
+}
+
+.more-padding {
+   padding-left: 25px;
+}
+
+.options-real-list{
+    align-self: center;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    opacity: 0;
+    transition: visible  ease 300ms, opacity ease 300ms;
+
+}
+
+.active {
+    opacity: 1;
+
+}
+
+.article-options-list{
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 10px ;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    transition: color ease 0.5s , background ease 0.5ss , box-shadow ease 0.5s;
+
+}
+.selected {
+    background: linear-gradient(to right, #7367F0 ,#9a90ff ) ;
+    color: white;
+    backdrop-filter: blur(12px);
+    box-shadow: 
+  0 10px 15px 10px rgba(154, 144, 255, 0.1), 
+  0 4px 6px -4px rgba(115, 103, 240, 0.1),
+  0 20px 30px rgba(154, 144, 255, 0.2), 
+  0 0 20px rgba(115, 103, 240, 0.3);
+
+}
+
+.close-and-open-btn{
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to right, #7367F0 ,#9a90ff );
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 30%;
+    left: 205px;
+    opacity: 0;
+    transition: box-shadow ease 300ms, transform 0.8s ease , opacity ease 300ms,  left ease 1s;
+}
+
+.popUp {
+    opacity: 1;
+    left: 225px;
+}
+
+.movedisplayed {
+    left: 70;
+}
+
+.close-and-open-btn:hover{
+    transform: scale(1.1);
+    box-shadow: 
+    0 10px 15px 10px rgba(154, 144, 255, 0.1), 
+    0 4px 6px -4px rgba(115, 103, 240, 0.1),
+    0 20px 30px rgba(154, 144, 255, 0.2), 
+    0 0 20px rgba(115, 103, 240, 0.3);
+  
+}
+
+.main-content-admin-menu{
+width: 100%;
+padding-left: 30px;
+height: 40vh;
+display: flex;
+justify-content: start;
+flex-direction: column;
+gap: 1.5rem;
+
+transition: padding-left ease 0.8s ,justify-content ease 0.8s;
+}
+
+
+.all-options-admin-menu ul {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.Apps-title{
+color: gray;
+}
+
+.listed-app-menu-admin-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    gap: 0.5rem;
+}
+
+
