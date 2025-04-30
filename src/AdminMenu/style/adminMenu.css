@@ -21,7 +21,7 @@ width: 65%;
     width: 60%;
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap:2rem;
 }
 
 .user-options-admin-menu{
@@ -63,6 +63,24 @@ width: 65%;
     align-items: center;
     border-radius: 100%;
 }
+
+@media(width < 820px) {
+    .options-admin-menu ul {
+      width: 45%;
+      gap: 1.3rem;
+    }
+
+    .user-options-admin-menu{
+        width: 65%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        padding-right: 15px;
+        gap: 0.7rem;
+    }
+}
+
+
 
 @media (width < 660px){
     .options-admin-menu {

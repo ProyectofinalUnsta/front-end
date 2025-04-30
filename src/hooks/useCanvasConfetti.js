@@ -19,6 +19,7 @@ export const useCanvasConfetti = () => {
         colors: ['#ff6347', '#32cd32', '#1e90ff'],
       });
     }
+    confetti()
   }, []); // El array vacío asegura que esto solo suceda al montar el componente
 
   return sectionRef; // Devuelve la referencia para usarla en el componente

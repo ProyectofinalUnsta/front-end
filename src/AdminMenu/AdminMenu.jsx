@@ -23,7 +23,7 @@ export const AdminMenu = () =>{
 
           <section className='user-options-admin-menu'>
             <div className='user-options-admin-menu-details'>
-                <h2 className='admin-name' style={{display: displayed && width < 470 ? 'none' : 'flex'}}>Mateo Lozano</h2>
+                <h2 className='admin-name' style={{display: displayed && width < 470 ? 'none' : 'flex'}}>Jhon Doe</h2>
                 <span className='admin-role-name' style={{display: displayed && width < 470 ? 'none' : 'flex'}}>Admin</span>
             </div>
             <figure className='img-container-user'>

@@ -2,15 +2,13 @@ import '../style/card.css'
 import {DateIcon } from '../../icons/DateIcon'
 import { PlaceIcon } from '../../icons/PlaceIcon'
 import { RelojIcon } from '../../icons/RelojIcon'
-import { Link } from 'react-router'
-import { useNavigate } from 'react-router'
+import { useNavegacion } from '../../hooks/useNavegacion'
 export const Card = ({products}) => {
+  
     const {_id,nombre,descripcion,fecha,hora,lugar} = products
-    const navegar = useNavigate()
-    const navigate = (_id,lugar,fecha,hora,nombre,descripcion) => {
-      const href = `/eventos/${_id}`
-      navegar(href,{state:{_id,lugar,fecha,hora,nombre,descripcion}})
-    }
+    const {handlenavigate} = useNavegacion()
+    const ruta = '/Eventos'
+
     return(
         <>
         <div className="event-card" key={_id}>
@@ -38,7 +36,7 @@ export const Card = ({products}) => {
               </article>
             </section>
             <section className='event-btn'>
-               <a className='btn-event' onClick={()=>navigate(_id,lugar,fecha,hora,nombre,descripcion)}>Ver detalles</a>
+               <a className='btn-event' onClick={()=>handlenavigate({ruta, params:{_id,lugar,fecha,hora,nombre,descripcion}})}>Ver detalles</a>
               </section>
         </div>
         </>
