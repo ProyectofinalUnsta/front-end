@@ -38,6 +38,13 @@ const cardsSobreNosotros = [
     image: image4,
     url: "https://github.com/MartinRotger",
   },
+  {
+    id: 6,
+    title: "Martin Mitre",
+    text: "Desarrollador - QA , Estudiante de la TEC. UNIV. EN DES. Y CALIDAD DE SOFTWARE",
+    image: image4,
+    url: "https://github.com/martinmitre",
+  },
 ];
 
 function CardsSobreNos() {
