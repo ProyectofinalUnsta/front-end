@@ -25,7 +25,9 @@ export function useAdminMenu () {
 
     const closeMenu = () => {
         const options = document.getElementById('options')
-        options.classList.remove('active')
+        if(options){
+            options.classList.remove('active')
+        }
         setRotacion(90)
         setActive(false)
         return

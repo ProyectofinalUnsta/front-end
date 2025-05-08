@@ -8,9 +8,9 @@ export const ToDoSection = ({displayed}) => {
                     {
                         displayed ? <>
                         <ToDoListIcon/>
-                        <Link to={'/Todo'}>Todo</Link>
+                        <Link to={'/Admin/Todo'}>Todo</Link>
                         </>
-                        : <Link to={'/Todo'}><ToDoListIcon/></Link>
+                        : <Link to={'/Admin/Todo'}><ToDoListIcon/></Link>
                     }
   
                   </li>

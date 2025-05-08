@@ -4,7 +4,7 @@ import { AdminNavbar } from "../Navbar/AdminNavbar";
 import '../global/admin.css'
 import { useCanvasConfetti } from "../hooks/useCanvasConfetti";
 import { PopUp } from "../PopUp/PopUp";
-import { SayHi } from "../SayHi/SayHi";
+import { Footer } from "../footer/footer";
 
 export function LayoutAdmin  ({children})  {
 
@@ -30,13 +30,13 @@ const [load,setload] = useState( ()=> window.localStorage.getItem('admin-hi') ||
             <AdminMenu/>
             </header>
             <main className="main-main-section-content">
-            <header className="panel-admin-title">
-                <h2>Panel Administrador</h2>
-            </header>
-            <SayHi/>
+              {children}
             </main>
          </section>
         </div>
+        <footer>
+            <Footer/>
+        </footer>
      </div>
      </>
     )

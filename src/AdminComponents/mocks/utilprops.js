@@ -1,0 +1,5 @@
+export const StickyColors = [{nombre:'#FEFFD3',type:'Bg'},{nombre:'#FFD6A5',type:'Bg'},{nombre:'#C1E1C1',type:'Bg'},{nombre:'#A0C4FF',type:'Bg'},{nombre:'#FFC6FF',type:'Bg'}]
+export const FontColor = [{nombre:'#B388EB',type:'Bg'},{nombre:'#FF9AA2',type:'Bg'},{nombre:'#FFB347',type:'Bg'},{nombre:'#AEC6CF',type:'Bg'},{nombre:'#77DD77',type:'Bg'},{nombre:'#000',type:'Bg'}]
+export const TextSize = [{nombre:'14px',displayName:'Xs'},{nombre:'18px',displayName:'S'},{nombre:'22px',displayName:'M'},{nombre:'26px',displayName:'L'},{nombre:'30px',displayName:'Xl'},{nombre:'44px',displayName:'Xxl'}]
+export const fontStyle = [{nombre:'normal',displayName:'N'},{nombre:'oblique',displayName:'O'},{nombre:'italic',displayName:'I'}]
+export const fontFamily = [{nombre:'"Virgil",sans-serif',displayName:'V'},{nombre:'"Nunito Sans", sans-serif',displayName:'N'},{nombre:'"Fira Code", monospace',displayName:'Fc'},{nombre:'"Playfair Display", serif',displayName:'Pd'},{nombre:'"Space Grotesk", sans-serif',displayName:'Sg'}]

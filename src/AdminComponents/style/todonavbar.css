@@ -1,0 +1,36 @@
+.navbar-todo ul {
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 400px ;
+    height: 45px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+   background: white;
+   box-shadow: 0px 0px .9310142993927002px 0px rgba(0, 0, 0, .17), 0px 0px 3.1270833015441895px 0px rgba(0, 0, 0, .08), 0px 7px 14px 0px rgba(0, 0, 0, .05);
+}
+
+.navbar-todo ul li {
+    cursor: pointer;
+    width: 50px;
+    height: 80%;
+    border-radius: 8px ;
+    transition: background ease 0.1s;
+}
+
+.navbar-todo ul li:hover {
+    background: #e0dfff;
+}
+
+
+@media (width < 700px) {
+
+.navbar-todo ul {
+  
+    width: 50vw ;
+  
+}
+
+}
