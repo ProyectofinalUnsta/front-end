@@ -29,6 +29,7 @@ const createNote = () => {
 const deleteNote = (id) => {
 
 const newMap = MappedElements.filter(elements => elements.id !== id)
+setMappedElements(newMap)
 saveOnLocal(newMap)
 
 }

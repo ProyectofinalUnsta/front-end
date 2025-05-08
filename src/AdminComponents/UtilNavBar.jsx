@@ -1,6 +1,6 @@
 import { useTodoNavbar } from "./mocks/useTodoNavbar"
 import { StickyColors,TextSize,fontStyle,fontFamily,FontColor } from "./mocks/utilprops"
-import { RowOption } from "./RowOption"
+import { RowActions, RowOption } from "./RowOption"
 import './style/utilnavbar.css'
 export const UtilNavBar = () => {
 return(
@@ -27,6 +27,7 @@ return(
        <RowOption element={fontFamily} target={'fontFamily'} title={'Tipo Fuente'} id={idElement}/>
        <RowOption element={fontStyle} target={'fontStyle'} title={'Estilo de fuente'} id={idElement}/>
        <RowOption element={TextSize} target={'fontSize'} title={'Tamaño Fuente'} id={idElement}/>
+       <RowActions title={'Acciones'} id={idElement}/>
      </article>
     </div>
 )
@@ -41,6 +42,7 @@ return(
        <RowOption element={fontFamily} target={'fontFamily'} title={'Tipo Fuente'} id={idElement}/>
        <RowOption element={fontStyle} target={'fontStyle'} title={'Estilo de fuente'} id={idElement}/>
        <RowOption element={TextSize} target={'fontSize'} title={'Tamaño Fuente'} id={idElement}/>
+       <RowActions title={'Acciones'} id={idElement}/>
      </article>
   </div>
 )

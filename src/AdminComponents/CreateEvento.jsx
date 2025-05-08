@@ -2,10 +2,11 @@ import './style/create.css'
 import { useCrearEventos } from '../hooks/useCrearEventos'
 import { Atributes } from './Atributes'
 import { AtributeDescripcion } from './AtributeDescripcion'
+import { AtributeCategory } from './AtributeCategory'
 
 export const CreateEvento = () => {
 
-   const {handlesubmit,handleFoto,handledate,error,handleTime,handletext,handleform} = useCrearEventos()
+   const {handlesubmit,handleFoto,handledate,error,handleTime,handletext,handleform,handlecategoria,form} = useCrearEventos()
 
     return(
 
@@ -24,8 +25,9 @@ export const CreateEvento = () => {
     </div>
     <div class="form-right">
      <Atributes nombre={'lugar'} label={'Ubicacion'} type={'text'} placeholder={'NH Hotel, Buenos Aires'}  event2={handleform}/>
+     <AtributeCategory nombre={'Categoria'} label={'Categoria'} event={handlecategoria}/>
       <div class="form-group">
-        <label className='archivo' htmlFor="archivo" style={{border: error ? '6px dotted red' : ' 6px dotted #ddd', color: error ? 'red' : 'gray'}} > {error ? <span>{error}</span> : <span>Foto Evento</span> }</label>
+        <label className='archivo' htmlFor="archivo" style={{border: error ? '6px dotted red' : ' 6px dotted #ddd', color: error ? 'red' : 'gray'}} > {error ? <span>{error}</span> : <span style={{color: form.foto.name ? ' #24d651' : 'gray'}}>  {form.foto == '' ? 'Foto Evento (1MB)' : form.foto.name }</span> }</label>
         <input type="file" id="archivo" onChange={(e)=>handleFoto(e)}/>
       </div>
       <button class="submit-btn" onClick={()=> handlesubmit()}>Enviar</button>

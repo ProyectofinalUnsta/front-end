@@ -14,6 +14,7 @@ export function useCrearEventos () {
             horasalida: null,
             lugar:'',
             descripcion:'',
+            categoria:'',
             foto:'',
         })
     
@@ -23,8 +24,6 @@ export function useCrearEventos () {
             ...prevData,
             ['descripcion']:e.target.value
            }))
-            let textlenght = String(e.target.value)
-            setLength(textlenght.length)
         }
     
         const handledate = (e) => {
@@ -42,53 +41,30 @@ export function useCrearEventos () {
     
         }
         const handleTime = (e) => {
-            const { value } = e.target;
-    
-            let comparasion = String(value)
-            let hora = comparasion.split(':')
-            if(e.target.id == 'hora_entrada') {
-                if(hora[0] < 12) {
-                    let entrada = `${e.target.value} AM `
-                  setForm((prevData) => ({
-                    ...prevData,
-                    ['horaentrada']: entrada,
-                  }));
-                }
-                if(hora[0] >= 12) {
-                    let entrada = `${e.target.value} PM `
-                    setForm((prevData) => ({
-                        ...prevData,
-                        ['horaentrada']: entrada,
-                      }));
-                }
-    
+            const { value, id } = e.target;
+            const hora = value.split(':');
+            const esAM = hora[0] < 12;
+          
+            let nuevaEntrada = form.horaentrada || "";
+            let nuevaSalida = form.horasalida || "";
+          
+            if (id === 'hora_entrada') {
+              nuevaEntrada = `${value} ${esAM ? 'AM' : 'PM'} `;
             }
-            if(e.target.id == 'hora_salida'){
-                if(hora[0] < 12) {
-                    let salida = `- ${e.target.value} AM`
-                    setForm((prevData) => ({
-                        ...prevData,
-                        ['horasalida']: salida,
-                      }));
-                }
-                if(hora[0] >= 12) {
-                  let salida = `- ${e.target.value} PM`
-                  setForm((prevData) => ({
-                    ...prevData,
-                    ['horasalida']: salida,
-                  }));  
-                }
-            
+          
+            if (id === 'hora_salida') {
+              nuevaSalida = `- ${value} ${esAM ? 'AM' : 'PM'}`;
             }
-    
-            if(form.horaentrada != null && form.horasalida != null){
-                setForm((prevData) => ({
-                    ...prevData,
-                    ['hora']:`${form.horaentrada}${form.horasalida}`,
-                  }));
-            }
-        }
-    
+          
+            setForm((prevData) => ({
+              ...prevData,
+              horaentrada: nuevaEntrada,
+              horasalida: nuevaSalida,
+              hora: `${nuevaEntrada}${nuevaSalida}`,
+            }));
+          };
+          
+
         const handleFoto = (e) => {
             let foto = e.target.files[0]
             console.log(foto)
@@ -96,10 +72,6 @@ export function useCrearEventos () {
               setError('la imagen no puede superar 1MB')
               return
             }
-             if(foto.type != 'image/webp'){
-                setError('la imagen debe estar en formato webp')
-                 return
-             }
              else {
                 setForm((prevData) => ({
                     ...prevData,
@@ -116,6 +88,13 @@ export function useCrearEventos () {
          }))
         }
 
+        const handlecategoria = (e) => {
+           setForm((prevData)=> ({
+            ...prevData,
+            ['categoria']:e.target.value
+           }))
+        }
+
     
         const handlesubmit = () => {
             const {horaentrada,horasalida, ...data} = form
@@ -125,5 +104,5 @@ export function useCrearEventos () {
     
     
 
-    return {handlesubmit,handleFoto,handleform,handletext,handledate,lenght,error,handleTime}
+    return {handlesubmit,handleFoto,handleform,handletext,handledate,lenght,error,handleTime,setLength,handlecategoria,form}
 }

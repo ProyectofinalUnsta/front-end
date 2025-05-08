@@ -17,3 +17,18 @@ export const RowOption = ({element,id,title,target}) => {
         </>
     )
 }
+
+export const RowActions = ({id,title}) => {
+    const {deleteNote} = useTodoTools()
+    return (
+        <>
+        <h2>{title}</h2>
+        <div className="rowed-element-option">
+            <div className="element-option tooltip-container" onClick={()=>deleteNote(id)}>
+            <h3 style={{marginTop: '4px',background:'#f3f3f3'}}>E</h3>
+            <span className="tooltip-text">Eliminar Elemento</span>
+            </div>
+          </div>
+        </>
+    )
+}
