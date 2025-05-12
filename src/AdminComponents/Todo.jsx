@@ -51,7 +51,7 @@ id='Padre'
       {mappedElements.map((el) => {
         const pos = positions.get(el.id) || { x: 50, y: 50 };
         return (
-          el.type == 'Sticky' ? <Sticky key={el.id} pos={pos} el={el} draggingId={draggingId} event={handleStart} /> :  <TextDisplayed key={el.id} pos={pos} el={el} draggingId={draggingId} event={handleStart}/>
+          el.type == 'Sticky' ? <Sticky key={el.id} pos={pos} el={el} draggingId={draggingId} event={handleStart} />  :  <TextDisplayed key={el.id} pos={pos} el={el} draggingId={draggingId} event={handleStart}/>
         
         );
       })}

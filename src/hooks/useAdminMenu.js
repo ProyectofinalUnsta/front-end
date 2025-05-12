@@ -3,7 +3,7 @@ import { MenuAdminContext } from "../context/MenuAdminContext"
 
 export function useAdminMenu () {
 
-    const { rotacion,setRotacion,displayed,setDisplayed,selectedesRef, refactiva,setRefActiva,active,setActive,popup,setPopUp,popUpDisplayed,setPopUpDisplayed} = useContext(MenuAdminContext)
+    const { rotacion,setRotacion,displayed,setDisplayed,selectedesRef, refactiva,setRefActiva,active,setActive,popup,setPopUp,popUpDisplayed,setPopUpDisplayed,issuceed,setiscuceed} = useContext(MenuAdminContext)
 
     const handleAdminMenu = () => {
         if(!active){
@@ -65,6 +65,10 @@ export function useAdminMenu () {
             
         }
 
+        const handlesucess = (valor) => {
+            setiscuceed(valor)
+            window.localStorage.setItem('success',JSON.stringify(valor))
+        }
       
 
       const handlePopUpDisplayed = () => {
@@ -83,5 +87,5 @@ export function useAdminMenu () {
 
 
 
-    return {rotacion,displayed,selectedesRef,refactiva,popup,popUpDisplayed,handleAdminMenu,closeMenu,handleClick,handledisplay,handlePopUpDisplayed}
+    return {rotacion,displayed,selectedesRef,refactiva,popup,popUpDisplayed,handleAdminMenu,closeMenu,handleClick,handledisplay,handlePopUpDisplayed,issuceed,handlesucess}
 }

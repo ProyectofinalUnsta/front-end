@@ -1,24 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminMenu } from "../AdminMenu/AdminMenu";
 import { AdminNavbar } from "../Navbar/AdminNavbar";
 import '../global/admin.css'
 import { useCanvasConfetti } from "../hooks/useCanvasConfetti";
 import { PopUp } from "../PopUp/PopUp";
 import { Footer } from "../footer/footer";
+import { useAdminMenu } from "../hooks/useAdminMenu";
 
 export function LayoutAdmin  ({children})  {
 
 const [load,setload] = useState( ()=> window.localStorage.getItem('admin-hi') || false)
-
-    const { sectionRef } = useCanvasConfetti()
+const {issuceed,handlesucess} = useAdminMenu()
+    const { sectionRef, fireConfetti  } = useCanvasConfetti()
 
     const handlehi = () => {
         setload(!load)
         window.localStorage.setItem('admin-hi',true)
     }
 
+    useEffect(() => {
+    if (sectionRef.current) {
+      fireConfetti();
+    }
+  }, [sectionRef.current]);
+
     return(
      <>
+     { issuceed == true ? <PopUp ref={sectionRef}  isSuccess={issuceed} event={handlesucess} namebtn={'Aceptar'}  content={true}/> : null}
      {load == false ? <PopUp ref={sectionRef} content={'Jhon Doe!'} event={handlehi} namebtn={'Aceptar'}/> : null}
      <div className="admin-container">
         <div className="content-container">

@@ -1,13 +1,17 @@
 import { useState } from "react"
 import { parser } from "../utils/parsearfecha"
+import { createEvent } from "../utils/peticiones"
+import { useNavegacion } from "./useNavegacion"
+import { useAdminMenu } from "./useAdminMenu"
+
 
 export function useCrearEventos () {
 
         const [lenght,setLength] = useState(0)
         const [error,setError] = useState()
         const [form,setForm] = useState({
-            nombre:'',
-            detalle:'',
+            title:'',
+            breveDescripcion:'',
             fecha:'',
             hora:null,
             horaentrada: null,
@@ -15,9 +19,10 @@ export function useCrearEventos () {
             lugar:'',
             descripcion:'',
             categoria:'',
-            foto:'',
+            imagen:'',
         })
-    
+      const {handlesucess} = useAdminMenu()
+       const {navigatewithoutparams} = useNavegacion()
         const handletext = (e) => {
             console.log(e.target.value)
            setForm((prevData) => ({
@@ -75,7 +80,7 @@ export function useCrearEventos () {
              else {
                 setForm((prevData) => ({
                     ...prevData,
-                    ['foto']:foto
+                    ['imagen']:foto
                 }))
                 setError(false)
             }
@@ -96,13 +101,19 @@ export function useCrearEventos () {
         }
 
     
-        const handlesubmit = () => {
+        const handlesubmit = async () => {
             const {horaentrada,horasalida, ...data} = form
             const sendToBack = data
-            console.log(sendToBack)
+
+              let res = await createEvent(sendToBack)
+           
+             if(res.status === 200) {
+             handlesucess(true)
+              navigatewithoutparams({ruta:'/Admin/'})
+             }
         }
     
     
 
-    return {handlesubmit,handleFoto,handleform,handletext,handledate,lenght,error,handleTime,setLength,handlecategoria,form}
+    return {handlesubmit,handleFoto,handleform,handletext,handledate,lenght,error,handleTime,setLength,handlecategoria,form }
 }
