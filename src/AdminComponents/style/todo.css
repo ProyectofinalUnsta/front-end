@@ -1,0 +1,66 @@
+.header-options{
+    position: sticky;
+    top: 5px;
+    height: 40px;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lined-paper {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #ffffff; /* fondo blanco o marfil */
+   overflow: auto;
+    z-index: 1;
+  }
+
+.zoom-options{
+position: sticky;
+top: 90%;
+margin-left: 20px;
+}
+
+.btn-zoom-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.7rem;
+    background-color: rgb(240, 240, 240);
+    width: 130px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.btn-zoom-container button:nth-child(1){
+    width: 35px;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: background ease 0.5s,color ease 0.5s;
+}
+
+.btn-zoom-container button:nth-child(3) {
+    width: 35px;
+    height: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: background ease 0.5s,color ease 0.5s;
+}
+
+
+.btn-zoom-container button:hover {
+    background-color: rgb(170, 170, 170);
+    color: white;
+}
+
+@font-face {
+    font-family: 'Virgil';
+    src: url('fonts/Virgil.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }

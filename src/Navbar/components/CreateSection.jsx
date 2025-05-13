@@ -7,9 +7,9 @@ export const CreateSection = ({displayed}) => {
         {displayed ? 
             <>
             <CrearIcon/>
-            <Link to={'/'}>Crear Evento</Link>
+            <Link to={'/Admin/CrearEvento'}>Crear Evento</Link>
             </> 
-            : <Link to={'/'}><CrearIcon/></Link> }
+            : <Link to={'/Admin/CrearEvento'}><CrearIcon/></Link> }
         </li>
      </>
     )

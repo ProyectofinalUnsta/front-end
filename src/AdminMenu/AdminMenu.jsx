@@ -9,6 +9,7 @@ import './style/adminMenu.css'
 export const AdminMenu = () =>{
     const {displayed} = useAdminMenu()
     const {width} = useWidth()
+    
     return (
         <>
         <div className="admin-menu-container" style={{width: displayed ? '96%' : '99%'}}>

@@ -1,0 +1,86 @@
+.navbar-utils-elements{
+position: sticky;
+top: 80px;
+left: 20px;
+width: 270px;
+height: 400px;
+background-color: rgb(255, 255, 255);
+box-shadow: 0px 0px .9310142993927002px 0px rgba(0, 0, 0, .17), 0px 0px 3.1270833015441895px 0px rgba(0, 0, 0, .08), 0px 7px 14px 0px rgba(0, 0, 0, .05);
+border-radius: 12px;
+}
+
+.options-container-element{
+    width: 100%;
+    height: 100%;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.elements-utils-options{
+    width: 95%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.elements-utils-options h2{
+margin-top: 8px;
+font-size: 14px;
+}
+
+.rowed-element-option{
+    display: flex;
+    width: 85%;
+    height: 35px;
+    flex-direction: row;
+    gap: 0.3rem;
+
+}
+
+.element-option{
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform ease 0.3s;
+}
+
+.element-option:hover{
+  transform: scale(1.07);
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    width: max-content;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 10;
+    bottom: 120%; /* lo ubica arriba */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+  }
+  
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }

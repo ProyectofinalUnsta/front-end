@@ -7,9 +7,9 @@ export const ConfiguracionSection = ({displayed}) => {
             {
             displayed ? <>
             <ConfiguracionIcon/>
-            <Link to={'/configuracion'}>Configuracion</Link>
+            <Link to={'/Admin/configuracion'}>Configuracion</Link>
             </>
-            : <Link to={'/configuracion'}><ConfiguracionIcon/></Link>
+            : <Link to={'/Admin/configuracion'}><ConfiguracionIcon/></Link>
             }
            
             </li>

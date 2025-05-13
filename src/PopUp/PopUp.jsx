@@ -1,17 +1,22 @@
-
 import './style/popup.css'
 
-export const PopUp = ({content,role,event,ref,namebtn,error,nombre}) => {
+export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess}) => {
+
     return (
         <>
          <div ref={ref}  className="pop-up-container">
          <div class="popup">
-      <div class="icon">👋</div>
-        <h1>¡Bienvenido!</h1>
-      <HiLine content={content} role={role} nombre={nombre}/>
+      <div class="icon">{isSuccess == true ? '✔️' : '👋'}</div>
+        <h1>{isSuccess != true ? '¡Bienvenido!' : '¡Evento Exitoso!'}</h1>
+       {isSuccess == true ? <EventText /> 
+       : <>
+       <HiLine content={content} role={role} nombre={nombre}/>
       <CodeInput role={role} event={event} error={error}/>
+      </>
+      }
+      
        <div class="separator"></div>
-      <button onClick={()=>event()}>{namebtn}</button>
+      <button onClick={()=>event(false)}>{namebtn}</button>
         </div>
         </div> 
 
@@ -40,5 +45,13 @@ export const CodeInput = ({role, event,error}) => {
          </div>
          : null}
         </>
+    )
+}
+
+export const EventText = () => {
+    return(
+    <>
+    <p>El evento fue creado con exito!</p> 
+    </>
     )
 }

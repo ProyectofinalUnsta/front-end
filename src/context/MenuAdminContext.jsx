@@ -14,7 +14,9 @@ export const MenuAdminProvider = ({children}) => {
     const [active,setActive] = useState(true)
     const [popup,setPopUp] = useState(180)
     const [popUpDisplayed,setPopUpDisplayed] = useState(false)
-
+    const [issuceed,setiscuceed] = useState(()=> JSON.parse(window.localStorage.getItem('success')) || false )
+    
+    const [hascreatedEvent,sethascreatedEvent] = useState(0)
 
 
     return(
@@ -31,7 +33,9 @@ export const MenuAdminProvider = ({children}) => {
             popup,
             setPopUp,
             popUpDisplayed,
-            setPopUpDisplayed
+            setPopUpDisplayed,
+            issuceed,
+            setiscuceed
         }}>
             {children}
         </MenuAdminContext.Provider>

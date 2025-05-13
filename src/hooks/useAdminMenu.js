@@ -3,7 +3,7 @@ import { MenuAdminContext } from "../context/MenuAdminContext"
 
 export function useAdminMenu () {
 
-    const { rotacion,setRotacion,displayed,setDisplayed,selectedesRef, refactiva,setRefActiva,active,setActive,popup,setPopUp,popUpDisplayed,setPopUpDisplayed} = useContext(MenuAdminContext)
+    const { rotacion,setRotacion,displayed,setDisplayed,selectedesRef, refactiva,setRefActiva,active,setActive,popup,setPopUp,popUpDisplayed,setPopUpDisplayed,issuceed,setiscuceed} = useContext(MenuAdminContext)
 
     const handleAdminMenu = () => {
         if(!active){
@@ -25,7 +25,9 @@ export function useAdminMenu () {
 
     const closeMenu = () => {
         const options = document.getElementById('options')
-        options.classList.remove('active')
+        if(options){
+            options.classList.remove('active')
+        }
         setRotacion(90)
         setActive(false)
         return
@@ -63,6 +65,10 @@ export function useAdminMenu () {
             
         }
 
+        const handlesucess = (valor) => {
+            setiscuceed(valor)
+            window.localStorage.setItem('success',JSON.stringify(valor))
+        }
       
 
       const handlePopUpDisplayed = () => {
@@ -81,5 +87,5 @@ export function useAdminMenu () {
 
 
 
-    return {rotacion,displayed,selectedesRef,refactiva,popup,popUpDisplayed,handleAdminMenu,closeMenu,handleClick,handledisplay,handlePopUpDisplayed}
+    return {rotacion,displayed,selectedesRef,refactiva,popup,popUpDisplayed,handleAdminMenu,closeMenu,handleClick,handledisplay,handlePopUpDisplayed,issuceed,handlesucess}
 }
