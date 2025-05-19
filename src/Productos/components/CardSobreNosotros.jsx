@@ -1,36 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../style/cardsSobreNos.css";
+import "../style/cardsSobreNos.css"; 
 
-
-export function CardSobreNosotros({ imageSource, title, text, url }) {
+export  function CardSobreNosotros({ imageSource, title, text, url }) {
   return (
-<section>
-
-<div className="article">
-      <div>
-        <img src={imageSource} alt="Alumno" className="card-img-top card-img-top imgNos"/>
-      </div>
-      <div className="card-body text-light">
-        <h4 className="card-title">{title}</h4>
-        <p className="card-text text-secondary">{text ? text : text}</p>
-        <b>
-          <a
-            href={url ? url : "#!"}
-            target="_blank"
-            className="btn btn-secondary border-0"
-            rel="repositorpersonal"
-          >
-            <b>Github</b>
-            <br />
-            {title}
-          </a>
-        </b>
-      </div>
-    </div> 
-    
-    </section>
-    );
+    <div className="card-sobre-nosotros">
+      <img src={imageSource} alt={title} className="card-image" />
+      <h3 className="card-title">{title}</h3>
+      <p className="card-text">{text}</p>
+      <a
+        href={url ? url : "#!"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card-link"
+      >
+        Ver GitHub
+      </a>
+    </div>
+  );
 }
 
 CardSobreNosotros.propTypes = {
@@ -39,4 +26,6 @@ CardSobreNosotros.propTypes = {
   url: PropTypes.string,
   imageSource: PropTypes.string,
 };
+
+
 
