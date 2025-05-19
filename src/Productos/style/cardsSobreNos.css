@@ -1,38 +1,51 @@
-.imgNos {
-  width: 480;
-  height: 340px;
-  grid-auto-rows: auto;
-}
-
-.text {
-  font-size: 60px;
-  font-weight: 250;
-  font-family: var(--font);
-  color: black;
-}
-
-.description {
-  font-size: 25px;
-  color: rgb(157, 155, 155);
-  margin-top: 10px;
-}
-
-.article {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.card-sobre-nosotros {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
   text-align: center;
-  gap: 0.5rem;
+  transition: transform 0.3s ease;
   height: 100%;
   width: 100%;
+  max-width: 100%;
+  margin-left: 80px;
 }
 
-@media screen and (max-width: 767px) {
-  .imgNos {
-    height: 240px;
-    object-fit: cover;
-    display: Auto;
-    grid-auto-rows: auto;
-  }
+.card-sobre-nosotros:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #007bff;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.card-link {
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
 }

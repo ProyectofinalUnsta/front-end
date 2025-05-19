@@ -3,7 +3,7 @@ import '../global/Layout.css'
 import { NavBar } from '../Navbar/NavBar'
 import { Footer } from '../footer/footer'
 import { useNebulosaBackground } from '../hooks/useNebulosaBackground'
-import { SobreNosotros } from '../pages/SobreNosotros'
+import  SobreNosotros from '../pages/SobreNosotros'
 
 export const Layout = ({children, banner, explore, why }) => {
     

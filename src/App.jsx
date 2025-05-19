@@ -2,13 +2,11 @@ import {  Route, BrowserRouter,  Routes} from 'react-router-dom'
 import './App.css'
 import { HomePage } from './pages/HomePage'
 import { ProductsPage } from './pages/ProductsPage'
-import { SobreNosotros } from "./pages/SobreNosotros"
+import  SobreNosotros  from "./pages/SobreNosotros"
 import {ErrorPage} from './pages/ErrorPage'
 import { EventDetailsPage } from './pages/EventDetailsPage'
 import { AdminPage } from './pages/AdminPage'
 import { DisertantePage } from './pages/DisertantePage'
-import { AdminCreatePage } from './pages/AdminCreatePage'
-import { AdminTodoPage } from './pages/AdminTodoPage'
 
 function App() {
 
@@ -23,8 +21,6 @@ function App() {
           <Route path='/Eventos/CargarDatos/:id' element={<DisertantePage/>}/>
           <Route path="/SobreNosotros" element={<SobreNosotros />} />
           <Route path='/Admin' element={<AdminPage/>}/>
-          <Route path='/Admin/CrearEvento' element={<AdminCreatePage/>}/>
-          <Route path='/Admin/Todo' element={<AdminTodoPage/>}/>
           <Route path='*' element={<ErrorPage/>}/>
         </Routes>
         </BrowserRouter>
@@ -34,3 +30,4 @@ function App() {
 }
 
 export default App 
+

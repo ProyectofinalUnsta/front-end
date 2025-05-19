@@ -1,29 +1,32 @@
 import CardsSobreNos from "../Productos/CardsSobreNosotros";
-// import { Layout } from "./Layout";
-import { NavBar } from '../Navbar/NavBar'
-import { Footer } from '../footer/footer'
+import { NavBar } from "../Navbar/NavBar";
+import { Footer } from "../footer/footer";
 
-
-export function SobreNosotros() {
+export default function SobreNosotros() {
   return (
     <>
-  <NavBar/>
-      {/* <Layout /> */}
-      <div>
-        <section className="text-light py-3 text-center mb-5">
-          <h1 className='text' >PROYECTO FINAL</h1>
-          <p className='description'>TRABAJO GRUPAL</p>
-          <p className='description' >Nadie llega a la cima sin la ayuda de otros.</p>
-          <p className='description' >Se agradece a UNSTA</p>
-        </section>
-        <h1 className="description display-4 text-center">Integrantes: </h1>
-        <hr />
-      </div>
-      <section><CardsSobreNos /></section>
-      <hr />
-      <Footer/>
-    </>
+      <NavBar />
 
-    
+     
+      <section className="text-light py-5 text-center bg-dark mb-5">
+        <h1 className="display-3 fw-bold">PROYECTO FINAL</h1>
+        <p className="lead fst-italic mb-1">Trabajo Grupal</p>
+        <p className="lead fw-light">#UNSTA</p>
+      </section>
+
+     
+      <section className="d-flex justify-content-center text-center mb-4">
+        <div>
+          <h2 className="display-5 fw-semibold">Integrantes</h2>
+          <hr className="mx-auto" style={{ width: "100px", borderTop: "2px solid #000" }} />
+        </div>
+      </section>
+
+      <div className="container mb-5">
+        <CardsSobreNos />
+      </div>
+
+      <Footer />
+    </>
   );
 }
