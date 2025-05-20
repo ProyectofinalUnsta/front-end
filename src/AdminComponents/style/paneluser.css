@@ -1,0 +1,16 @@
+
+.user-action-container{
+display: flex;
+justify-content: center;
+width: 160px;
+height: 40px;
+z-index: 10;
+background-color: white;
+position: fixed;
+top: 70px;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+font-size: 14px;
+opacity: 0;
+transition: opacity ease 450ms;
+}
