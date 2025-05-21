@@ -4,9 +4,9 @@ import { WhyUs } from "../whyUs/WhyUs"
 import { Layout } from "./Layout"
 
 export const HomePage = () => {
-    return(
+    return (
         <>
-       <Layout banner={<Banner/>} explore={<ExplorarEventos/>} why={<WhyUs/>}/>
+            <Layout banner={<Banner />} explore={<ExplorarEventos />} why={<WhyUs />} />
         </>
     )
 }
