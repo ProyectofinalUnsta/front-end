@@ -7,6 +7,10 @@ import {ErrorPage} from './pages/ErrorPage'
 import { EventDetailsPage } from './pages/EventDetailsPage'
 import { AdminPage } from './pages/AdminPage'
 import { DisertantePage } from './pages/DisertantePage'
+import { AdminCreatePage } from './pages/AdminCreatePage'
+import { AdminTodoPage } from './pages/AdminTodoPage'
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
 
 function App() {
 
@@ -21,6 +25,10 @@ function App() {
           <Route path='/Eventos/CargarDatos/:id' element={<DisertantePage/>}/>
           <Route path="/SobreNosotros" element={<SobreNosotros />} />
           <Route path='/Admin' element={<AdminPage/>}/>
+          <Route path='/Admin/CrearEvento' element={<AdminCreatePage/>}/>
+          <Route path='/Admin/Todo' element={<AdminTodoPage/>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path='*' element={<ErrorPage/>}/>
         </Routes>
         </BrowserRouter>

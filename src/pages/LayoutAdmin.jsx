@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AdminMenu } from "../AdminMenu/AdminMenu";
 import { AdminNavbar } from "../Navbar/AdminNavbar";
 import '../global/admin.css'
@@ -6,8 +6,11 @@ import { useCanvasConfetti } from "../hooks/useCanvasConfetti";
 import { PopUp } from "../PopUp/PopUp";
 import { Footer } from "../footer/footer";
 import { useAdminMenu } from "../hooks/useAdminMenu";
+import { LoginContext } from "../context/LoginContext";
 
 export function LayoutAdmin  ({children})  {
+
+const {token,user} = useContext(LoginContext)
 
 const [load,setload] = useState( ()=> window.localStorage.getItem('admin-hi') || false)
 const {issuceed,handlesucess} = useAdminMenu()
@@ -27,8 +30,11 @@ const {issuceed,handlesucess} = useAdminMenu()
     return(
      <>
      { issuceed == true ? <PopUp ref={sectionRef}  isSuccess={issuceed} event={handlesucess} namebtn={'Aceptar'}  content={true}/> : null}
-     {load == false ? <PopUp ref={sectionRef} content={'Jhon Doe!'} event={handlehi} namebtn={'Aceptar'}/> : null}
-     <div className="admin-container">
+     {load == false ? <PopUp ref={sectionRef} content={user.nombre} event={handlehi} namebtn={'Aceptar'}/> : null}
+
+{
+token != null && user.logged == true ? 
+<div className="admin-container">
         <div className="content-container">
             <header>
             <AdminNavbar/> 
@@ -45,7 +51,11 @@ const {issuceed,handlesucess} = useAdminMenu()
         <footer>
             <Footer/>
         </footer>
-     </div>
+     </div> 
+     : null
+
+     }
+   
      </>
     )
 }

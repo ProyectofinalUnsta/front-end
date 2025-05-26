@@ -30,3 +30,33 @@ export const createEvent = async (data) => {
     }
   
 }
+
+
+export const RegisterUser = async (data) => {
+  try {
+    let res = await axios.post('http://localhost:3000/api/auth/register/',data)
+    return res
+  }catch(err){
+    return err.message
+  }
+}
+
+
+export const LogInUser = async (data) => {
+try {
+  let res = await axios.post('http://localhost:3000/api/auth/login',data)
+  return res
+}catch(err){
+  return err.message
+}
+}
+
+
+export const LogOut = async () => {
+  try {
+    let res = await axios.post('http://localhost:3000/api/auth/logout')
+    return res
+  }catch(err){
+    return err.message
+  }
+}
