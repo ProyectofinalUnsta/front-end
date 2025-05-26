@@ -1,9 +1,11 @@
-import { Children, createContext, useState } from 'react'
-import { intialProducts } from '../reducer/InitialProducts'
+import { , createContext, useState, useEffect } from 'react'
+import { loadInitialProducts } from '../reducer/InitialProducts'
 export const ProductContext = createContext()
 
-export const ProductProvider = ({children}) => {
-const [products,setProducts] = useState(intialProducts)
+
+export const ProductProvider =   ({children}) => {
+
+const [products,setProducts] = useState([])
 const itemsPerPage = 6;
 const rounded = () => {
     let res = Math.ceil(products.length / itemsPerPage)
@@ -16,6 +18,13 @@ const rounded = () => {
         let res = rounded()
         return res
     })
+
+      useEffect(() => {
+    loadInitialProducts().then((data) => {
+      setProducts(data);
+    });
+  }, []);
+
 
 const [currenntPage,setCurrentPage] = useState(1)
 const inicio = (currenntPage - 1) * itemsPerPage

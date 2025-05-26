@@ -1,3 +1,5 @@
 import { getitems } from "../utils/peticiones"
 
-export const intialProducts = await getitems()
+export async function loadInitialProducts() {
+  return await getitems();
+}
