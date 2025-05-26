@@ -4,6 +4,7 @@ import { MiUserSection } from "./MiUserSection"
 import { CreateSection } from "./CreateSection"
 import { MisEventosSection } from "./MisEventosSection"
 import { ConfiguracionSection } from "./ConfiguracionSection"
+import { MisArchivosSection } from "./MisArchivosSection"
 
 export const AppsSection = () => {
 
@@ -16,6 +17,7 @@ export const AppsSection = () => {
                  <ToDoSection displayed={displayed}/>
                  <CreateSection displayed={displayed}/>
                   <MisEventosSection displayed={displayed}/>
+                  <MisArchivosSection displayed={displayed}/>
                   <ConfiguracionSection displayed={displayed}/>
                  <MiUserSection displayed={displayed}/>
                </ul>
