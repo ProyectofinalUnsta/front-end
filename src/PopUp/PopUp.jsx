@@ -1,4 +1,5 @@
 import './style/popup.css'
+
 import { useNavegacion } from '../hooks/useNavegacion'
 import { useState,useEffect } from 'react'
 export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess}) => {
