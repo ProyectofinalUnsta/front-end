@@ -1,5 +1,6 @@
 import './style/popup.css'
-
+import { useNavegacion } from '../hooks/useNavegacion'
+import { useState,useEffect } from 'react'
 export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess}) => {
 
     return (
@@ -55,3 +56,37 @@ export const EventText = () => {
     </>
     )
 }
+
+
+
+export const RegistroPopUp = ({ ref, isSuccess }) => {
+  const navegar = useNavegacion();
+  const [segundos, setSegundos] = useState(5);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSegundos((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          navegar.navigatewithoutparams({ ruta: '/' });
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div ref={ref} className="pop-up-container">
+      <div className="popup">
+        <div className="icon">{isSuccess === true ? '✔️' : '👋'}</div>
+        <h1>Usuario registrado con éxito!</h1>
+        <div className="separator"></div>
+        <button>Volviendo a página principal en {segundos}</button>
+      </div>
+    </div>
+  );
+};

@@ -15,6 +15,7 @@
     "canvas-confetti": "^1.9.3",
     "crypto": "^1.0.1",
     "form-data": "^4.0.2",
+    "js-cookie": "^3.0.5",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",

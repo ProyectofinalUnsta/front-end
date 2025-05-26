@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import { useWidth } from '../hooks/useWidth'
 import { useMenu } from '../hooks/useMenu'
 import { LogoIcon } from '../icons/LogoIcon'
+import { useRegister } from '../hooks/useRegister'
+import { useLogin } from '../hooks/useLogin'
 
 export function NavBar () {
     return(
@@ -42,15 +44,25 @@ export const NavSection = () => {
 }
 
 export const BtnSection = () => {
-    return(
-        <>
+    const {isregistred} = useRegister()
+    const {token} = useLogin()
+    return (
         <section className='btn-section'>
-            <button className='light-btn'>Iniciar sesion</button>
-            <button className='dark-btn'>Registrarse</button>
+            {token != null ? <Link to="/Admin" className='light-btn'>
+                Panel Admin
+            </Link> :  <Link to="/login" className='light-btn'>
+                Iniciar sesión
+            </Link>
+             }
+           
+            {isregistred == false ?  <Link to="/register" className='dark-btn'>
+                Registrarse
+            </Link> : null}
+            
         </section>
-        </>
-    )
+    );
 }
+
 
 export const EvalNav = () => {
  
