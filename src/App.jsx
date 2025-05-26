@@ -31,7 +31,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path='*' element={<ErrorPage/>}/>
           <Route path='/MisArchivos' element={<MisArchivos />} />
-          <Route path='*' element={<ErrorPage/>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
