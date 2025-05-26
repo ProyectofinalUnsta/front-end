@@ -2,7 +2,7 @@ import { useState } from "react"
 import { PopUp } from "../PopUp/PopUp"
 import { useLocation } from "react-router"
 
-export const DisertantePage = () => {
+export default function DisertantePage  ()  {
 
     const location = useLocation()
 

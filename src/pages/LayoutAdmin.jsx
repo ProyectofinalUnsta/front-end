@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import { AdminMenu } from "../AdminMenu/AdminMenu";
 import { AdminNavbar } from "../Navbar/AdminNavbar";
 import '../global/admin.css'
 import { useCanvasConfetti } from "../hooks/useCanvasConfetti";
 import { PopUp } from "../PopUp/PopUp";
-import { Footer } from "../footer/footer";
 import { useAdminMenu } from "../hooks/useAdminMenu";
 import { LoginContext } from "../context/LoginContext";
 
-export function LayoutAdmin  ({children})  {
+const Footer = React.lazy(()=> import('../footer/footer'))
+
+export default function LayoutAdmin  ({children})  {
 
 const {token,user} = useContext(LoginContext)
 
@@ -49,7 +50,9 @@ token != null && user.logged == true ?
          </section>
         </div>
         <footer>
-            <Footer/>
+          <Suspense fallback={<div>Cargando..</div>}>
+             <Footer/>
+          </Suspense>
         </footer>
      </div> 
      : null

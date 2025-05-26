@@ -1,13 +1,16 @@
 import CardsSobreNos from "../Productos/CardsSobreNosotros";
-import { NavBar } from "../Navbar/NavBar";
-import { Footer } from "../footer/footer";
+import React, { Suspense } from "react";
+
+const  NavBar = React.lazy(()=> import('../Navbar/NavBar'))
+const  Footer = React.lazy(()=> import('../footer/footer')) 
 
 export default function SobreNosotros() {
   return (
     <>
-      <NavBar />
+    <Suspense fallback={<div>cargando..</div>}>
+    <NavBar/>
+    </Suspense>
 
-     
       <section className="text-light py-5 text-center bg-dark mb-5">
         <h1 className="display-3 fw-bold">PROYECTO FINAL</h1>
         <p className="lead fst-italic mb-1">Trabajo Grupal</p>
@@ -25,8 +28,9 @@ export default function SobreNosotros() {
       <div className="container mb-5">
         <CardsSobreNos />
       </div>
-
-      <Footer />
+    <Suspense fallback={<div>cargando..</div>}>
+    <Footer/>
+    </Suspense>
     </>
   );
 }

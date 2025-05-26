@@ -7,7 +7,7 @@ import { LogoIcon } from '../icons/LogoIcon'
 import { useRegister } from '../hooks/useRegister'
 import { useLogin } from '../hooks/useLogin'
 
-export function NavBar () {
+export default function NavBar () {
     return(
         <>
         <section className="navbar-container">

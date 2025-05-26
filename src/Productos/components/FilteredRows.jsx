@@ -7,7 +7,7 @@ export const FilteredRows = ({nombre, id}) => {
     <>
     <article className='rowed-filters'>
         <label htmlFor={id} >{nombre}</label>
-         <input id={id} type="text"  placeholder='Buscar Eventos.' className='input' onChange={(e)=> handlefilter(e,id)}/>
+         <input id={id} type="text"  placeholder='Buscar Eventos por nombre' className='input' onChange={(e)=> handlefilter(e,id)}/>
      </article>
     </>
     

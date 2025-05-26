@@ -1,0 +1,57 @@
+import React  from 'react'
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
+import { Suspense } from 'react'
+
+const   HomePage = React.lazy(()=> import('../pages/HomePage'))
+const  ProductsPage = React.lazy(()=> import('../pages/ProductsPage'))
+const  SobreNosotros = React.lazy(()=> import('../pages/SobreNosotros'))
+const  ErrorPage = React.lazy(()=> import('../pages/ErrorPage'))
+const   EventDetailsPage = React.lazy(()=> import('../pages/EventDetailsPage'))
+const  AdminPage = React.lazy(()=> import('../pages/AdminPage'))
+const  DisertantePage = React.lazy(()=> import('../pages/DisertantePage')) 
+const  AdminCreatePage = React.lazy(()=> import('../pages/AdminCreatePage'))
+const  AdminTodoPage  = React.lazy(()=> import('../pages/AdminTodoPage')) 
+const Login = React.lazy(()=> import('../pages/auth/Login')) 
+const Register = React.lazy(()=> import('../pages/auth/Register'))
+const  MisArchivos = React.lazy(()=> import('../pages/MisArchivos'))
+
+
+export default function Router () {
+    return(
+        <>
+           <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Suspense fallback={<div>Cargando...</div>}>
+                    <HomePage/>
+                  </Suspense>} />
+                  <Route path='/Eventos' element={ <Suspense fallback={<div>Cargando...</div>}>
+                    <ProductsPage/>
+                  </Suspense> }/>
+                  <Route path='/Eventos/:id' element={ <Suspense fallback={<div>Cargando...</div>}>
+                    <EventDetailsPage/>
+                  </Suspense> }/>
+                  <Route path='/Eventos/CargarDatos/:id' element={ <Suspense fallback={<div>Cargando...</div>}>
+                      <DisertantePage/>
+                  </Suspense>}/>
+                  <Route path="/SobreNosotros" element={<SobreNosotros />} />
+                  <Route path='/Admin' element={<AdminPage/>}/>
+                  <Route path='/Admin/CrearEvento' element={<AdminCreatePage/>}/>
+                  <Route path='/Admin/Todo' element={<AdminTodoPage/>}/>
+                   <Route path="/login" element={ <Suspense fallback={<div>Cargando...</div>}> 
+                     <Login />
+                   </Suspense>} />
+                  <Route path="/register" element={ <Suspense fallback={<div>Cargando...</div>}>
+                  <Register/>
+                  </Suspense>} />
+                  <Route path='/MisArchivos' element={ <Suspense fallback={<div>Cargando...</div>}>
+                      <MisArchivos/>
+                  </Suspense>}/>
+                  <Route path='*' element={ <Suspense fallback={<div>cargando...</div>}>
+                    <ErrorPage/>
+                  </Suspense> }/>
+                </Routes>
+                </BrowserRouter>
+           
+        </>
+    )
+}

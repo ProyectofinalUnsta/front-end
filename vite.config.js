@@ -5,5 +5,8 @@ import tailwindcsss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(),
     tailwindcsss()],
+     optimizeDeps: {
+    include: ['axios', 'js-cookie'],
+  },
 })
 

@@ -3,7 +3,7 @@ import { EventumSvg } from "../icons/EventumSvg";
 import { UnstaLogo } from "../icons/UnstaLogo";
 import "./style/footer.css";
 
-export const Footer = () => {
+export default function Footer  ()  {
   const { width } = useWidth();
 
   return (

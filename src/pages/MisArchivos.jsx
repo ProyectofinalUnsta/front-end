@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../global/MisArchivos.css'
 import { Layout } from './Layout'
 
-export const MisArchivos = () => {
+export default function MisArchivos  ()  {
     const [filtroEvento, setFiltroEvento] = useState('todos')
     const [busqueda, setBusqueda] = useState('')
 

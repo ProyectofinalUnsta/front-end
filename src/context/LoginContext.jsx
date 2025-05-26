@@ -24,7 +24,6 @@ const [user, setUser] = useState(() => {
 
 
 const [token,setToken] = useState(()=> Cookies.get('token') || null)
-console.log(token,user)
 const [isregistred,setisRegistred] = useState(()=> window.localStorage.getItem('registred') || false)
 
 

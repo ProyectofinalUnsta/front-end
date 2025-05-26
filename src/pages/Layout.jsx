@@ -1,23 +1,26 @@
 import '../global/global.css'
 import '../global/Layout.css'
-import { NavBar } from '../Navbar/NavBar'
-import { Footer } from '../footer/footer'
-import { useNebulosaBackground } from '../hooks/useNebulosaBackground'
-import  SobreNosotros from '../pages/SobreNosotros'
+import React, { Suspense } from 'react'
+const  NavBar = React.lazy(()=> import('../Navbar/NavBar'))  
+const  Footer = React.lazy(()=> import('../footer/footer'))
+
 
 export const Layout = ({children, banner, explore, why }) => {
     
-  const mountRef = useNebulosaBackground() 
+
 
     return(
         <>
         <div className='padre-container'>
         <nav className='nav-container'>
+          <Suspense fallback={<div>Cargando...</div>}>
             <NavBar/>
+          </Suspense>
+        
         </nav>
         {banner ? 
         <div >
-        <section ref={mountRef} className='banner-container'>
+        <section className='banner-container'>
            {banner}
         </section>  
         </div>
@@ -33,7 +36,11 @@ export const Layout = ({children, banner, explore, why }) => {
           {children}
         </section>
 
-        <section> <Footer/> </section>
+        <section> 
+           <Suspense fallback={<div>Cargando...</div>}>
+             <Footer/> 
+          </Suspense>
+        </section>
        
         </div>
         </>

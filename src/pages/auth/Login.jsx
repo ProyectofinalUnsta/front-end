@@ -4,7 +4,9 @@ import logo from "../../icons/mocks/logo2.webp"; // Ajustá esta ruta si es nece
 import { useLogin } from "../../hooks/useLogin";
 import { HideEye } from "../../icons/HideEye";
 import { ShowEye } from "../../icons/ShowEye";
-const Login = () => {
+
+
+export default function Login  ()  {
 
 const {handleUser,handleSubmit,error,userform} = useLogin()
 
@@ -76,4 +78,3 @@ const [eye,setEye] = useState(false)
   );
 };
 
-export default Login;

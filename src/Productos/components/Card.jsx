@@ -5,7 +5,7 @@ import { RelojIcon } from '../../icons/RelojIcon'
 import { useNavegacion } from '../../hooks/useNavegacion'
 export const Card = ({products}) => {
   
-    const {_id,nombre,descripcion,fecha,hora,lugar} = products
+    const {_id,title,descripcion,fecha,hora,lugar,categoria,imagen} = products
     const {handlenavigate} = useNavegacion()
     const ruta = '/Eventos'
 
@@ -13,12 +13,12 @@ export const Card = ({products}) => {
         <>
         <div className="event-card" key={_id}>
             <figure >
-                <img className='img-container' src="https://kzmo4ra0ji5m2etf47ef.lite.vusercontent.net/placeholder.svg?height=400&width=600" alt="" />
+                <img className='img-container' src={imagen} alt="" loading='lazy' />
             </figure>
             <section className='text-event'>
-                <h2 className='text-name'>{nombre}</h2>
+                <h2 className='text-name'>{title}</h2>
                 <small className='text-descripcion'>
-                    {descripcion}
+                    {categoria}
                 </small>
             </section>
             <section className='events-details'>
@@ -36,7 +36,7 @@ export const Card = ({products}) => {
               </article>
             </section>
             <section className='event-btn'>
-               <a className='btn-event' onClick={()=>handlenavigate({ruta, params:{_id,lugar,fecha,hora,nombre,descripcion}})}>Ver detalles</a>
+               <a className='btn-event' onClick={()=>handlenavigate({ruta, params:{_id,lugar,fecha,hora,title,descripcion,categoria}})}>Ver detalles</a>
               </section>
         </div>
         </>

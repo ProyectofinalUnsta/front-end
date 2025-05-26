@@ -4,7 +4,7 @@ export const ProductContext = createContext()
 
 export const ProductProvider = ({children}) => {
 const [products,setProducts] = useState(intialProducts)
-const itemsPerPage = 12;
+const itemsPerPage = 6;
 const rounded = () => {
     let res = Math.ceil(products.length / itemsPerPage)
     if(res % 1 !== 0){
@@ -28,7 +28,9 @@ const itemsinPage = products.slice(inicio,fin)
            setProducts,
            itemsinPage,
            currenntPage,
-           setCurrentPage
+           setCurrentPage, 
+           inicio,
+           fin
         }}>
           {children}
         </ProductContext.Provider>

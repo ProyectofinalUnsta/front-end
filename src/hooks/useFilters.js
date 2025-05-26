@@ -6,7 +6,7 @@ import { useProducts } from './useProducts'
 export function useFilters () {
 
 const {setFilters,filteredProducts,setFilteredProducts} = useContext(FiltersContext)
-const {itemsinPage} = useProducts()
+const {itemsinPage,products,inicio,fin} = useProducts()
 const timeoutRef = useRef(null);
 
 
@@ -49,16 +49,29 @@ const resetfilters = () => {
 
  const handlefilterNombre = (value) => {
 
-   let result = filteredProducts.filter(item=> item.nombre.toLowerCase().includes(value.toLowerCase()))
-
-   setFilteredProducts(result)
+   let result = filteredProducts.filter(item=> item.title.toLowerCase().includes(value.toLowerCase()))
+   if(result.length > 0) return setFilteredProducts(result)
+   if(result.length == 0){
+     const result2 = products.filter(item => item.title.toLowerCase().includes(value.toLowerCase()))
+    let res = result2.slice(inicio,fin)
+    setFilteredProducts(res)
+    return
+   }
  }
 
  const handleFilterCategory = (value) => {
-
-   const result = filteredProducts.filter(items=> items.category == value)
-   setFilteredProducts(result)
-
+   const result = filteredProducts.filter(items=> items.categoria == value)
+   if(result.length > 0){
+     setFilteredProducts(result)
+    return
+   }
+   if(result.length == 0) {
+    const result2 = products.filter(items=> items.categoria == value)
+    console.log(result2)
+     let res = result2.slice(inicio,fin)
+    setFilteredProducts(res)
+    return
+   }
  }
 
  const clearFilters = (input1,input2) => {

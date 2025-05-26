@@ -1,8 +1,9 @@
+import React from "react"
 import { MainBannerAdmin } from "../AdminComponents/MainBannerAdmin"
 import { MenuAdminProvider } from "../context/MenuAdminContext"
-import { LayoutAdmin } from "./LayoutAdmin"
+const  LayoutAdmin = React.lazy(()=> import('./LayoutAdmin')) 
 
-export const AdminPage = () => {
+export default function AdminPage ()  {
     return(
         <MenuAdminProvider>
         <LayoutAdmin children={<MainBannerAdmin/>}/>

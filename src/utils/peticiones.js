@@ -19,7 +19,7 @@ export const createEvent = async (data) => {
     }
   }
     try {
-      let res = await axios.post('http://localhost:3000/api/admin/',formData,{
+      let res = await axios.post('https://back-end-fiq8.onrender.com/api/admin/',formData,{
         headers:{
             'Content-Type': 'multipart/form-data'
         }
@@ -34,7 +34,7 @@ export const createEvent = async (data) => {
 
 export const RegisterUser = async (data) => {
   try {
-    let res = await axios.post('http://localhost:3000/api/auth/register/',data)
+    let res = await axios.post('https://back-end-fiq8.onrender.com/api/auth/register',data)
     return res
   }catch(err){
     return err.message
@@ -44,7 +44,7 @@ export const RegisterUser = async (data) => {
 
 export const LogInUser = async (data) => {
 try {
-  let res = await axios.post('http://localhost:3000/api/auth/login',data)
+  let res = await axios.post('https://back-end-fiq8.onrender.com/api/auth/login',data)
   return res
 }catch(err){
   return err.message
@@ -54,7 +54,7 @@ try {
 
 export const LogOut = async () => {
   try {
-    let res = await axios.post('http://localhost:3000/api/auth/logout')
+    let res = await axios.post('https://back-end-fiq8.onrender.com/api/auth/logout')
     return res
   }catch(err){
     return err.message

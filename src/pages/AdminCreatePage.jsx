@@ -1,8 +1,9 @@
+import React from "react"
 import { CreateEvento } from "../AdminComponents/CreateEvento"
 import { MenuAdminProvider } from "../context/MenuAdminContext"
-import { LayoutAdmin } from "./LayoutAdmin"
+const  LayoutAdmin = React.lazy(()=>import('./LayoutAdmin'))
 
-export const AdminCreatePage = () => {
+export default function  AdminCreatePage  ()  {
     return(
         <>
          <MenuAdminProvider>
