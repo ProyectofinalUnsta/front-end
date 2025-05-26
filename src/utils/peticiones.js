@@ -1,8 +1,11 @@
-import axios from "axios"
-import FormData from "form-data"
+import axios from "axios";
+import FormData from "form-data";
+import endpoints from './endpoints.js'
+
+
 export const getitems = async  () => {
       
-    let res =  await axios.get('https://back-end-fiq8.onrender.com/api/').then((res)=> {return res})
+    let res =  await axios.get(endpoints.get).then((res)=> {return res})
        return res.data 
 }
 
@@ -19,7 +22,7 @@ export const createEvent = async (data) => {
     }
   }
     try {
-      let res = await axios.post('https://back-end-fiq8.onrender.com/api/admin/',formData,{
+      let res = await axios.post(endpoints.post ,formData,{
         headers:{
             'Content-Type': 'multipart/form-data'
         }
@@ -34,7 +37,7 @@ export const createEvent = async (data) => {
 
 export const RegisterUser = async (data) => {
   try {
-    let res = await axios.post('https://back-end-fiq8.onrender.com/api/auth/register',data)
+    let res = await axios.post(endpoints.register ,data)
     return res
   }catch(err){
     return err.message
@@ -44,7 +47,7 @@ export const RegisterUser = async (data) => {
 
 export const LogInUser = async (data) => {
 try {
-  let res = await axios.post('https://back-end-fiq8.onrender.com/api/auth/login',data)
+  let res = await axios.post(endpoints.login ,data)
   return res
 }catch(err){
   return err.message
@@ -54,7 +57,7 @@ try {
 
 export const LogOut = async () => {
   try {
-    let res = await axios.post('https://back-end-fiq8.onrender.com/api/auth/logout')
+    let res = await axios.post(endpoints.logout)
     return res
   }catch(err){
     return err.message
