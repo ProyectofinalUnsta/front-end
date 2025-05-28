@@ -10,3 +10,5 @@ const ventaja = ventajas.ventajas
         </>
     )
 }
+
+export default WhyUs

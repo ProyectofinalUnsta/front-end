@@ -1,14 +1,17 @@
-import CardsSobreNos from "../Productos/CardsSobreNosotros";
 import React, { Suspense } from "react";
-
-const  NavBar = React.lazy(()=> import('../Navbar/NavBar'))
-const  Footer = React.lazy(()=> import('../footer/footer')) 
+import '../global/layout.css'
+import '../global/global.css'
+const  NavBar = React.lazy(()=> import('../Navbar/NavBar.jsx'))
+const  Footer = React.lazy(()=> import('../footer/footer.jsx')) 
+const CardsSobreNos = React.lazy(()=> import('../Productos/CardsSobreNosotros'))
 
 export default function SobreNosotros() {
   return (
     <>
     <Suspense fallback={<div>cargando..</div>}>
+    <nav className='nav-container'>
     <NavBar/>
+    </nav>
     </Suspense>
 
       <section className="text-light py-5 text-center bg-dark mb-5">
@@ -17,17 +20,17 @@ export default function SobreNosotros() {
         <p className="lead fw-light">#UNSTA</p>
       </section>
 
-     
       <section className="d-flex justify-content-center text-center mb-4">
         <div>
           <h2 className="display-5 fw-semibold">Integrantes</h2>
           <hr className="mx-auto" style={{ width: "100px", borderTop: "2px solid #000" }} />
         </div>
       </section>
-
-      <div className="container mb-5">
-        <CardsSobreNos />
+      <Suspense fallback={<div>Cargando..</div>}>
+      <div className=" mb-5 w-full flex flex-col gap-5  justify-center items-center ">
+          <CardsSobreNos />
       </div>
+      </Suspense>
     <Suspense fallback={<div>cargando..</div>}>
     <Footer/>
     </Suspense>

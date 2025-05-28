@@ -1,6 +1,7 @@
+import React, { Suspense } from 'react'
 import './style/banner.css'
-
-export const Banner = () => {
+const Spline = React.lazy(()=> import('./Spline.jsx'))
+const Banner = () => {
 
     return(
         <>
@@ -13,12 +14,15 @@ export const Banner = () => {
               <button className="btn-join">Unirse ahora</button>
             </div>
           </aside>
-          <aside  className='article-banner'>
-            <spline-viewer url="https://prod.spline.design/o7W0EzJhMfAEmxEF/scene.splinecode"></spline-viewer>
+          <Suspense fallback={<div>Cargando..</div>}>
+             <aside  className='article-banner'>
+          <Spline/>
           </aside>
+          </Suspense>
         </div>
         </>
     )
 }
 
 
+export default Banner

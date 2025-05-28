@@ -1,10 +1,9 @@
-import fotojose from "../assets/josemaria.jpeg";
-import fotopato from "../assets/pato.jpeg";
-import fotojuan from "../assets/juanmanuel.jpeg";
-import fotomartinR from "../assets/martinrotger.jpeg";
-import fotomartin from "../assets/martinmitre.jpeg";
-import fotomateo from "../assets/mateo.jpeg";
-import { Col, Row, Container } from "react-bootstrap";
+import fotojose from "../assets/josemaria.webp";
+import fotopato from "../assets/pato.webp";
+import fotojuan from "../assets/juanmanuel.webp";
+import fotomartinR from "../assets/martinrotger.webp";
+import fotomartin from "../assets/martinmitre.webp";
+import fotomateo from "../assets/mateo.webp";
 import { CardSobreNosotros } from "./components/CardSobreNosotros";
 
 const cardsSobreNosotros = [
@@ -54,19 +53,15 @@ const cardsSobreNosotros = [
 
 export default function CardsSobreNosotros() {
   return (
-   <Container className="px-4">
-  <Row className="justify-content-center">
+   <>
     {cardsSobreNosotros.map((card) => (
-      <Col key={card.id} xs={12} sm={6} md={4} className="mb-4">
         <CardSobreNosotros
+        key={card.id}
           title={card.title}
           text={card.text}
           imageSource={card.image}
-          url={card.url}
-        />
-      </Col>
+          url={card.url}/>
     ))}
-  </Row>
-</Container>
+ </>
   );
 }
