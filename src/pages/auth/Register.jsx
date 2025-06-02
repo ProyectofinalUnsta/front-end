@@ -71,7 +71,7 @@ const Register = () => {
                 required
                 onChange={(e)=>handleFormChange(e.target.value,'password')}
               />
-              { eye == false ? <button className="relative z-10 bottom-8 left-7/8 " onClick={(e)=>{ e.preventDefault(); setEye(!eye)}}><ShowEye width={'24px'} height={'24px'} /> </button> : <button className="relative z-10 bottom-10 left-7/8 "  onClick={(e)=>{ e.preventDefault(); setEye(!eye)}} > <HideEye width={'24px'} height={'24px'} /> </button> }
+              { eye == false ? <button className="relative z-10 bottom-8 left-7/8 " onClick={(e)=>{ e.preventDefault(); setEye(!eye)}}><ShowEye width={'24px'} height={'24px'} /> </button> : <button className="relative z-10 bottom-8 left-7/8 "  onClick={(e)=>{ e.preventDefault(); setEye(!eye)}} > <HideEye width={'24px'} height={'24px'} /> </button> }
             </div>
             <span className="relative z-10 bottom-10 left-1/36" style={{color:error.error == false ? 'green' : 'red'}}>{error.message}</span>
             <button
