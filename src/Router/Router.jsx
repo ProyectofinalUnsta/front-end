@@ -10,7 +10,8 @@ const   EventDetailsPage = React.lazy(()=> import('../pages/EventDetailsPage'))
 const  AdminPage = React.lazy(()=> import('../pages/AdminPage'))
 const  DisertantePage = React.lazy(()=> import('../pages/DisertantePage')) 
 const  AdminCreatePage = React.lazy(()=> import('../pages/AdminCreatePage'))
-const  AdminTodoPage  = React.lazy(()=> import('../pages/AdminTodoPage')) 
+const  AdminTodoPage  = React.lazy(()=> import('../pages/AdminTodoPage'))
+const AdminFilesPage = React.lazy(()=> import('../pages/AdminFilesPage'))
 const Login = React.lazy(()=> import('../pages/auth/Login')) 
 const Register = React.lazy(()=> import('../pages/auth/Register'))
 const  MisArchivos = React.lazy(()=> import('../pages/MisArchivos'))
@@ -37,6 +38,9 @@ export default function Router () {
                   <Route path='/Admin' element={<AdminPage/>}/>
                   <Route path='/Admin/CrearEvento' element={<AdminCreatePage/>}/>
                   <Route path='/Admin/Todo' element={<AdminTodoPage/>}/>
+                  <Route path='/Admin/Archivos' element={<Suspense fallback={<div>Cargando...</div>}>
+                      <AdminFilesPage/>
+                  </Suspense>}/>
                    <Route path="/login" element={ <Suspense fallback={<div>Cargando...</div>}> 
                      <Login />
                    </Suspense>} />
