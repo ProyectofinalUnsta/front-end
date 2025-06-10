@@ -6,6 +6,7 @@ import { useMenu } from '../hooks/useMenu'
 import { LogoIcon } from '../icons/LogoIcon'
 import { useRegister } from '../hooks/useRegister'
 import { useLogin } from '../hooks/useLogin'
+import { EventRegistrationPopup } from '../components/EventRegistrationPopup'
 
 export default function NavBar () {
     return(
@@ -13,6 +14,7 @@ export default function NavBar () {
         <section className="navbar-container">
            <EvalNav/>
         </section>
+        <EventRegistrationPopup />
         </>
     )
 }
@@ -37,6 +39,7 @@ export const NavSection = () => {
                 <li><Link to={'/Eventos'}>Eventos</Link></li>
                 <li><Link to={'/Sobrenosotros'}>Sobre Nosotros</Link></li>
                 <li><Link to={'/MisArchivos'}>Mis Archivos</Link></li>
+                <li><Link to={'/MisEventos'}>Mis Eventos</Link></li>
             </ul>
         </section>
         </>
@@ -48,17 +51,15 @@ export const BtnSection = () => {
     const {token} = useLogin()
     return (
         <section className='btn-section'>
-            {token != null ? <Link to="/Admin" className='light-btn'>
-                Panel Admin
-            </Link> :  <Link to="/login" className='light-btn'>
-                Iniciar sesión
-            </Link>
-             }
-           
-            {isregistred == false ?  <Link to="/register" className='dark-btn'>
-                Registrarse
-            </Link> : null}
-            
+            {token != null ? (
+                <Link to="/Admin" className='light-btn'>
+                    Panel Admin
+                </Link>
+            ) : (
+                <Link to="/login" className='access-btn'>
+                    Acceso Disertantes
+                </Link>
+            )}
         </section>
     );
 }
