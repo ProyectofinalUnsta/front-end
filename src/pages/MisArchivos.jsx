@@ -3,7 +3,7 @@ import '../global/MisArchivos.css'
 import { Layout } from './Layout'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:3000/api/files';
+const API_URL = 'https://back-end-fiq8.onrender.com/api/files';
 
 export default function MisArchivos() {
     const [archivos, setArchivos] = useState([]);
@@ -88,7 +88,7 @@ export default function MisArchivos() {
                                 </div>
                                 <div className="archivo-actions">
                                     <a 
-                                        href={`http://localhost:3000${archivo.fileUrl}`}
+                                        href={`https://back-end-fiq8.onrender.com${archivo.fileUrl}`}
                                         className="btn-download"
                                         target="_blank"
                                         rel="noopener noreferrer"
