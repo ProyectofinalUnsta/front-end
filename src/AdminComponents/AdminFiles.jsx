@@ -246,7 +246,7 @@ export const AdminFiles = () => {
                                 </div>
                                 <div className="archivo-actions">
                                     <a 
-                                        href={`http://localhost:3000${archivo.fileUrl}`}
+                                        href={`https://back-end-fiq8.onrender.com/${archivo.fileUrl}`}
                                         className="btn-download"
                                         target="_blank"
                                         rel="noopener noreferrer"
