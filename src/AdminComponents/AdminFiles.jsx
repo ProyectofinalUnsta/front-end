@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../global/MisArchivos.css';
 
-const API_URL = 'http://localhost:3000/api/files';
+const API_URL = 'https://back-end-fiq8.onrender.com/api/files';
 
 export const AdminFiles = () => {
     const [archivos, setArchivos] = useState([]);
