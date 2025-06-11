@@ -6,7 +6,7 @@ import { useAdminMenu } from "./useAdminMenu"
 import { LoginContext } from "../context/LoginContext"
 
 export function useCrearEventos () {
-        const {user} = useContext(LoginContext)
+        const {user,token} = useContext(LoginContext)
         const [lenght,setLength] = useState(0)
         const [error,setError] = useState()
         const [form,setForm] = useState({
@@ -106,7 +106,7 @@ export function useCrearEventos () {
             let sendToBack = data
             sendToBack.email = user.email
              console.log(sendToBack)
-             let res = await createEvent(sendToBack)
+             let res = await createEvent(sendToBack,token)
              if(res.status === 200) {
              handlesucess(true)
               navigatewithoutparams({ruta:'/Admin/'})

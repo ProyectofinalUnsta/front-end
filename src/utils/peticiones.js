@@ -11,7 +11,7 @@ export const getitems = async  () => {
 
 
 
-export const createEvent = async (data) => {
+export const createEvent = async (data, token) => {
 
      const formData = new FormData()
     formData.append('image', data.imagen)
@@ -24,7 +24,8 @@ export const createEvent = async (data) => {
     try {
       let res = await axios.post(endpoints.post ,formData,{
         headers:{
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+             'Authorization': `Bearer ${token}`
         }
       })
      return res
