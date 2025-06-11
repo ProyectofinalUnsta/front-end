@@ -18,6 +18,7 @@ const [user, setUser] = useState(() => {
 
   return {
     nombre: '',
+    email:'',
     logged: false
   };
 });

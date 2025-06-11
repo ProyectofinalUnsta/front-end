@@ -1,12 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { parser } from "../utils/parsearfecha"
 import { createEvent } from "../utils/peticiones"
 import { useNavegacion } from "./useNavegacion"
 import { useAdminMenu } from "./useAdminMenu"
-
+import { LoginContext } from "../context/LoginContext"
 
 export function useCrearEventos () {
-
+        const {user} = useContext(LoginContext)
         const [lenght,setLength] = useState(0)
         const [error,setError] = useState()
         const [form,setForm] = useState({
@@ -103,10 +103,10 @@ export function useCrearEventos () {
     
         const handlesubmit = async () => {
             const {horaentrada,horasalida, ...data} = form
-            const sendToBack = data
+            let sendToBack = data
+            sendToBack.email = user.email
 
               let res = await createEvent(sendToBack)
-           
              if(res.status === 200) {
              handlesucess(true)
               navigatewithoutparams({ruta:'/Admin/'})
