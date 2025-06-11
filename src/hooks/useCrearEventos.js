@@ -105,7 +105,6 @@ export function useCrearEventos () {
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
             sendToBack.email = user.email
-             console.log(sendToBack)
              let res = await createEvent(sendToBack,token)
              if(res.status === 200) {
              handlesucess(true)

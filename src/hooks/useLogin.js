@@ -45,7 +45,7 @@ const handleSubmit = async (e) => {
     if(res.status == 200) {
     Cookies.set('token', JSON.stringify(res.data.token) , {expires:2})
    setToken(res.data.token)
-    Cookies.set('usuario', JSON.stringify({nombre:res.data.user.username, email:res.data.user.email, logged:true}), {expires:2})
+    Cookies.set('usuario', JSON.stringify({nombre:res.data.user.username, email:res.data.user.mail, logged:true}), {expires:2})
     setUser({nombre:res.data.user.username, logged:true})
     navegacion.navigatewithoutparams({ruta:'/Admin'})
 
