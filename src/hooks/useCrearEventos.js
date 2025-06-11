@@ -105,8 +105,8 @@ export function useCrearEventos () {
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
             sendToBack.email = user.email
-
-              let res = await createEvent(sendToBack)
+             console.log(sendToBack)
+             let res = await createEvent(sendToBack)
              if(res.status === 200) {
              handlesucess(true)
               navigatewithoutparams({ruta:'/Admin/'})
