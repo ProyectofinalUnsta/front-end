@@ -12,7 +12,6 @@ export const getitems = async  () => {
 
 
 export const createEvent = async (data, token) => {
-
      const formData = new FormData()
     formData.append('image', data.imagen)
 
@@ -28,6 +27,7 @@ export const createEvent = async (data, token) => {
              'Authorization': `Bearer ${token}`
         }
       })
+      console.log(res)
      return res
     }catch(err){
         console.log(err.message)

@@ -20,6 +20,7 @@ export function useCrearEventos () {
             descripcion:'',
             categoria:'',
             imagen:'',
+            email:user.email
         })
       const {handlesucess} = useAdminMenu()
        const {navigatewithoutparams} = useNavegacion()
@@ -102,11 +103,12 @@ export function useCrearEventos () {
 
     
         const handlesubmit = async () => {
+
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
-            sendToBack.email = user.email
+            console.log(sendToBack)
              let res = await createEvent(sendToBack,token)
-             if(res.status === 200) {
+             if(res?.status === 200) {
              handlesucess(true)
               navigatewithoutparams({ruta:'/Admin/'})
              }
