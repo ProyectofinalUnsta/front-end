@@ -14,7 +14,7 @@ export default function MisEventos() {
         setError(null);
 
         try {
-            const response = await fetch(`http://localhost:3000/api/eventos/registrados/${email}`);
+            const response = await fetch(`https://back-end-fiq8.onrender.com/api/eventos/registrados/${email}`);
             if (!response.ok) {
                 throw new Error('No se encontraron eventos para este correo');
             }
