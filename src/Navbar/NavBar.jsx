@@ -81,7 +81,7 @@ export const EvalNav = () => {
 
 export const HamburguerMenu = () => {
 
-const {handleMenu} = useMenu('modal')
+const {handleMenu} = useMenu()
     return(
         <>
         <div onClick={()=> handleMenu()}>
@@ -103,9 +103,11 @@ export const MobileNav = () => {
             <HamburguerMenu/>
         </div>
         <aside  className={menu == true ? 'active modal' : 'modal'}>
+           {menu == true ?
             <section>
             <NavSection  />
-            </section>
+            </section> : null
+           } 
             <section className='modal-btn-section'>
             <BtnSection/>
             </section> 

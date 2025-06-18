@@ -112,10 +112,10 @@ justify-content: start;
 }
 
 .btn-section{
-width: 55%;
+width: 150px;
 display: flex;
 justify-content: center;
-align-items: center;
+align-items: end;
 text-align: center;
 }
 
@@ -129,7 +129,7 @@ text-align: center;
 
 .access-btn {
     text-wrap: nowrap;
-    width: 100%;
+    width: 250px;
     background-color: #2563eb;
     color: white;
     border: 2px solid #2563eb;
@@ -324,5 +324,22 @@ align-items: center;
         transform: translateX(5px);
         box-shadow: 0 2px 8px rgba(106, 17, 203, 0.15);
     }
+
+.btn-section{
+width: 33%;
+display: flex;
+justify-content: center;
+align-items: end;
+text-align: center;
+}
+
+.access-btn {
+    text-wrap: nowrap;
+    width: 55%;
+    background-color: #2563eb;
+    color: white;
+    border: 2px solid #2563eb;
+}
+
 }
 
