@@ -41,7 +41,8 @@ export const RegisterUser = async (data) => {
     let res = await axios.post(endpoints.register ,data)
     return res
   }catch(err){
-    return err.message
+
+    return `${err.response.data.error} ${err.status}`
   }
 }
 

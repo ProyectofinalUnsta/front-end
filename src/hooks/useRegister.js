@@ -34,7 +34,10 @@ const handleRegister = async (e) => {
     window.localStorage.setItem('registred',true)
     setisRegistred(true)
     setSucces(true)
-     } 
+     }
+     else {
+        setError({error:true,message:response})
+     }
 }
 
 
