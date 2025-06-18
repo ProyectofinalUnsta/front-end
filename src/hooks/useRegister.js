@@ -34,7 +34,15 @@ const handleRegister = async (e) => {
     window.localStorage.setItem('registred',true)
     setisRegistred(true)
     setSucces(true)
-     } 
+     }
+     else {
+        setForm({username:'',password:'',email:''})
+        setError((prevstate)=>({
+          ...prevstate,
+          message:response,
+          error:true
+        }))
+     }
 }
 
 
