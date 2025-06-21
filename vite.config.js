@@ -1,12 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import tailwindcsss from '@tailwindcss/vite'
-// https://vite.dev/config/
+import tailwindcss from '@tailwindcss/vite'
+
 export default defineConfig({
-  plugins: [react(),
-    tailwindcsss()],
-     optimizeDeps: {
+  plugins: [react(), tailwindcss()],
+  optimizeDeps: {
     include: ['axios', 'js-cookie'],
+  },
+  test: {
+    setupFiles: ['./src/tests/setup.js'],
+    environment: 'jsdom',
   },
 })
 

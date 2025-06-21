@@ -29,6 +29,7 @@ const handleFormChange = (value,target) => {
 
 const handleRegister = async (e) => {
     e.preventDefault()
+    console.log(form)
      let response = await RegisterUser(form)
      if(response.status == 201){
     window.localStorage.setItem('registred',true)
@@ -36,7 +37,6 @@ const handleRegister = async (e) => {
     setSucces(true)
      }
      else {
-        setForm({username:'',password:'',email:''})
         setError((prevstate)=>({
           ...prevstate,
           message:response,
