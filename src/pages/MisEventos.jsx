@@ -1,38 +1,9 @@
-import { useState } from 'react';
-import endpoints from '../utils/endpoints';
-import { getEventsById } from '../utils/peticiones';
 import './MisEventos.css';
 import { useGetEventsById } from '../hooks/useGetEventsById';
 
 export default function MisEventos() {
-    // const [email, setEmail] = useState('');
-    // const [eventos, setEventos] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [error, setError] = useState(null);
-    // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    // const handleEmailSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setIsLoading(true);
-    //     setError(null);
-
-    //     try {
-    //         const response = await getEventsById(`${endpoints.eventoPorId}?${email}`)
-    //         if (!response.ok) {
-    //             throw new Error('No se encontraron eventos para este correo');
-    //         }
-    //         const data = await response.json();
-    //         setEventos(data);
-    //         setIsAuthenticated(true);
-    //     } catch (err) {
-    //         setError(err.message);
-    //         setEventos([]);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    const {setEmail,isAuthenticated,error,eventos, setIsAuthenticated , email , handleGetEventosById , isLoading} = useGetEventsById()
+const {setEmail,isAuthenticated,error,eventos,setIsAuthenticated,email,handleGetEventosById,isLoading} = useGetEventsById()
 
     return (
         <div className="mis-eventos-container">
