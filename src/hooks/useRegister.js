@@ -54,7 +54,5 @@ setError(res)
 
 },[form.password])
 
-
-
 return {handleFormChange,handleRegister,error,success,isregistred}
 }

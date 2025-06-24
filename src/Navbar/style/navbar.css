@@ -14,6 +14,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
     padding: 0 2rem;
 }
@@ -51,6 +52,7 @@ justify-content: start;
 .nav-section ul li {
     position: relative;
     height: 40px;
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -110,12 +112,11 @@ justify-content: start;
 }
 
 .btn-section{
-width: 33%;
+width: 150px;
 display: flex;
-flex-direction: column;
-justify-content: end;
-align-items: flex-end;
-gap: 0.5rem;
+justify-content: center;
+align-items: end;
+text-align: center;
 }
 
 .access-btn, .register-event-btn {
@@ -127,6 +128,8 @@ gap: 0.5rem;
 }
 
 .access-btn {
+    text-wrap: nowrap;
+    width: 250px;
     background-color: #2563eb;
     color: white;
     border: 2px solid #2563eb;
@@ -302,8 +305,10 @@ align-items: center;
         display: flex;
         justify-content: center;
         padding: 0.8rem 1.2rem;
+        width: 100%;
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.8);
+        text-wrap:nowrap;
         backdrop-filter: blur(10px);
         transition: all 0.3s ease;
         height: auto;
@@ -319,5 +324,22 @@ align-items: center;
         transform: translateX(5px);
         box-shadow: 0 2px 8px rgba(106, 17, 203, 0.15);
     }
+
+.btn-section{
+width: 33%;
+display: flex;
+justify-content: center;
+align-items: end;
+text-align: center;
+}
+
+.access-btn {
+    text-wrap: nowrap;
+    width: 55%;
+    background-color: #2563eb;
+    color: white;
+    border: 2px solid #2563eb;
+}
+
 }
 
