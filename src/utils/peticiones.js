@@ -9,6 +9,14 @@ export const getitems = async  () => {
        return res.data 
 }
 
+export const getEventsById = async (endpoint,token) => {
+    let res =  await axios.get(endpoint, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then((res)=> {return res}).catch((err)=> {return err})
+    return res.data 
+}
 
 
 export const createEvent = async (data, token) => {
