@@ -29,6 +29,7 @@ const handleFormChange = (value,target) => {
 
 const handleRegister = async (e) => {
     e.preventDefault()
+    console.log(form)
      let response = await RegisterUser(form)
      if(response.status == 201){
     window.localStorage.setItem('registred',true)
@@ -36,7 +37,11 @@ const handleRegister = async (e) => {
     setSucces(true)
      }
      else {
-        setError({error:true,message:response})
+        setError((prevstate)=>({
+          ...prevstate,
+          message:response,
+          error:true
+        }))
      }
 }
 
@@ -48,8 +53,6 @@ setError(res)
 }
 
 },[form.password])
-
-
 
 return {handleFormChange,handleRegister,error,success,isregistred}
 }

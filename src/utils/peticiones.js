@@ -9,6 +9,14 @@ export const getitems = async  () => {
        return res.data 
 }
 
+export const getEventsById = async (endpoint,token) => {
+    let res =  await axios.get(endpoint, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then((res)=> {return res}).catch((err)=> {return err})
+    return res.data 
+}
 
 
 export const createEvent = async (data, token) => {
@@ -40,9 +48,10 @@ export const RegisterUser = async (data) => {
   try {
     let res = await axios.post(endpoints.register ,data)
     return res
-  }catch(err){
+  }
+  catch(err){
+   console.log(err)
 
-    return `${err.response.data.error} ${err.status}`
   }
 }
 

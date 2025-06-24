@@ -1,33 +1,9 @@
-import { useState } from 'react';
 import './MisEventos.css';
+import { useGetEventsById } from '../hooks/useGetEventsById';
 
 export default function MisEventos() {
-    const [email, setEmail] = useState('');
-    const [eventos, setEventos] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const handleEmailSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setError(null);
-
-        try {
-            const response = await fetch(`https://back-end-fiq8.onrender.com/api/eventos/registrados/${email}`);
-            if (!response.ok) {
-                throw new Error('No se encontraron eventos para este correo');
-            }
-            const data = await response.json();
-            setEventos(data);
-            setIsAuthenticated(true);
-        } catch (err) {
-            setError(err.message);
-            setEventos([]);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+const {setEmail,isAuthenticated,error,eventos,setIsAuthenticated,email,handleGetEventosById,isLoading} = useGetEventsById()
 
     return (
         <div className="mis-eventos-container">
@@ -35,7 +11,7 @@ export default function MisEventos() {
                 <div className="email-auth-container">
                     <h2>Mis Eventos</h2>
                     <p>Ingresa tu correo electrónico para ver tus eventos registrados</p>
-                    <form onSubmit={handleEmailSubmit}>
+                    <form onSubmit={handleGetEventosById}>
                         <input
                             type="email"
                             value={email}
