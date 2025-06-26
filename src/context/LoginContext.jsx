@@ -34,7 +34,7 @@ const [isregistred,setisRegistred] = useState(()=> window.localStorage.getItem('
         isregistred,
         setisRegistred,
         token,
-        setToken
+        setToken,
     }}>
         {children}
     </LoginContext.Provider>
