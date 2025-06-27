@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { LoginContext } from "../context/LoginContext"
 import endpoints from "../utils/endpoints";
 import { getEventsById } from "../utils/peticiones";
+
 export function useGetEventsById () {
 
 const {token} = useContext(LoginContext)

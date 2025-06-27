@@ -25,13 +25,13 @@
 }
 
 .logosection-container{
-width: 33%;
+width: 24%;
 display: flex;
 justify-content: start;
 }
 
 .nav-section {
-    width: 33%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +55,7 @@ justify-content: start;
     width: 100%;
     display: flex;
     align-items: center;
+    text-wrap: nowrap;
 }
 
 .nav-section ul li a {
@@ -237,12 +238,12 @@ position: absolute;
 top: 60px;
 right: 0px;
 z-index: -5;
-display: flex;
+display: none;
 opacity: 0;
 justify-content: space-between;
 flex-direction: column;
 align-items: center;
-transition: opacity ease 300ms , right ease 300ms;
+transition: opacity ease 300ms , right ease 300ms ;
 }
 
 .active.modal {
@@ -250,7 +251,7 @@ transition: opacity ease 300ms , right ease 300ms;
     right: 0px; 
     opacity: 1;
     z-index: 5;
-
+    display: flex;
 }
 
 
@@ -278,7 +279,7 @@ align-items: center;
 }
 
 
-@media (max-width: 970px) {
+@media (max-width: 1220px) {
     .navbar-container {
         height: 60px;
         overflow: visible;
@@ -326,7 +327,7 @@ align-items: center;
     }
 
 .btn-section{
-width: 33%;
+width: 100%;
 display: flex;
 justify-content: center;
 align-items: end;

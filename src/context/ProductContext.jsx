@@ -7,21 +7,20 @@ export const ProductProvider =   ({children}) => {
 
 const [products,setProducts] = useState([])
 const itemsPerPage = 6;
-const rounded = () => {
-    let res = Math.ceil(products.length / itemsPerPage)
+const rounded = async () => {
+  const data = await loadInitialProducts()
+    let res = Math.ceil(data.length / itemsPerPage)
     if(res % 1 !== 0){
         res = res + 1
     }
-    return res
+  setTotalPages(res)
     }
-    const [totalpages,setTotalPages] = useState(()=> {
-        let res = rounded()
-        return res
-    })
+    const [totalpages,setTotalPages] = useState(0)
 
       useEffect(() => {
     loadInitialProducts().then((data) => {
       setProducts(data);
+      rounded()
     });
   }, []);
 
@@ -30,7 +29,7 @@ const [currenntPage,setCurrentPage] = useState(1)
 const inicio = (currenntPage - 1) * itemsPerPage
 const fin = inicio + itemsPerPage
 const itemsinPage = products.slice(inicio,fin)
-
+console.log(currenntPage,totalpages)
     return(
         <ProductContext.Provider value={{
            products,
@@ -39,7 +38,8 @@ const itemsinPage = products.slice(inicio,fin)
            currenntPage,
            setCurrentPage, 
            inicio,
-           fin
+           fin,
+           totalpages
         }}>
           {children}
         </ProductContext.Provider>

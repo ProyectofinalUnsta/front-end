@@ -2,14 +2,14 @@ import './style/paginacion.css'
 import { usePaginacion }  from '../hooks/usePaginacion'
 export const Paginacion = () => {
 
-  const {currenntPage} = usePaginacion()
+  const {currenntPage,next,back} = usePaginacion()
 
     return (
         <>
         <div className="paginacion-container">
-          <button>prev</button>
+          <button onClick={()=> back()}>prev</button>
             <h3>{currenntPage}</h3>
-          <button>Next</button>
+          <button onClick={()=> next()}>Next</button>
         </div>
         </>
     )

@@ -74,3 +74,14 @@ export const LogOut = async () => {
     return err.message
   }
 }
+
+
+export const Ping = async () => {
+  try {
+    await axios.get(endpoints.keepserveralive).then((res)=> { return res })
+    await axios.get(endpoints.keepmailalive).then((res)=> { return res })
+    await axios.get(endpoints.keepservicealive).then((res)=> { return res })
+  } catch (err) {
+    return err
+  }
+}

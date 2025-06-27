@@ -71,7 +71,7 @@ export const EvalNav = () => {
 
     return(
         <> 
-      {width < 970 
+      {width < 1221 
       ? <MobileNav/>  
       : <NormalNav/>
     }
