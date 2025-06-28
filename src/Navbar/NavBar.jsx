@@ -23,7 +23,9 @@ export const LogoSection = () => {
     return(
         <>
         <section className='logosection-container'>
-       <LogoIcon/>
+          <Link to={'/'} className='logo-eventum'>
+            <LogoIcon style={{marginRight: '0.5rem'}}/>
+          </Link>
        </section>
         </>
     )

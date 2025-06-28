@@ -20,14 +20,12 @@ export default function SobreNosotros() {
         <p className="lead fw-light">#UNSTA</p>
       </section>
 
-      <section className="d-flex justify-content-center text-center mb-4">
-        <div>
-          <h2 className="display-5 fw-semibold">Integrantes</h2>
-          <hr className="mx-auto" style={{ width: "100px", borderTop: "2px solid #000" }} />
-        </div>
+      <section className="d-flex flex-column align-items-center justify-content-center text-center mb-4" style={{marginBottom:'2.5rem'}}>
+        <h2 className="display-5 fw-semibold" style={{marginBottom:'0.2rem'}}>Integrantes</h2>
+        <div style={{width:'110px', borderBottom:'2.5px solid #1f2937', margin:'0 auto', marginBottom:'1.5rem'}}></div>
       </section>
       <Suspense fallback={<div>Cargando..</div>}>
-      <div className=" mb-5 w-full flex flex-col gap-5  justify-center items-center ">
+      <div className="mb-5 w-full flex flex-col gap-5 justify-center items-center ">
           <CardsSobreNos />
       </div>
       </Suspense>

@@ -1,7 +1,7 @@
-import { ArrowIcon } from '../../icons/ArrowIcon'
 import '../style/cardventajas.css'
+
 export const CardVentajas = ({items}) => {
-    const {id,emoji, titulo, ventaja} = items
+    const {id, emoji, titulo, ventaja, explicacion} = items
     return (
         <>
         <article className='article-ventaja' key={id}>
@@ -12,9 +12,9 @@ export const CardVentajas = ({items}) => {
          <aside className='body-section-why-us'>
             <p className='ventaja-why-us'>{ventaja}</p>
          </aside>
-         <footer>
-            <a className='anchor-saber-mas' href="">saber mas <ArrowIcon backgorund={'#00000000'} width={'16px'} fill={'#326fca'} stroke={'#326fca'}/>  </a>
-         </footer>
+         <div className='hover-explanation'>
+            <p className='explanation-text'>{explicacion}</p>
+         </div>
         </article>
         </>
     )
