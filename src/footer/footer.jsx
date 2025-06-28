@@ -19,7 +19,7 @@ export const MobileFooter = () => {
   return (
     <>
       <section className="mobile-footer">
-        <div className="social-icons flex-row flex gap-2 mt-4 mb-4 ">
+        <div className="social-icons">
         <a
             href="https://www.unsta.edu.ar/"
             target="_blank"
@@ -31,58 +31,35 @@ export const MobileFooter = () => {
             href="http://localhost:5173/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center"
           >
         <EventumSvg width={'22px'} heigth={'32px'} fill={'#000'} stroke={'#000'}/>
           </a>
         </div>
-        <ul>
-        <div class="mb-2 flex flex-row items-center justify-center">
-          <li>
-            <a href="/"
-             class="text-gray-400 hover:text-white mx-2"
-             target="_blank"
-            >Políticas</a>
-          </li>
-          <li>
-            <a href="/SobreNosotros"
-             class="text-gray-400 hover:text-white mx-2"
-             target="_blank"
-             >Sobre Nosotros</a>
-          </li>
-          </div>
-          <li>
-            <a href="/"
-             class="text-gray-400 hover:text-white mx-2"
-             target="_blank">Contactanos</a>
-            <div class="mt-2">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white mx-2"
-                target="_blank"
-              >
-                Facebook
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white mx-2"
-                target="_blank"
-              >
-                Twitter
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white mx-2"
-                target="_blank"
-              >
-                Instagram
-              </a>
-            </div>
-          </li>
-        </ul>
-        <li className="footer-copy">
+        <div className="footer-links">
+          <ul>
+            <li>
+              <a href="/">Políticas</a>
+            </li>
+            <li>
+              <a href="/SobreNosotros">Sobre Nosotros</a>
+            </li>
+            <li>
+              <a href="/">Contactanos</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Facebook</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Twitter</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Instagram</a>
+            </li>
+          </ul>
+        </div>
+        <div className="footer-copy">
           <p>©2025 Todos los derechos reservados</p>
-        </li>
+        </div>
       </section>
     </>
   );
@@ -92,7 +69,7 @@ export const NormalFooter = () => {
   return (
     <>
       <section className="normal-footer">
-        <div className="social-icons flex-row flex gap-4 mt-4 mb-4">
+        <div className="social-icons">
           <a
             href="https://www.unsta.edu.ar/"
             target="_blank"
@@ -104,11 +81,9 @@ export const NormalFooter = () => {
             href="http://localhost:5173/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center"
           >
         <EventumSvg width={'42px'} heigth={'42px'} fill={'#000'} stroke={'#000'}/>
           </a>
-
         </div>
 
         <div className="footer-links">
@@ -120,37 +95,22 @@ export const NormalFooter = () => {
               <a href="/SobreNosotros">Sobre Nosotros</a>
             </li>
             <li>
-              <div class="mb-4">
-                <a href="/Error404">Contactanos:</a>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white mx-2"
-                  target="_blank"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white mx-2"
-                  target="_blank"
-                >
-                  Twitter
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white mx-2"
-                  target="_blank"
-                >
-                  Instagram
-                </a>
-              </div>
+              <a href="/Error404">Contactanos</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Facebook</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Twitter</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Instagram</a>
             </li>
           </ul>
         </div>
 
         <div className="footer-copy">
           <p>©2025 Todos los derechos reservados - Eventum</p>
-
         </div>
       </section>
     </>
