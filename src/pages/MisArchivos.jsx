@@ -64,7 +64,9 @@ export default function MisArchivos() {
         <Layout>
             <div className="mis-archivos-container">
                 <div className="header">
-                    <h1>Archivos Disponibles</h1>
+                    <h1 className="page-title">Archivos Disponibles</h1>
+                    <div className="title-divider"></div>
+                    <p className="page-subtitle">Descarga y gestiona todos los archivos de presentaciones</p>
                 </div>
 
                 {error && <div className="alert alert-error">{error}</div>}
