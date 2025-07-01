@@ -1,7 +1,7 @@
 import '../global/MisArchivos.css';
 import useFiles from '../Files/hook/useFiles';
-import { MappedFiles } from '../Files/components/MappedFiles';
-import { FormUploadFiles } from '../Files/components/FormUploadFiles';
+import { MappedPresentations } from '../Files/components/MappedPresentations';
+import { FormUploadPresentaciones } from '../Files/components/FormUploadPresentaciones';
 export const AdminFiles = () => {
 
  const {loading,showForm,setShowForm,success,error} = useFiles()
@@ -26,9 +26,10 @@ export const AdminFiles = () => {
                 {success && <div className="alert alert-success">{success}</div>}
 
                 {showForm && (
-                 <FormUploadFiles/>
+
+                <FormUploadPresentaciones/>
                 )}
-               <MappedFiles/>
+                <MappedPresentations/>
             </div>
         </>
     );

@@ -1,32 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import '../global/MisArchivos.css'
 import { Layout } from './Layout'
-import axios from 'axios'
 
-const API_URL = 'https://back-end-fiq8.onrender.com/api/files';
+import FiltroArchivo from '../FiltroArchivos/FiltroArchivo';
+import useHandleFiles from '../FiltroArchivos/hook/useHandleFiles';
+import { formatSize } from '../Files/utils/formatSize';
+import { formatDate } from '../Files/utils/formatDate';
+import { MappedPresentations } from '../Files/components/MappedPresentations';
+import { useGetEventsById } from '../hooks/useGetEventsById';
+import endpoints from '../utils/endpoints';
+import axios from 'axios';
+import { useLogin } from '../hooks/useLogin';
+
 
 export default function MisArchivos() {
-    const [archivos, setArchivos] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        cargarArchivos();
-    }, []);
-
-    const cargarArchivos = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get(API_URL);
-            setArchivos(response.data);
-            setError('');
-        } catch (err) {
-            console.error('Error:', err);
-            setError('Error al cargar los archivos');
-        } finally {
-            setLoading(false);
-        }
-    };
+    const {porMi,loading} = useHandleFiles()
+   const [error,setError] = useState(false)
+   const {eventosinscripto,eventoscreados} = useGetEventsById()
+  const {token} = useLogin()
 
     const getFileIcon = (fileType) => {
         switch(fileType.toLowerCase()) {
@@ -42,35 +33,91 @@ export default function MisArchivos() {
         }
     };
 
-    const formatDate = (date) => {
-        return new Date(date).toLocaleDateString('es-ES', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    };
+       const downloadPresentacion = async (ruta) => {
+  try {
+    const response = await axios.get(ruta, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      responseType: 'blob'
+    });
 
-    const formatSize = (bytes) => {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    };
+    const blob = new Blob([response.data]);
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+
+    // Opcional: intentá extraer el nombre del header
+const contentDisposition = response.headers['content-disposition']
+console.log(contentDisposition)
+let filename;
+
+
+  filename = contentDisposition
+    .split('filename=')[1]
+    .split(':')[0]
+    .replace(/["']/g, '');
+    console.log(contentDisposition)
+
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error("Error al descargar:", err);
+  }
+};
+
 
     return (
         <Layout>
             <div className="mis-archivos-container">
                 <div className="header">
                     <h1>Archivos Disponibles</h1>
+                    <FiltroArchivo/>
                 </div>
 
                 {error && <div className="alert alert-error">{error}</div>}
 
                 <div className="archivos-grid">
-                    {loading ? (
+                {porMi != true ? <MappedPresentations/> :   <div className="archivos-grid">
+                    {loading && !eventosinscripto.length ? (
+                        <div className="loading">Cargando archivos...</div>
+                    ) : eventosinscripto.length === 0 ? (
+                        <div className="no-archivos">No hay archivos disponibles</div>
+                    ) : (
+                        eventosinscripto.map(presentacion => (
+                            <div key={presentacion._id} className="archivo-card">
+                                <div className="archivo-icon">
+                                    {getFileIcon(presentacion.fileType)}
+                                </div>
+                                <div className="archivo-info">
+                                    <h3>Nombre: {presentacion.filename}</h3>
+                                    {/* <p>Evento: {presentacion.event}</p> */}
+                                    <p>Subido Por: {presentacion.user}</p>
+                                    <p>Gmail:{presentacion.gmail} </p>
+                                    <p>Evento: {presentacion.event?.title} </p>
+                                    <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
+                                    <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
+                                </div>
+                                <div className="archivo-actions">
+                                    <a 
+                                        onClick={()=> downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
+                                        className="btn-download"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>}
+{/*                  
+                    { loading ? (
                         <div className="loading">Cargando archivos...</div>
                     ) : archivos.length === 0 ? (
                         <div className="no-archivos">No hay archivos disponibles</div>
@@ -98,9 +145,42 @@ export default function MisArchivos() {
                                 </div>
                             </div>
                         ))
-                    )}
+                    )} */}
                 </div>
             </div>
         </Layout>
     );
 } 
+
+
+//   <div className="archivos-grid">
+//                     {loading ? (
+//                         <div className="loading">Cargando archivos...</div>
+//                     ) : archivos.length === 0 ? (
+//                         <div className="no-archivos">No hay archivos disponibles</div>
+//                     ) : (
+//                         archivos.map(archivo => (
+//                             <div key={archivo._id} className="archivo-card">
+//                                 <div className="archivo-icon">
+//                                     {getFileIcon(archivo.fileType)}
+//                                 </div>
+//                                 <div className="archivo-info">
+//                                     <h3>{archivo.originalName}</h3>
+//                                     <p>Evento: {archivo.eventCode}</p>
+//                                     <p>Fecha: {formatDate(archivo.uploadDate)}</p>
+//                                     <p>Tamaño: {formatSize(archivo.size)}</p>
+//                                 </div>
+//                                 <div className="archivo-actions">
+//                                     <a 
+//                                         href={`https://back-end-fiq8.onrender.com${archivo.fileUrl}`}
+//                                         className="btn-download"
+//                                         target="_blank"
+//                                         rel="noopener noreferrer"
+//                                     >
+//                                         Descargar
+//                                     </a>
+//                                 </div>
+//                             </div>
+//                         ))
+//                     )}
+//                 </div>

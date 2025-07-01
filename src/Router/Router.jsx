@@ -16,7 +16,7 @@ const Login = React.lazy(()=> import('../pages/auth/Login'))
 const Register = React.lazy(()=> import('../pages/auth/Register'))
 const  MisArchivos = React.lazy(()=> import('../pages/MisArchivos'))
 const  MisEventos = React.lazy(()=> import('../pages/MisEventos'))
-
+const PresentationPage = React.lazy(()=> import('../pages/PresentationPage'))
 
 export default function Router () {
     return(
@@ -54,6 +54,9 @@ export default function Router () {
                   <Route path='/MisEventos' element={ <Suspense fallback={<div>Cargando...</div>}>
                       <MisEventos/>
                   </Suspense>}/>
+                  <Route path='/Presentacion' element={<Suspense fallback={<div>Cargando..</div>}>
+                    <PresentationPage/>
+                  </Suspense>} />
                   <Route path='*' element={ <Suspense fallback={<div>cargando...</div>}>
                     <ErrorPage/>
                   </Suspense> }/>

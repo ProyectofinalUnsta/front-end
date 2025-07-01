@@ -1,40 +1,57 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import useInscriptos from '../hooks/useInscriptos';
 
 export const EventRegistrationPopup = () => {
-    const [email, setEmail] = useState('');
-    const [showSuccess, setShowSuccess] = useState(false);
-    const navigate = useNavigate();
+    const location = useLocation()
+    const {_id,title} = location.state || {}
+    const {gmail,nombre,apellido,InscritosActions,data, handleInscriptosSubmit,showSuccess, setShowSuccess } = useInscriptos({_id,title})
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (email) {
-            setShowSuccess(true);
-            setTimeout(() => {
-                document.getElementById('event-registration-popup').style.display = 'none';
-                setShowSuccess(false);
-                setEmail('');
-                navigate('/');
-            }, 2000);
-        }
-    };
+const closeModal = () => {
+      document.getElementById('event-registration-popup').style.display = 'none';
+}
 
-    const handleClose = () => {
-        document.getElementById('event-registration-popup').style.display = 'none';
-        setShowSuccess(false);
-        setEmail('');
-    };
 
     return (
         <div id="event-registration-popup" className="event-registration-popup">
             <div className="popup-content">
                 <h2>Registro en el Evento</h2>
-                <form onSubmit={handleSubmit}>
+                <button style={{background:'red',color:'black'}} className='mb-4' onClick={()=>closeModal()}>Cerrar</button>
+                <form onSubmit={handleInscriptosSubmit}>
                     <input
                         type="email"
                         placeholder="Ingresa tu correo electrónico"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={gmail}
+                        onChange={(e) => InscritosActions.updateGmail(e.target.value)}
+                        disabled={data != true ? false : true}
+                        required
+                    />
+                     <input
+                        type="text"
+                        placeholder="Ingresa tu nombre"
+                        value={nombre}
+                        onChange={(e) => InscritosActions.updateNombre(e.target.value)}
+                        required
+                    />
+                     <input
+                        type="text"
+                        placeholder="Ingresa tu apellido"
+                        value={apellido}
+                        onChange={(e) => InscritosActions.updateApellido(e.target.value)}
+                        required
+                    />
+                     <input
+                        type="text"
+                        placeholder="Nombre Evento"
+                        value={title}
+                        disabled={true}
+                        required
+                    />
+
+                     <input
+                        type="text"
+                        placeholder="Id Evento"
+                        value={_id}
+                        disabled={true}
                         required
                     />
                     <button type="submit">Registrarse</button>
@@ -42,22 +59,7 @@ export const EventRegistrationPopup = () => {
                 <div className={`success-message ${showSuccess ? 'show' : ''}`}>
                     ¡Ya estás registrado! Redirigiendo al inicio...
                 </div>
-                <button 
-                    onClick={handleClose}
-                    style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        background: 'none',
-                        border: 'none',
-                        fontSize: '1.5rem',
-                        cursor: 'pointer',
-                        padding: '5px',
-                        width: 'auto'
-                    }}
-                >
-                    ×
-                </button>
+           
             </div>
         </div>
     );

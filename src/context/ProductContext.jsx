@@ -29,7 +29,7 @@ const [currenntPage,setCurrentPage] = useState(1)
 const inicio = (currenntPage - 1) * itemsPerPage
 const fin = inicio + itemsPerPage
 const itemsinPage = products.slice(inicio,fin)
-console.log(currenntPage,totalpages)
+
     return(
         <ProductContext.Provider value={{
            products,
