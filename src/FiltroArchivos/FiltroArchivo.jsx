@@ -5,7 +5,7 @@ export default function FiltroArchivo () {
     return(
         <>
         <select name="filtro-archivo" id="filtro-archivo" onChange={(e)=> handleFiles(e)}>
-            <option value="Archivos-inscripto">Archivos Evento Inscripto</option>
+               <option value="Archivos-inscripto">Archivos Evento Inscripto</option>
             <option value="por-Mi" >Archivos Subidos por Mi</option>
         </select>
         </>

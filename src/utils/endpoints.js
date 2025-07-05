@@ -15,6 +15,7 @@ if(import.meta.env.MODE ===   'production'){
     endpoints.presentaciones = import.meta.env.VITE_ENDPOINT_PRESENTACIONES
     endpoints.inscripciones = import.meta.env.VITE_ENDPOINT_INSCRIPCIONES
 
+
 }
 if(import.meta.env.MODE === 'development'){
       endpoints.get = 'https://back-end-fiq8.onrender.com/api/',

@@ -9,7 +9,7 @@ export function useGetEventsById () {
 
 const {token,user} = useContext(LoginContext)
 const{porMi} = useContext(FileContext)
-const { eventoscreados,setEventosCreados,eventosinscripto,setEventosInscriptos} = useContext(EventsContext)
+const { archivoscreados,setArchivosCreados,eventosinscripto,setEventosInscriptos} = useContext(EventsContext)
 const [eventos, setEventos] = useState([]);
 const [email,setEmail] = useState('')
  const [isLoading, setIsLoading] = useState(false);
@@ -58,28 +58,28 @@ const getArchivosEventosInscriptos = async () => {
 const gmail = localStorage.getItem('Inscripto-Gmail')
 const data = await getArchivosEvetnoInscripto(gmail)
 setEventosInscriptos(data.data)
-
+console.log(data.data)
 }
 
 const getArchivosCreadosPorMi = async() => {
 const gmail = localStorage.getItem('Inscripto-Gmail')
 const data = await getPresentacionesByMail(gmail)
-setEventosCreados(data.data)
+setArchivosCreados(data.data)
 
 }
 
 useEffect(()=> {
 if(isfetched != true){
 handleEventosCreadosPorMi()
-getArchivosCreadosPorMi()
+
 }
 },[isfetched])
 
 useEffect(()=> {
 getArchivosEventosInscriptos()
-console.log(eventosinscripto)
+getArchivosCreadosPorMi()
 },[porMi])
 
 
-    return {eventos,error,isAuthenticated , handleGetEventosById , setEmail ,setIsAuthenticated , email , isLoading , eventoscreados , eventosinscripto}
+    return {eventos,error,isAuthenticated , handleGetEventosById , setEmail ,setIsAuthenticated , email , isLoading , archivoscreados , eventosinscripto}
 }

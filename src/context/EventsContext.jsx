@@ -4,11 +4,11 @@ export const EventsContext = createContext()
 
 
 export const EventsProvider = ({children}) => {
-const [eventoscreados,setEventosCreados] = useState([])
-const [eventosinscripto,setEventosInscriptos] = useState()
+const [archivoscreados,setArchivosCreados] = useState([])
+const [eventosinscripto,setEventosInscriptos] = useState([])
     return (
         <EventsContext.Provider value={{
-        eventoscreados,setEventosCreados,
+        archivoscreados,setArchivosCreados,
         eventosinscripto,setEventosInscriptos
         }}>
         {children}

@@ -11,12 +11,13 @@ import { useGetEventsById } from '../hooks/useGetEventsById';
 import endpoints from '../utils/endpoints';
 import axios from 'axios';
 import { useLogin } from '../hooks/useLogin';
+import { MappedPresentationsByMe } from '../Files/components/MappedPresentationsByMe';
 
 
 export default function MisArchivos() {
-    const {porMi,loading} = useHandleFiles()
+    const {porMi,loading,handlePresentacionesDelete} = useHandleFiles()
    const [error,setError] = useState(false)
-   const {eventosinscripto,eventoscreados} = useGetEventsById()
+   const {eventosinscripto,archivoscreados} = useGetEventsById()
   const {token} = useLogin()
 
     const getFileIcon = (fileType) => {
@@ -82,13 +83,13 @@ let filename;
                 {error && <div className="alert alert-error">{error}</div>}
 
                 <div className="archivos-grid">
-                {porMi != true ? <MappedPresentations/> :   <div className="archivos-grid">
+                {porMi == true ? <MappedPresentationsByMe/> :   <div className="archivos-grid">
                     {loading && !eventosinscripto.length ? (
                         <div className="loading">Cargando archivos...</div>
-                    ) : eventosinscripto.length === 0 ? (
+                    ) : eventosinscripto?.length === 0 ? (
                         <div className="no-archivos">No hay archivos disponibles</div>
                     ) : (
-                        eventosinscripto.map(presentacion => (
+                        eventosinscripto?.map(presentacion => (
                             <div key={presentacion._id} className="archivo-card">
                                 <div className="archivo-icon">
                                     {getFileIcon(presentacion.fileType)}
@@ -111,6 +112,7 @@ let filename;
                                     >
                                         Descargar
                                     </a>
+                                    
                                 </div>
                             </div>
                         ))
@@ -151,36 +153,3 @@ let filename;
         </Layout>
     );
 } 
-
-
-//   <div className="archivos-grid">
-//                     {loading ? (
-//                         <div className="loading">Cargando archivos...</div>
-//                     ) : archivos.length === 0 ? (
-//                         <div className="no-archivos">No hay archivos disponibles</div>
-//                     ) : (
-//                         archivos.map(archivo => (
-//                             <div key={archivo._id} className="archivo-card">
-//                                 <div className="archivo-icon">
-//                                     {getFileIcon(archivo.fileType)}
-//                                 </div>
-//                                 <div className="archivo-info">
-//                                     <h3>{archivo.originalName}</h3>
-//                                     <p>Evento: {archivo.eventCode}</p>
-//                                     <p>Fecha: {formatDate(archivo.uploadDate)}</p>
-//                                     <p>Tamaño: {formatSize(archivo.size)}</p>
-//                                 </div>
-//                                 <div className="archivo-actions">
-//                                     <a 
-//                                         href={`https://back-end-fiq8.onrender.com${archivo.fileUrl}`}
-//                                         className="btn-download"
-//                                         target="_blank"
-//                                         rel="noopener noreferrer"
-//                                     >
-//                                         Descargar
-//                                     </a>
-//                                 </div>
-//                             </div>
-//                         ))
-//                     )}
-//                 </div>

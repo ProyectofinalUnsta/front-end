@@ -113,6 +113,6 @@ export const getArchivosEvetnoInscripto = async(gmail) => {
 }
 
 export const getPresentacionesByMail = async (gmail) => {
-   const response = await axios.get(`${endpoints.presentaciones}${gmail}`)
+   const response = await axios.get(`${endpoints.presentaciones}mispresentaciones/${gmail}`)
   return response
 }

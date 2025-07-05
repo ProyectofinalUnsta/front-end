@@ -1,17 +1,18 @@
+import { useGetEventsById } from "../../hooks/useGetEventsById"
+import { useLogin } from "../../hooks/useLogin"
 import useFiles from "../hook/useFiles"
-import endpoints from "../../utils/endpoints"
 import { formatDate } from "../utils/formatDate"
 import { formatSize } from "../utils/formatSize"
 import { getFileIcon } from "../utils/getFileIcon"
 import axios from "axios"
-import { useLogin } from "../../hooks/useLogin"
+import endpoints from "../../utils/endpoints"
 
-export const MappedPresentations = () => {
-    const {presentaciones,loading} = useFiles()
-
+export const MappedPresentationsByMe = () => {
     const {token} = useLogin()
+    const {archivoscreados} = useGetEventsById()
+    const {loading,handlePresentacionesDelete} = useFiles()
 
-   const downloadPresentacion = async (ruta) => {
+       const downloadPresentacion = async (ruta) => {
   try {
     const response = await axios.get(ruta, {
       headers: {
@@ -48,18 +49,18 @@ let filename;
   }
 };
 
-
-    return( 
-             <div className="archivos-grid">
-                    {loading && !presentaciones.length ? (
+    return(
+        <>
+                    <div className="archivos-grid">
+                    {loading && !archivoscreados.length ? (
                         <div className="loading">Cargando archivos...</div>
-                    ) : presentaciones.length === 0 ? (
+                    ) : archivoscreados.length === 0 ? (
                         <div className="no-archivos">No hay archivos disponibles</div>
                     ) : (
-                        presentaciones.map(presentacion => (
+                        archivoscreados.map(presentacion => (
                             <div key={presentacion._id} className="archivo-card">
                                 <div className="archivo-icon">
-                                    {getFileIcon(presentacion.fileType)}
+                               {getFileIcon(presentacion.fileType)}
                                 </div>
                                 <div className="archivo-info">
                                     <h3>Nombre: {presentacion.filename}</h3>
@@ -79,11 +80,18 @@ let filename;
                                     >
                                         Descargar
                                     </a>
-                                   
+                                     <button
+                                        onClick={() => handlePresentacionesDelete(presentacion._id)}
+                                        className="btn-delete"
+                                        disabled={loading}
+                                    >
+                                        Eliminar
+                                    </button>
                                 </div>
                             </div>
                         ))
                     )}
                 </div>
+        </>
     )
 }
