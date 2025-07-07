@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import '../global/MisArchivos.css'
 import { Layout } from './Layout'
-
 import FiltroArchivo from '../FiltroArchivos/FiltroArchivo';
 import useHandleFiles from '../FiltroArchivos/hook/useHandleFiles';
 import { formatSize } from '../Files/utils/formatSize';
@@ -76,11 +75,11 @@ let filename;
         <Layout>
             <div className="mis-archivos-container">
                 <div className="header">
+                  
                     <h1 className="page-title">Archivos Disponibles</h1>
                     <div className="title-divider"></div>
-                                <FiltroArchivo/>
+                    <FiltroArchivo/>
                     <p className="page-subtitle">Descarga y gestiona todos los archivos de presentaciones</p>
-
                 </div>
 
                 {error && <div className="alert alert-error">{error}</div>}
@@ -156,3 +155,4 @@ let filename;
         </Layout>
     );
 } 
+
