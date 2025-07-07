@@ -53,7 +53,7 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                         disabled={true}
                         required
                     />
-                    <button onClick={()=>handleInscriptosSubmit()} type="submit">Registrarse</button>
+                    <button onClick={(e)=>handleInscriptosSubmit(e)} type="submit">Registrarse</button>
                 </form>
                 <div className={`success-message ${showSuccess ? 'show' : ''}`}>
                     ¡Ya estás registrado! Redirigiendo al inicio...
