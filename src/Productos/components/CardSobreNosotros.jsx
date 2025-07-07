@@ -14,7 +14,7 @@ export  function CardSobreNosotros({ imageSource, title, text, url }) {
         rel="noopener noreferrer"
         className="card-link"
       >
-        Ver GitHub
+        <span>Ver GitHub</span>
       </a>
     </div>
   );

@@ -1,11 +1,163 @@
 .paginacion-container{
-   border: transparent;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    border: transparent;
+    padding: 2rem 1rem;
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 0.7rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.paginacion-container button {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    background: white;
+    color: #374151;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.paginacion-container button:hover {
+    border-color: #dc2626;
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.05);
+    transform: translateY(-1px);
+}
+
+.paginacion-container h3 {
+    margin: 0;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Responsive Design - Desktop Large */
+@media (min-width: 1400px) {
+    .paginacion-container {
+        max-width: 1600px;
+        padding: 2.5rem 2rem;
+    }
+}
+
+/* Responsive Design - Desktop Medium */
+@media (max-width: 1399px) and (min-width: 1081px) {
+    .paginacion-container {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Responsive Design - Tablet Large */
+@media (max-width: 1080px) and (min-width: 821px) {
+    .paginacion-container {
+        padding: 1.5rem 1rem;
+        gap: 0.75rem;
+    }
+
+    .paginacion-container button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        min-width: 70px;
+    }
+
+    .paginacion-container h3 {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: 50px;
+    }
+}
+
+/* Responsive Design - Tablet Medium */
+@media (max-width: 820px) and (min-width: 641px) {
+    .paginacion-container {
+        padding: 1.25rem 1rem;
+        gap: 0.75rem;
+    }
+
+    .paginacion-container button {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        min-width: 65px;
+    }
+
+    .paginacion-container h3 {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        min-width: 45px;
+    }
+}
+
+/* Responsive Design - Mobile Large */
+@media (max-width: 640px) and (min-width: 481px) {
+    .paginacion-container {
+        padding: 1rem 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .paginacion-container button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+        min-width: 60px;
+        border-radius: 6px;
+    }
+
+    .paginacion-container h3 {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 40px;
+        border-radius: 6px;
+    }
+}
+
+/* Responsive Design - Mobile Medium */
+@media (max-width: 480px) {
+    .paginacion-container {
+        padding: 0.75rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .paginacion-container button {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+        min-width: 55px;
+        border-radius: 6px;
+    }
+
+    .paginacion-container h3 {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        min-width: 35px;
+        border-radius: 6px;
+    }
+}
+
+/* Responsive Design - Mobile Small */
+@media (max-width: 360px) {
+    .paginacion-container {
+        padding: 0.5rem 0.25rem;
+        gap: 0.4rem;
+    }
+
+    .paginacion-container button {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.65rem;
+        min-width: 50px;
+    }
+
+    .paginacion-container h3 {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.7rem;
+        min-width: 30px;
+    }
 }
