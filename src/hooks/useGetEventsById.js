@@ -42,11 +42,11 @@ const handleEventosCreadosPorMi = useCallback(
 
     try {
       const response = await getEventsById(`${endpoints.eventoPorId}${email}`, token);
-      setEventosCreados(response);
+      setArchivosCreados(response);
       setIsFetched(true)
     } catch (err) {
       setError(err.message);
-      setEventosCreados([]);
+      setArchivosCreados([]);
     } finally {
       setIsLoading(false);
     }
