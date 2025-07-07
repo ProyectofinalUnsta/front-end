@@ -19,7 +19,6 @@ export const AppsSection = () => {
                  <CreateSection displayed={displayed}/>
                   <MisEventosSection displayed={displayed}/>
                   <AdminFilesSection displayed={displayed}/>
-                  <ConfiguracionSection displayed={displayed}/>
                  <MiUserSection displayed={displayed}/>
                </ul>
                </div>

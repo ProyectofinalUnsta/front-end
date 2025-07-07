@@ -56,9 +56,6 @@ export const AdminMenu = () =>{
           <section className='options-admin-menu'>
            <ul>
             <li><HomeButton onClick={handleHomeClick} /></li>
-            <li><ToDoListIcon/></li>
-            <li><CrearIcon/></li>
-            <li><ConfiguracionIcon/></li>
            </ul> 
           </section>
 
