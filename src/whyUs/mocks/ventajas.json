@@ -2,25 +2,29 @@
     {
     "id":1,
     "emoji":"🧭",
-    "titulo":"sin Complicaciones",
-    "ventaja":"Gestiona horarios, salas y actividades desde un solo lugar."
+    "titulo":"Sin Complicaciones",
+    "ventaja":"Gestiona horarios, salas y actividades desde un solo lugar.",
+    "explicacion":"Nuestra plataforma centraliza toda la gestión de eventos en una interfaz intuitiva. Desde la programación de horarios hasta la asignación de salas, todo está organizado de manera eficiente para que puedas enfocarte en lo que realmente importa: crear experiencias memorables."
     },
     {
     "id":2,
     "emoji":"📁",
     "titulo":"Carga Inteligente",
-    "ventaja":"Los disertantes suben sus presentaciones fácilmente y sin complicaciones." 
+    "ventaja":"Los disertantes suben sus presentaciones fácilmente y sin complicaciones.",
+    "explicacion":"Sistema de carga de archivos optimizado que acepta múltiples formatos (PDF, PowerPoint, Word, Excel, imágenes). Los disertantes pueden subir sus materiales de forma segura y organizada, con validación automática y almacenamiento en la nube."
     },
     {
     "id":3,
     "emoji":"🎤",
     "titulo":"Control Total",
-    "ventaja":"Cada expositor gestiona su contenido y agenda en su propio panel." 
+    "ventaja":"Cada expositor gestiona su contenido y agenda en su propio panel.",
+    "explicacion":"Panel personalizado para cada disertante donde pueden gestionar sus presentaciones, revisar su agenda, actualizar materiales y mantener un control completo sobre su participación en el evento."
     },
     {
     "id":4,
     "emoji":"⚙️",
     "titulo":"Experiencia Fluida",
-    "ventaja":"Presentaciones listas y sincronizadas en el momento exacto." 
+    "ventaja":"Presentaciones listas y sincronizadas en el momento exacto.",
+    "explicacion":"Sincronización automática de contenido que garantiza que todas las presentaciones estén disponibles en el momento preciso. Sistema de respaldo y recuperación para asegurar una experiencia sin interrupciones."
     }
 ]}

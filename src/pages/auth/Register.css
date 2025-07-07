@@ -1,0 +1,159 @@
+.register-bg-pro {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card-pro {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.register-logo-pro {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+.register-logo-img-pro {
+  height: 2.5rem;
+  width: auto;
+}
+
+.register-title-pro {
+  font-family: var(--font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.register-heading-pro {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.register-form-pro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.register-field-pro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.register-label-pro {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.2rem;
+}
+
+.register-input-pro {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: var(--font);
+  background: #f8fafc;
+  transition: border-color 0.2s;
+}
+
+.register-input-pro:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.register-password-wrapper-pro {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.register-eye-pro {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  z-index: 2;
+}
+
+.register-error-pro {
+  font-size: 0.95rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  min-height: 1.2em;
+}
+
+.register-btn-pro {
+  width: 100%;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  padding: 0.9rem 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  cursor: pointer;
+}
+
+.register-btn-pro:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.register-login-text-pro {
+  font-size: 0.98rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-login-link-pro {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.register-login-link-pro:hover {
+  color: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+  .register-card-pro {
+    padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
+  }
+  .register-heading-pro {
+    font-size: 1.5rem;
+  }
+} 

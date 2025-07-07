@@ -1,13 +1,12 @@
 import React from "react"
 const  Banner = React.lazy(()=> import('../banner/Banner'))
-const  ExplorarEventos = React.lazy(()=> import('../explore/ExplorarEventos'))
 const  WhyUs   = React.lazy(()=> import('../whyUs/WhyUs')) 
 import { Layout } from "./Layout"
 
 export default function HomePage  ()  {
     return (
         <>
-            <Layout banner={<Banner />} explore={<ExplorarEventos />} why={<WhyUs />} />
+            <Layout banner={<Banner />} why={<WhyUs />} />
         </>
     )
 }

@@ -200,6 +200,46 @@ color: gray;
     gap: 0.5rem;
 }
 
+.logout-btn-admin-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.logout-btn-admin {
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(90deg, #fca5a5, #f87171);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
+  margin: 0 auto;
+  display: block;
+}
+
+.logout-btn-admin:hover {
+  background: linear-gradient(90deg, #f87171, #fca5a5);
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 900px) {
+  .logout-btn-admin-container {
+    margin-top: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .logout-btn-admin {
+    width: 90%;
+    font-size: 0.98rem;
+    padding: 0.7rem 0.5rem;
+  }
+}
 
 @media (width < 1090px) {
 
