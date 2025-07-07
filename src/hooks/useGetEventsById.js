@@ -56,6 +56,7 @@ const handleEventosCreadosPorMi = useCallback(
 const getArchivosEventosInscriptos = async () => {
 const gmail = localStorage.getItem('Inscripto-Gmail')
 const data = await getArchivosEvetnoInscripto(gmail)
+console.log(data.data)
 if(data.data == []){
  setEventosInscriptos([]) 
 }
