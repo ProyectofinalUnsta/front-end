@@ -108,7 +108,9 @@ export const getInscripcionEvento = async (gmail,idEvento) => {
 }
 
 export const getArchivosEvetnoInscripto = async(gmail) => {
+  console.log(gmail)
   const response = await axios.get(`${endpoints.inscripciones}inscriptos/${gmail}`)
+  console.log(response)
   return response
 }
 
