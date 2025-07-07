@@ -1,4 +1,4 @@
-export const FieldFile = ({type,id,name,label,placeholder,loading,event,value}) => {
+export const FieldFile = ({type,id,name,label,placeholder,loading,event,value,}) => {
     return(
 
           <div className="form-group">
@@ -34,3 +34,5 @@ export const FileField = ({event,loading}) => {
     </div>
     )
 }
+
+

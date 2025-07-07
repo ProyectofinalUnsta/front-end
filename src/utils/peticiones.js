@@ -85,3 +85,34 @@ export const Ping = async () => {
     return err
   }
 }
+
+export const postInscribirEvento = async (gmail,nombre,apellido,IdEvento,nombreEvento) => {
+const idEvento = IdEvento.toString()
+const response = await axios.post(endpoints.inscripciones,
+  {gmail,
+  nombre,
+  apellido,
+  nombreEvento,
+ idEvento
+})
+return response
+}
+
+export const getInscripcionEvento = async (gmail,idEvento) => {
+
+  const response = await axios.get(`${endpoints.inscripciones}inscripto`, {params:{
+    gmail,
+    idEvento,
+  }})
+  return response
+}
+
+export const getArchivosEvetnoInscripto = async(gmail) => {
+  const response = await axios.get(`${endpoints.inscripciones}inscriptos/${gmail}`)
+  return response
+}
+
+export const getPresentacionesByMail = async (gmail) => {
+   const response = await axios.get(`${endpoints.presentaciones}mispresentaciones/${gmail}`)
+  return response
+}

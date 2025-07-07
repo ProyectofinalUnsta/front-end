@@ -11,6 +11,7 @@ navegar(route,{state:{_id,lugar,fecha,hora,title,descripcion}})
 }
 
 const navigatewithoutparams = ({ruta}) => {
+    console.log(ruta)
 const route = `${ruta}`
 navegar(route)
 }

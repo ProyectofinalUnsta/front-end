@@ -12,6 +12,9 @@ if(import.meta.env.MODE ===   'production'){
     endpoints.logout = import.meta.env.VITE_ENDPOINT_LOGOUT
     endpoints.eventoPorId = import.meta.env.VITE_ENDPOINT_EVENTOID
     endpoints.files = import.meta.env.VITE_ENDPOINT_FILES
+    endpoints.presentaciones = import.meta.env.VITE_ENDPOINT_PRESENTACIONES
+    endpoints.inscripciones = import.meta.env.VITE_ENDPOINT_INSCRIPCIONES
+
 
 }
 if(import.meta.env.MODE === 'development'){
@@ -24,6 +27,8 @@ if(import.meta.env.MODE === 'development'){
     endpoints.register = 'https://back-end-fiq8.onrender.com/api/auth/register',
     endpoints.logout = 'https://back-end-fiq8.onrender.com/api/auth/logout',
     endpoints.eventoPorId = 'https://back-end-fiq8.onrender.com/api/admin/',
-    endpoints.files = 'https://back-end-fiq8.onrender.com/api/files'
+    endpoints.files = 'https://back-end-fiq8.onrender.com/api/files',
+    endpoints.presentaciones = 'https://back-end-fiq8.onrender.com/api/presentations/'
+      endpoints.inscripciones = 'https://back-end-fiq8.onrender.com/api/inscriptos/'
 }
 export default endpoints

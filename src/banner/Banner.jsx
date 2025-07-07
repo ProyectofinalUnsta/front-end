@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import './style/banner.css'
+import { useNavegacion } from '../hooks/useNavegacion.js'
 const Spline = React.lazy(()=> import('./Spline.jsx'))
-
 const Banner = () => {
     return(
         <div className="banner">

@@ -5,12 +5,14 @@ import '../style/carddetails.css'
 import { EventRegistrationPopup } from '../../components/EventRegistrationPopup'
 import { BackArrowIcon } from '../../icons/BackArrowIcon'
 import { useNavigate } from 'react-router-dom'
+import useInscriptos from '../../hooks/useInscriptos'
 
 export const CardDetails = ({_id,lugar,fecha,hora,title,descripcion}) => {
+   const {inscripto} =  useInscriptos({_id,title})
     const {handlenavigate} = useNavegacion()
     const navigate = useNavigate()
     const ruta = '/Eventos/CargarDatos'
-
+    
     return (
         <>
         <div className="back-button" onClick={() => navigate(-1)}>
@@ -36,18 +38,20 @@ export const CardDetails = ({_id,lugar,fecha,hora,title,descripcion}) => {
                     <button className='dark-btn dark' onClick={()=>handlenavigate({ruta,params:{_id,title}})}>
                         Ingresar como disertante
                     </button>
-                    <button 
+                    {inscripto === false ?  <button 
                         className='register-event-btn' 
                         onClick={() => {
                             document.getElementById('event-registration-popup').style.display = 'flex';
                         }}
                     >
                         Registrarse en el evento
-                    </button>
+                    </button> : <button 
+                        className='register-event-btn'>
+                        Ya estas inscripto! </button>}
                 </footer>
             </section>
         </div>
-        <EventRegistrationPopup />
+        <EventRegistrationPopup _id={_id} title={title} />
         </>
     )
 }
