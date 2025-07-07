@@ -10,6 +10,7 @@ import endpoints from "../../utils/endpoints"
 export const MappedPresentationsByMe = () => {
     const {token} = useLogin()
     const {archivoscreados} = useGetEventsById()
+    console.log(archivoscreados)
     const {loading,handlePresentacionesDelete} = useFiles()
 
        const downloadPresentacion = async (ruta) => {
