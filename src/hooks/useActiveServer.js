@@ -6,12 +6,12 @@ export  function useServerActive (interval) {
   // hook que sirve para evitar el sleep de   los 3 servidores de back-end ! 
 
     useContext(ServerContext)
-
-    useEffect(()=> {
-     Ping()
-     const id =  setInterval(Ping, interval)
-     return () => clearInterval(id)
-    },[interval])
+ 
+    // useEffect(()=> {
+    //  Ping()
+    //  const id =  setInterval(Ping, interval)
+    //  return () => clearInterval(id)
+    // },[interval])
 
     return {}
 }
