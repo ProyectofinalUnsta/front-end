@@ -9,7 +9,7 @@ export function useGetEventsById () {
 
 const {token,user} = useContext(LoginContext)
 const{porMi} = useContext(FileContext)
-const { archivoscreados,setArchivosCreados,eventosinscripto,setEventosInscriptos} = useContext(EventsContext)
+const { archivoscreados,setArchivosCreados,eventosinscripto,setEventosInscriptos ,eventoscreados,setEventosCreados} = useContext(EventsContext)
 const [eventos, setEventos] = useState([]);
 const [email,setEmail] = useState('')
  const [isLoading, setIsLoading] = useState(false);
@@ -39,14 +39,13 @@ const handleEventosCreadosPorMi = useCallback(
     
     setIsLoading(true);
     const { email } = user;
-
     try {
       const response = await getEventsById(`${endpoints.eventoPorId}${email}`, token);
-      setArchivosCreados(response);
+      setEventosCreados(response);
       setIsFetched(true)
     } catch (err) {
       setError(err.message);
-      setArchivosCreados([]);
+      setEventosCreados([]);
     } finally {
       setIsLoading(false);
     }
@@ -81,5 +80,5 @@ getArchivosCreadosPorMi()
 },[porMi])
 
 
-    return {eventos,error,isAuthenticated , handleGetEventosById , setEmail ,setIsAuthenticated , email , isLoading , archivoscreados , eventosinscripto}
+    return {eventos,error,isAuthenticated , handleGetEventosById , setEmail ,setIsAuthenticated , email , isLoading , archivoscreados , eventosinscripto , eventoscreados}
 }
