@@ -1,6 +1,6 @@
 import fotojose from "../assets/josemaria.webp";
 import fotopato from "../assets/pato.webp";
-import fotojuan from "../assets/juanmanuel.webp";
+import fotojuan from "../assets/juanManuel.webp";
 import fotomartinR from "../assets/martinrotger.webp";
 import fotomartin from "../assets/martinmitre.webp";
 import fotomateo from "../assets/mateo.webp";
