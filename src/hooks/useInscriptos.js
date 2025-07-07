@@ -59,8 +59,11 @@ const saveDataInLocal = () => {
 
 useEffect(() => {
   if (location.pathname.startsWith(`/Eventos/${_id}`)) {
+      if(!gmail == ''){
+         getInscripcion(gmail, _id);
+       
+      }
 
-      getInscripcion(gmail, _id);
   }
 }, [location.pathname, _id, gmail]);
 
