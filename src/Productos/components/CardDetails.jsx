@@ -6,9 +6,16 @@ import { EventRegistrationPopup } from '../../components/EventRegistrationPopup'
 import { BackArrowIcon } from '../../icons/BackArrowIcon'
 import { useNavigate } from 'react-router-dom'
 import useInscriptos from '../../hooks/useInscriptos'
+import { useState } from 'react'
 
 export const CardDetails = ({_id,lugar,fecha,hora,title,descripcion}) => {
    const {inscripto} =  useInscriptos({_id,title})
+   const [openregistromodal,setOpenRegistroModal] = useState(false)
+
+  const closeModal = () => {
+    setOpenRegistroModal(false)
+  }
+
     const {handlenavigate} = useNavegacion()
     const navigate = useNavigate()
     const ruta = '/Eventos/CargarDatos'
@@ -40,9 +47,7 @@ export const CardDetails = ({_id,lugar,fecha,hora,title,descripcion}) => {
                     </button>
                     {inscripto === false ?  <button 
                         className='register-event-btn' 
-                        onClick={() => {
-                            document.getElementById('event-registration-popup').style.display = 'flex';
-                        }}
+                        onClick={() => setOpenRegistroModal(!openregistromodal)}
                     >
                         Registrarse en el evento
                     </button> : <button 
@@ -51,7 +56,7 @@ export const CardDetails = ({_id,lugar,fecha,hora,title,descripcion}) => {
                 </footer>
             </section>
         </div>
-        <EventRegistrationPopup _id={_id} title={title} />
+        <EventRegistrationPopup Modal={openregistromodal} closeModal={closeModal} _id={_id} title={title} />
         </>
     )
 }

@@ -1,22 +1,21 @@
 import { useLocation } from 'react-router';
 import useInscriptos from '../hooks/useInscriptos';
+import '../Productos/style/carddetails.css'
 
-export const EventRegistrationPopup = () => {
+export const EventRegistrationPopup = ({Modal,closeModal}) => {
     const location = useLocation()
     const {_id,title} = location.state || {}
     const {gmail,nombre,apellido,InscritosActions,data, handleInscriptosSubmit,showSuccess, setShowSuccess } = useInscriptos({_id,title})
 
-const closeModal = () => {
-      document.getElementById('event-registration-popup').style.display = 'none';
-}
 
 
     return (
+       Modal == true ?
         <div id="event-registration-popup" className="event-registration-popup">
             <div className="popup-content">
                 <h2>Registro en el Evento</h2>
-                <button style={{background:'red',color:'black'}} className='mb-4' onClick={()=>closeModal()}>Cerrar</button>
-                <form onSubmit={handleInscriptosSubmit}>
+                 <button style={{background: 'linear-gradient(135deg, #dc2626,rgb(235, 199, 37))',color:'black'}} className='mb-4 mt-4' onClick={()=>closeModal()}>Cerrar</button>
+                <form>
                     <input
                         type="email"
                         placeholder="Ingresa tu correo electrónico"
@@ -54,7 +53,7 @@ const closeModal = () => {
                         disabled={true}
                         required
                     />
-                    <button type="submit">Registrarse</button>
+                    <button onClick={()=>handleInscriptosSubmit()} type="submit">Registrarse</button>
                 </form>
                 <div className={`success-message ${showSuccess ? 'show' : ''}`}>
                     ¡Ya estás registrado! Redirigiendo al inicio...
@@ -62,5 +61,6 @@ const closeModal = () => {
            
             </div>
         </div>
+        : null
     );
 }; 
