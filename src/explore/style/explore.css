@@ -23,7 +23,7 @@
 }
 
 .explore-subtitle {
-    font-family: var(--font);
+font-family: var(--font);
     font-size: 1.25rem;
     color: #6b7280;
     text-align: center;
@@ -147,11 +147,11 @@
     
     .explore-title {
         font-size: 2.5rem;
-    }
-    
+        }
+
     .explore-subtitle {
         font-size: 1.125rem;
-    }
+       }
 }
 
 @media (max-width: 768px) {
@@ -162,12 +162,12 @@
     
     .explore-title {
         font-size: 2rem;
-    }
-    
+        }
+
     .explore-subtitle {
         font-size: 1rem;
         margin-bottom: 1.5rem;
-    }
+       }
     
     .explore-cards {
         grid-template-columns: 1fr;
@@ -191,12 +191,12 @@
     .explore-section {
         padding: 1rem;
         gap: 1.5rem;
-    }
-    
+        }
+
     .explore-title {
         font-size: 1.75rem;
-    }
-    
+        }
+
     .explore-subtitle {
         font-size: 0.9rem;
         margin-bottom: 1rem;
@@ -216,5 +216,5 @@
     
     .card-description {
         font-size: 0.9rem;
-    }
+        }
 }

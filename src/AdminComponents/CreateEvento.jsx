@@ -4,9 +4,9 @@ import { Atributes } from './Atributes'
 import { AtributeDescripcion } from './AtributeDescripcion'
 import { AtributeCategory } from './AtributeCategory'
 
-export const CreateEvento = () => {
+export const CreateEvento = ({ onSuccess }) => {
 
-   const {handlesubmit,handleFoto,handledate,error,handleTime,handletext,handleform,handlecategoria,form} = useCrearEventos()
+   const {handlesubmit,handleFoto,handledate,error,handleTime,handletext,handleform,handlecategoria,form} = useCrearEventos(onSuccess)
 
     return(
 

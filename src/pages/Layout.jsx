@@ -4,10 +4,9 @@ import '../global/layout.css'
 import React, { Suspense } from 'react'
 const  NavBar = React.lazy(()=> import('../Navbar/NavBar'))  
 const  Footer = React.lazy(()=> import('../footer/footer'))
+import { CarruselEventos } from '../Productos/components/CarruselEventos';
 
 export const Layout = ({children, banner, explore, why }) => {
-    
-
     return(
         <>
         <div className='padre-container'>
@@ -43,6 +42,7 @@ export const Layout = ({children, banner, explore, why }) => {
         <section className='sections-container'>
           {children}
         </section>
+        <CarruselEventos />
         <Suspense fallback={<div>Cargando...</div>}>
         <section>
           <Footer/> 

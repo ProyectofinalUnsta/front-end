@@ -5,7 +5,7 @@ import { useNavegacion } from "./useNavegacion"
 import { useAdminMenu } from "./useAdminMenu"
 import { LoginContext } from "../context/LoginContext"
 
-export function useCrearEventos () {
+export function useCrearEventos (onSuccess) {
         const {user,token} = useContext(LoginContext)
         const [lenght,setLength] = useState(0)
         const [error,setError] = useState()
@@ -110,6 +110,7 @@ export function useCrearEventos () {
              let res = await createEvent(sendToBack,token)
              if(res?.status === 200) {
              handlesucess(true)
+              if (onSuccess) onSuccess();
               navigatewithoutparams({ruta:'/Admin/'})
              }
         }

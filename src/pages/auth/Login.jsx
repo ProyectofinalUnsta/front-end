@@ -21,16 +21,16 @@ export default function Login() {
         <form className="login-form-pro" onSubmit={handleSubmit} autoComplete="off">
           <div className="login-field-pro">
             <label className="login-label-pro">Email</label>
-            <input
+              <input
               style={{ borderColor: error.estado === true ? 'red' : '#e5e7eb' }}
-              type="email"
+                type="email"
               className="login-input-pro"
-              placeholder="correo@ejemplo.com"
-              required
-              value={userform.email}
+                placeholder="correo@ejemplo.com"
+                required
+                value={userform.email}
               onChange={e => handleUser('email', e.target.value)}
-            />
-          </div>
+              />
+            </div>
           <div className="login-field-pro">
             <label className="login-label-pro">Contraseña</label>
             <div className="login-password-wrapper-pro">
@@ -56,19 +56,19 @@ export default function Login() {
           {error.message && (
             <span className="login-error-pro" style={{ color: error.estado === false ? 'green' : 'red' }}>{error.message}</span>
           )}
-          <button
-            type="submit"
+            <button
+              type="submit"
             className="login-btn-pro"
-          >
-            Entrar
-          </button>
-        </form>
+            >
+              Entrar
+            </button>
+          </form>
         <p className="login-register-text-pro">
           ¿No tienes una cuenta?{' '}
           <Link to="/register" className="login-register-link-pro">
-            Regístrate
-          </Link>
-        </p>
+              Regístrate
+            </Link>
+          </p>
       </div>
     </div>
   );

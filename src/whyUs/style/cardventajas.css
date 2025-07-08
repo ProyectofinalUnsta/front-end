@@ -3,8 +3,8 @@
     max-width: 350px;
     height: 420px;
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
     gap: 1.5rem;
     background: linear-gradient(145deg, #ffffff, #f8f9fa);
     border: 2px solid #e5e7eb;
@@ -77,14 +77,14 @@
 }
 
 .body-section-why-us{
-    width: 100%;
+width: 100%;
     flex: 1;
     display: flex;
     align-items: center;
 }
 
 .ventaja-why-us{
-    font-family: var(--font);
+font-family: var(--font);
     font-size: 1rem;
     color: #6b7280;
     font-weight: 500;
@@ -126,7 +126,7 @@
 .explanation-text {
     font-family: var(--font);
     font-size: 0.95rem;
-    font-weight: 500;
+font-weight: 500;
     line-height: 1.6;
     color: white;
     margin: 0;

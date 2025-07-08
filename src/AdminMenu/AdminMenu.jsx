@@ -10,6 +10,8 @@ import { ToDoListIcon } from '../icons/ToDoListIcon'
 import './style/adminMenu.css'
 import { LoginContext } from '../context/LoginContext'
 import {PanelUserActions} from '../AdminComponents/PanelUserActions'
+import { useState } from 'react'
+import React from 'react'
 
 const HomeButton = ({ onClick }) => {
     return (
@@ -45,8 +47,29 @@ export const AdminMenu = () =>{
     const {width} = useWidth()
     const {user} = useContext(LoginContext)
     const navigate = useNavigate()
+    const [showLogout, setShowLogout] = useState(false)
+    const { setUser, setToken } = useContext(LoginContext)
+
+    // Cerrar el menú al hacer click fuera
+    React.useEffect(() => {
+      if (!showLogout) return;
+      const handleClick = (e) => {
+        if (!e.target.closest('.user-options-admin-menu')) setShowLogout(false)
+      }
+      document.addEventListener('mousedown', handleClick)
+      return () => document.removeEventListener('mousedown', handleClick)
+    }, [showLogout])
 
     const handleHomeClick = () => {
+        navigate('/')
+    }
+
+    const handleLogout = () => {
+        setUser({ nombre: '', email: '', logged: false })
+        setToken(null)
+        window.localStorage.removeItem('registred')
+        document.cookie = 'usuario=; Max-Age=0; path=/;'
+        document.cookie = 'token=; Max-Age=0; path=/;'
         navigate('/')
     }
 
@@ -59,15 +82,35 @@ export const AdminMenu = () =>{
            </ul> 
           </section>
 
-          <section className='user-options-admin-menu'>
-            <div className='user-options-admin-menu-details'>
+          <section className='user-options-admin-menu'
+            style={{position:'relative',cursor:'pointer'}}
+            onClick={()=>setShowLogout(v=>!v)}
+          >
+            <div className='user-options-admin-menu-details' style={{zIndex:2}}>
                 <h2 className='admin-name' style={{display: displayed && width < 470 ? 'none' : 'flex'}}>{user.nombre}</h2>
                 <span className='admin-role-name' style={{display: displayed && width < 470 ? 'none' : 'flex'}}>Admin</span>
             </div>
-             <PanelUserActions />
-            <figure className='img-container-user'>
+            <figure className='img-container-user' style={{zIndex:2}}>
                <MiUserIcon width={'26px'} height={'26px'}/>
             </figure>
+            {showLogout && (
+              <div
+                style={{
+                  position:'absolute',top:'60px',right:'0',background:'#fff',border:'1px solid #e0e0e0',borderRadius:10,minWidth:180,boxShadow:'0 4px 24px #0002',padding:'10px 0',display:'flex',flexDirection:'column',alignItems:'center',transition:'all .2s',zIndex:1000
+                }}
+              >
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    background:'none',color:'#d32f2f',border:'none',borderRadius:6,padding:'10px 0',fontWeight:600,width:'100%',fontSize:16,cursor:'pointer',transition:'background .2s',textAlign:'center',outline:'none'
+                  }}
+                  onMouseEnter={e=>e.currentTarget.style.background='#fbe9e7'}
+                  onMouseLeave={e=>e.currentTarget.style.background='none'}
+                >
+                  Cerrar sesión
+                </button>
+              </div>
+            )}
          </section>
         </div>
         </>

@@ -17,6 +17,7 @@ const Register = React.lazy(()=> import('../pages/auth/Register'))
 const  MisArchivos = React.lazy(()=> import('../pages/MisArchivos'))
 const  MisEventos = React.lazy(()=> import('../pages/MisEventos'))
 const PresentationPage = React.lazy(()=> import('../pages/PresentationPage'))
+const AdminMetricas = React.lazy(()=> import('../pages/AdminMetricas'))
 
 export default function Router () {
     return(
@@ -41,6 +42,9 @@ export default function Router () {
                   <Route path='/Admin/Todo' element={<AdminTodoPage/>}/>
                   <Route path='/Admin/Archivos' element={<Suspense fallback={<div>Cargando...</div>}>
                       <AdminFilesPage/>
+                  </Suspense>}/>
+                  <Route path='/Admin/Metricas' element={<Suspense fallback={<div>Cargando...</div>}>
+                      <AdminMetricas/>
                   </Suspense>}/>
                    <Route path="/login" element={ <Suspense fallback={<div>Cargando...</div>}> 
                      <Login />

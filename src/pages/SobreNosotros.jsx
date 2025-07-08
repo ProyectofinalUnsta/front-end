@@ -8,11 +8,11 @@ const CardsSobreNos = React.lazy(()=> import('../Productos/CardsSobreNosotros'))
 export default function SobreNosotros() {
   return (
     <div className="sobre-nosotros-page">
-      <Suspense fallback={<div>cargando..</div>}>
-        <nav className='nav-container'>
-          <NavBar/>
-        </nav>
-      </Suspense>
+    <Suspense fallback={<div>cargando..</div>}>
+    <nav className='nav-container'>
+    <NavBar/>
+    </nav>
+    </Suspense>
 
       {/* Historia Section */}
       <section className="historia-section">
@@ -56,15 +56,15 @@ export default function SobreNosotros() {
           
           <Suspense fallback={<div className="loading-cards">Cargando equipo...</div>}>
             <div className="cards-container">
-              <CardsSobreNos />
-            </div>
-          </Suspense>
+          <CardsSobreNos />
+      </div>
+      </Suspense>
         </div>
       </section>
 
-      <Suspense fallback={<div>cargando..</div>}>
-        <Footer/>
-      </Suspense>
+    <Suspense fallback={<div>cargando..</div>}>
+    <Footer/>
+    </Suspense>
     </div>
   );
 }

@@ -35,9 +35,7 @@ export const AdminNavbar = () => {
             <section className='main-content-admin-menu' style={{alignItems: displayed ? 'start' : 'center', paddingLeft: displayed ? '30px' : '0px' }}>
                <h2 className='Apps-title'>APPS</h2>
                <AppsSection/>
-               <div className='logout-btn-admin-container'>
-                 <button className="logout-btn-admin" onClick={handleLogout}>Cerrar sesión</button>
-               </div>
+               {/* Botón de cerrar sesión eliminado, se agregará como menú desplegable en el usuario */}
             </section> 
          </div>
         </>

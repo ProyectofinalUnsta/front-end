@@ -1,6 +1,6 @@
 import { HamburguerIcon } from '../icons/HamburguerIcon'
 import './style/navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useWidth } from '../hooks/useWidth'
 import { useMenu } from '../hooks/useMenu'
 import { LogoIcon } from '../icons/LogoIcon'
@@ -33,6 +33,8 @@ export const LogoSection = () => {
 }
 
 export const NavSection = () => {
+    const location = useLocation();
+    const isHome = location.pathname === '/';
     return(
         <>
         <section className='nav-section'>
@@ -40,7 +42,6 @@ export const NavSection = () => {
                 <li><Link to={'/'}>Home</Link></li>
                 <li><Link to={'/Eventos'}>Eventos</Link></li>
                 <li><Link to={'/Sobrenosotros'}>Sobre Nosotros</Link></li>
-                <li><Link to={'/MisArchivos'}>Mis Archivos</Link></li>
                 <li><Link to={'/MisEventos'}>Mis Eventos</Link></li>
             </ul>
         </section>
@@ -80,14 +81,14 @@ export const DropdownMenu = () => {
             
             {isOpen && (
                 <div className="dropdown-menu">
-                    <Link to="/login" className="dropdown-item">
+                    {/* <Link to="/login" className="dropdown-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
                             <polyline points="10,17 15,12 10,7"/>
                             <line x1="15" y1="12" x2="3" y2="12"/>
                         </svg>
                         Iniciar Sesión
-                    </Link>
+                    </Link> */}
                     <Link to="/register" className="dropdown-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
