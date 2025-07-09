@@ -4,10 +4,10 @@ const navegar = useNavigate()
 
 const handlenavigate = ({ruta, params}) => {
 
-const {_id,lugar,fecha,hora,title,descripcion} = params
+const {_id,lugar,fecha,hora,title,descripcion,imagen} = params
 
 const route = `${ruta}/${_id}`
-navegar(route,{state:{_id,lugar,fecha,hora,title,descripcion}})
+navegar(route,{state:{_id,lugar,fecha,hora,title,descripcion,imagen}})
 }
 
 const navigatewithoutparams = ({ruta}) => {

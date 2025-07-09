@@ -29,6 +29,6 @@ if(import.meta.env.MODE === 'development'){
     endpoints.eventoPorId = 'https://back-end-fiq8.onrender.com/api/admin/',
     endpoints.files = 'https://back-end-fiq8.onrender.com/api/files',
     endpoints.presentaciones = 'https://back-end-fiq8.onrender.com/api/presentations/'
-      endpoints.inscripciones = 'https://back-end-fiq8.onrender.com/api/inscriptos/'
+    endpoints.inscripciones = 'https://back-end-fiq8.onrender.com/api/inscriptos/'
 }
 export default endpoints

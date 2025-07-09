@@ -34,22 +34,22 @@
 .text-banner {
     font-size: 4rem;
     font-weight: 700;
-    font-family: var(--font);
-    background: linear-gradient(
-        -45deg,
+font-family: var(--font);
+background: linear-gradient(
+    -45deg,
         #1f2937,
         #374151,
         #4b5563,
         #6b7280,
         #9ca3af,
         #d1d5db
-    );
-    background-size: 300% 300%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: gradienteContinuo 12s ease infinite;
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradienteContinuo 12s ease infinite;
     line-height: 1.1;
     margin-bottom: 1rem;
 }
@@ -63,16 +63,16 @@
     font-weight: 400;
 }
   
-.button-container {
+  .button-container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-}
+  }
   
-.btn-explore {
+  .btn-explore {
     background: linear-gradient(135deg, #1f2937, #374151);
     color: white;
     padding: 1rem 2rem;
@@ -95,9 +95,9 @@
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     border-color: #4b5563;
-}
+  }
 
-.btn-join{
+   .btn-join{
     background: transparent;
     color: #1f2937;
     padding: 1rem 2rem;
@@ -112,9 +112,9 @@
     align-items: center;
     justify-content: center;
     min-width: 160px;
-}
+  }
 
-.btn-join:hover {
+  .btn-join:hover {
     background: #f8f9fa;
     border-color: #1f2937;
     transform: translateY(-3px);
@@ -132,7 +132,7 @@
     background: #f8f9fa;
     border-radius: 12px;
     border: 2px dashed #d1d5db;
-}
+  }
 
 @media (max-width: 1200px) {
     .banner {
@@ -162,21 +162,21 @@
         font-size: 2.5rem;
         line-height: 1.1;
         margin-bottom: 0.5rem;
-    }
+      }
 
-    .description-banner {
-        font-size: 1rem;
+      .description-banner {
+          font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 1.5rem;
-    }
+        }
 
-    .btn-explore {
+        .btn-explore {
         padding: 0.875rem 1.75rem;
         font-size: 1rem;
         min-width: 140px;
-    }
+        }
 
-    .btn-join{
+        .btn-join{
         padding: 0.875rem 1.75rem;
         font-size: 1rem;
         min-width: 140px;
@@ -184,7 +184,7 @@
     
     .button-container {
         gap: 1rem;
-    }
+        }
 }
 
 @media (max-width: 480px) {
@@ -193,16 +193,16 @@
         gap: 1.5rem;
     }
     
-    .text-banner {
+  .text-banner {
         font-size: 2rem;
     }
 
     .description-banner {
         font-size: 0.875rem;
         margin-bottom: 1rem;
-    }
+      }
 
-    .btn-explore {
+      .btn-explore {
         padding: 0.75rem 1.5rem;
         font-size: 0.875rem;
         min-width: 120px;
@@ -217,7 +217,7 @@
     .button-container {
         flex-direction: column;
         gap: 0.75rem;
-    }
+  }
 }
 
 @keyframes gradienteContinuo {

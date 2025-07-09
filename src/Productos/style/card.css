@@ -116,6 +116,85 @@
     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
+/* Archivos relacionados en cards y detalles */
+.event-files-section {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1rem;
+  background: #f4f6fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+  border: 1px solid #e5e7eb;
+}
+.event-files-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #dc2626, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: logo-gradient-move 8s ease-in-out infinite;
+}
+.event-files-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.event-file-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.2s;
+}
+.event-file-item:hover {
+  box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+}
+.event-file-name {
+  flex: 2;
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.event-file-date, .event-file-size {
+  flex: 1;
+  color: #64748b;
+  font-size: 0.95rem;
+  text-align: right;
+}
+.event-file-download {
+  background: linear-gradient(135deg, #dc2626, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.10);
+}
+.event-file-download:hover {
+  background: linear-gradient(135deg, #ef4444, #3b82f6);
+  box-shadow: 0 4px 12px rgba(220,38,38,0.10);
+}
+.event-files-loading, .event-files-empty {
+  color: #64748b;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
 /* Responsive Design - Desktop Large */
 @media (min-width: 1400px) {
     .event-card {
@@ -345,5 +424,26 @@
         padding: 6px 8px;
         font-size: 0.7rem;
     }
+}
+
+/* Responsive para archivos */
+@media (max-width: 640px) {
+  .event-files-section {
+    padding: 1rem 0.5rem;
+  }
+  .event-file-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+  }
+  .event-file-name, .event-file-date, .event-file-size {
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  .event-file-download {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 }
 
