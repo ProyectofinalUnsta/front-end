@@ -7,7 +7,7 @@ import { ShowEye } from "../../icons/ShowEye";
 import './Login.css';
 
 export default function Login() {
-  const { handleUser, handleSubmit, error, userform } = useLogin();
+  const {loading, handleUser, handleSubmit, error, userform } = useLogin();
   const [eye, setEye] = useState(false);
 
   return (
@@ -30,6 +30,7 @@ export default function Login() {
                 value={userform.email}
               onChange={e => handleUser('email', e.target.value)}
               />
+              {error.estado ? <span style={{color:'red'}}>{error.message}</span> : null}
             </div>
           <div className="login-field-pro">
             <label className="login-label-pro">Contraseña</label>
@@ -59,8 +60,9 @@ export default function Login() {
             <button
               type="submit"
             className="login-btn-pro"
+             disabled={loading.value}
             >
-              Entrar
+             {loading.value ? loading.message : 'Entrar'}
             </button>
           </form>
         <p className="login-register-text-pro">

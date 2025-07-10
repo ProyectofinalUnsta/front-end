@@ -1,3 +1,4 @@
+import './style/create.css'
 import { useCrearEventos } from "../hooks/useCrearEventos"
 
 export const AtributeDescripcion = ({event}) => {

@@ -31,6 +31,6 @@ if(import.meta.env.MODE === 'development'){
     endpoints.files = 'https://back-end-fiq8.onrender.com/api/files',
     endpoints.presentaciones = 'https://back-end-fiq8.onrender.com/api/presentations/'
     endpoints.inscripciones = 'https://back-end-fiq8.onrender.com/api/inscriptos/'
-     endpoints.disertantes = 'http://localhost:3000/api/disertante/'
+     endpoints.disertantes = 'https://back-end-fiq8.onrender.com/api/disertante/'
 }
 export default endpoints

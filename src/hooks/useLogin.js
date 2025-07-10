@@ -18,7 +18,7 @@ const [error,setError] = useState({
     estado:false,
     message:''
 })
-
+const [loading,setLoading] = useState({value:false,message:'Cargando..'})
 const handleUser = (target,value) => {
 
     setUserForm((prevState)=>({
@@ -28,10 +28,10 @@ const handleUser = (target,value) => {
 }
 
 const handleSubmit = async (e) => {
-
+   setLoading({value:true})
     e.preventDefault()
     let res = await LogInUser(userform)
-    console.log(res)
+
     if(res.status != 200){
    setError({estado:true,message:'credenciales invalidas'})
    setUserForm(()=> (
@@ -55,5 +55,5 @@ const handleSubmit = async (e) => {
 
 
 
-    return {handleUser,handleSubmit,error,userform,token}
+    return {handleUser,handleSubmit,error,userform,token,loading}
 }

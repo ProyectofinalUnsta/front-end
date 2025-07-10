@@ -22,6 +22,7 @@ export function useCrearEventos (onSuccess) {
             imagen:'',
             email:user.email
         })
+        const [loading,setloading] = useState({value:false,message:'Cargando..'})
       const {handlesucess} = useAdminMenu()
        const {navigatewithoutparams} = useNavegacion()
         const handletext = (e) => {
@@ -103,7 +104,7 @@ export function useCrearEventos (onSuccess) {
 
     
         const handlesubmit = async () => {
-
+           setloading({value:true})
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
 
@@ -117,5 +118,5 @@ export function useCrearEventos (onSuccess) {
     
     
 
-    return {handlesubmit,handleFoto,handleform,handletext,handledate,lenght,error,handleTime,setLength,handlecategoria,form }
+    return {loading,handlesubmit,handleFoto,handleform,handletext,handledate,lenght,error,handleTime,setLength,handlecategoria,form }
 }

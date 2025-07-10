@@ -1,12 +1,19 @@
 
 .limit {
     position: relative;
-    top: -30px;
+    top: -40px;
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
     align-self: flex-end;
     margin-right: 10px;
+    text-wrap: nowrap;
 }
 
-
+.small-limit {
+  width: 20%;
+  text-wrap: nowrap;
+}
 
 .btn-crear-evento{
     width: 450px;
@@ -60,12 +67,14 @@
     border-radius: 24px;
     background-color: #fafafa;
     transition: border-color 0.2s ease;
-   height: clamp(10vh,47vh,47vh) ;
+   height: clamp(10vh,47vh,47vh);
    display: flex;
+   text-align: center;
    justify-content: center;
    align-items: center;
- 
+  margin-bottom: 0.5rem;
   }
+
 
   input:focus,
   textarea:focus {
@@ -105,5 +114,6 @@
   @media (max-width: 900px) {
     .form-card {
       flex-direction: column;
+      padding: 20px;
     }
   }

@@ -1,12 +1,12 @@
 import { useContext , useEffect, useState } from "react"
 import { InscriptoContext } from "../context/InscriptoContext"
 import { getInscripcionEvento, postInscribirEvento } from "../utils/peticiones"
-import { useNavegacion } from "./useNavegacion"
 import { useLocation } from "react-router"
-
+import { useNavigate } from "react-router"
 export default function useInscriptos ({_id,title}) {
 const location = useLocation()
-const {navigatewithoutparams} = useNavegacion()
+const navegar = useNavigate()
+
 const {gmail,setGmail,nombre,setNombre,apellido,setApellido,data,setData} = useContext(InscriptoContext)
 const [showSuccess, setShowSuccess] = useState(false);
 const [inscripto,setInscripto] = useState(false)
@@ -37,7 +37,7 @@ const handleInscriptosSubmit = async (e) => {
         setData(true)
                 document.getElementById('event-registration-popup').style.display = 'none';
                 setShowSuccess(false);
-                navigatewithoutparams(ruta);
+                navegar(ruta);
             }, 2000);
     return response
   }
