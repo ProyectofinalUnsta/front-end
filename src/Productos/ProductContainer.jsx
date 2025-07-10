@@ -14,7 +14,7 @@ export const ProductContainer =  () => {
             <FilterTitle/>
         <section className="card-and-filter-container">
           <Filters/>
-          <div className="card-container">
+          <div className="card-products-container">
              {filteredProducts.map((items)=>( 
                <Card products={items}/>
             ))} 

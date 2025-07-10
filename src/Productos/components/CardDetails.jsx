@@ -127,8 +127,8 @@ export const CardDetails = ({_id, lugar, fecha, hora, title, descripcion, imagen
 
       {/* Acciones */}
       <div className="event-actions-pro">
-        <button className="dark-btn dark" onClick={()=>handlenavigate({ruta,params:{_id,title}})}>
-          Ingresar como disertante
+        <button className="disertante-event-btn-pro" onClick={()=>handlenavigate({ruta,params:{_id,title}})}>
+          Ingresa como disertante
         </button>
         {inscripto === false ?  (
           <button className="register-event-btn-pro" onClick={() => setOpenRegistroModal(!openregistromodal)}>
@@ -148,6 +148,7 @@ export const CardDetails = ({_id, lugar, fecha, hora, title, descripcion, imagen
             >
               {bajaLoading ? 'Procesando...' : 'Darse de baja'}
             </button>
+             
           </>
         )}
       </div>

@@ -25,7 +25,7 @@ export function useCrearEventos (onSuccess) {
       const {handlesucess} = useAdminMenu()
        const {navigatewithoutparams} = useNavegacion()
         const handletext = (e) => {
-            console.log(e.target.value)
+
            setForm((prevData) => ({
             ...prevData,
             ['descripcion']:e.target.value
@@ -73,7 +73,7 @@ export function useCrearEventos (onSuccess) {
 
         const handleFoto = (e) => {
             let foto = e.target.files[0]
-            console.log(foto)
+
             if(foto.size > 1048576) {
               setError('la imagen no puede superar 1MB')
               return
@@ -106,7 +106,7 @@ export function useCrearEventos (onSuccess) {
 
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
-            console.log(sendToBack)
+
              let res = await createEvent(sendToBack,token)
              if(res?.status === 200) {
              handlesucess(true)

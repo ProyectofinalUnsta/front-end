@@ -3,7 +3,7 @@ import './style/popUp.css'
 
 import { useNavegacion } from '../hooks/useNavegacion'
 import { useState,useEffect } from 'react'
-export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess}) => {
+export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess,submit , code}) => {
 
     return (
         <>
@@ -14,12 +14,13 @@ export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess}) =
        {isSuccess == true ? <EventText /> 
        : <>
        <HiLine content={content} role={role} nombre={nombre}/>
-      <CodeInput role={role} event={event} error={error}/>
+      <CodeInput role={role} event={event} error={error} code={code}/>
       </>
       }
       
        <div class="separator"></div>
-      <button onClick={()=>event(false)}>{namebtn}</button>
+       {role == 'Disertante' ? <button onClick={(e)=>submit(e)}>{namebtn}</button> : <button onClick={()=>event(false)}>{namebtn}</button> }
+ 
         </div>
         </div> 
 
@@ -37,14 +38,14 @@ return(
 </>)
 }
 
-export const CodeInput = ({role, event,error}) => {
+export const CodeInput = ({role, event,error , code}) => {
     return(
         <>
         {role ?
          <div className='input-container'>
-            <label htmlFor="pincode"  style={{color: error == true ? 'red' : 'black' }}>Codigo</label>
-            <input id='pincode' style={{borderColor: error == true ? 'red' : 'black'}} type="text" placeholder='xxx-xxx-xxx' onChange={(e)=>event(e)}/>
-            <small>ErrorCode</small>
+            <label htmlFor="pincode"  style={{color: error.value == true ? 'red' : 'black' }}>Codigo</label>
+            <input id='pincode' style={{borderColor: error.value == true ? 'red' : 'black'}} type="text" placeholder='xxx-xxx-xxx' onChange={(e)=>event(e)} value={code}/>
+           {error.value == true ? <small style={{color:'red'}}>{error.message}</small> : null} 
          </div>
          : null}
         </>

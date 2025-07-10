@@ -84,8 +84,8 @@ let filename;
 
                 {error && <div className="alert alert-error">{error}</div>}
 
-                <div className="archivos-grid">
-                {porMi == true ? <MappedPresentationsByMe/> :   <div className="archivos-grid">
+                <div className="">
+                {porMi == true ? <MappedPresentationsByMe/> : <div className="archivos-grid">
                     {loading && !eventosinscripto.length ? (
                         <div className="loading">Cargando archivos...</div>
                     ) : eventosinscripto?.length === 0 ? (
@@ -101,7 +101,7 @@ let filename;
                                     {/* <p>Evento: {presentacion.event}</p> */}
                                     <p>Subido Por: {presentacion.user}</p>
                                     <p>Gmail:{presentacion.gmail} </p>
-                                    <p>Evento: {presentacion.event?.title} </p>
+                                    <p>Evento: {presentacion.event?.title}</p>
                                     <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
                                     <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
                                 </div>

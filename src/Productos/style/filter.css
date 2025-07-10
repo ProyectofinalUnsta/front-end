@@ -1,4 +1,6 @@
 .filter-container{
+    margin-left: 2rem;
+    margin-top: 1rem;
     width: 280px;
     min-width: 280px;
     padding: 1.5rem;

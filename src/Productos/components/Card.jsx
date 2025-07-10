@@ -86,25 +86,7 @@ export const Card = ({products}) => {
             <section className='event-btn'>
                <a className='btn-event' onClick={()=>handlenavigate({ruta, params:{_id,lugar,fecha,hora,title,descripcion,categoria,imagen}})}>Ver detalles</a>
               </section>
-            <section className="event-files-section">
-              <h4 className="event-files-title">Archivos del evento</h4>
-              {loading ? (
-                <div className="event-files-loading">Cargando archivos...</div>
-              ) : archivos.length === 0 ? (
-                <div className="event-files-empty">No hay archivos disponibles</div>
-              ) : (
-                <ul className="event-files-list">
-                  {archivos.map(archivo => (
-                    <li key={archivo._id} className="event-file-item">
-                      <span className="event-file-name">{archivo.originalName}</span>
-                      <span className="event-file-date">{formatDate(archivo.uploadDate)}</span>
-                      <span className="event-file-size">{formatSize(archivo.fileSize)}</span>
-                      <button className="event-file-download" onClick={()=>downloadPresentacion(archivo._id)}>Descargar</button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </section>
+            
         </div>
         </>
     )

@@ -1,6 +1,6 @@
 /* Estilos para la nueva estructura profesional del detalle de evento */
 .event-details-main-container {
-  max-width: 900px;
+  max-width: 1400px;
   margin: 2.5rem auto 2rem auto;
   background: #fff;
   border-radius: 18px;
@@ -104,6 +104,25 @@
   transition: background 0.2s, box-shadow 0.2s;
   box-shadow: 0 1px 4px rgba(37,99,235,0.10);
 }
+
+.disertante-event-btn-pro{
+  background: rgb(90, 153, 173);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.10);
+}
+
+.disertante-event-btn-pro:hover:not(:disabled) {
+  background: rgb(84, 82, 209);
+}
+
+
 .register-event-btn-pro:disabled {
   background: #e5e7eb;
   color: #64748b;

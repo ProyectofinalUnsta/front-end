@@ -1,7 +1,7 @@
 import '../global/MisArchivos.css';
 import useFiles from '../Files/hook/useFiles';
-import { MappedPresentations } from '../Files/components/MappedPresentations';
 import { FormUploadPresentaciones } from '../Files/components/FormUploadPresentaciones';
+import { MappedPresentationsByMe } from '../Files/components/MappedPresentationsByMe';
 export const AdminFiles = () => {
 
  const {loading,showForm,setShowForm,success,error} = useFiles()
@@ -29,7 +29,7 @@ export const AdminFiles = () => {
 
                 <FormUploadPresentaciones/>
                 )}
-                <MappedPresentations/>
+                <MappedPresentationsByMe/>
             </div>
         </>
     );

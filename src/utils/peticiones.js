@@ -116,3 +116,8 @@ export const getPresentacionesByMail = async (gmail) => {
    const response = await axios.get(`${endpoints.presentaciones}mispresentaciones/${gmail}`)
   return response
 }
+
+export const verificarCodigoDisertante = async (Code,id) => {
+ const response = await axios.post(`${endpoints.disertantes}verifyCode`,{code:Code,id})
+  return response
+}
