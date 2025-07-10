@@ -110,6 +110,7 @@ export function useCrearEventos (onSuccess) {
 
              let res = await createEvent(sendToBack,token)
              if(res?.status === 200) {
+              setloading({value:false})
              handlesucess(true)
               if (onSuccess) onSuccess();
               navigatewithoutparams({ruta:'/Admin/'})

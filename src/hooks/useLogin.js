@@ -40,9 +40,11 @@ const handleSubmit = async (e) => {
         password:''
     }
    ))
+    setLoading({value:false})
     return
     }
     if(res.status == 200) {
+    setLoading({value:false})
     Cookies.set('token', JSON.stringify(res.data.token) , {expires:2})
    setToken(res.data.token)
     Cookies.set('usuario', JSON.stringify({nombre:res.data.user.username, email:res.data.user.mail, logged:true}), {expires:2})
