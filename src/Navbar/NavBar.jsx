@@ -41,9 +41,9 @@ export const NavSection = () => {
             <ul>
                 <li><Link to={'/'}>Home</Link></li>
                 <li><Link to={'/Eventos'}>Eventos</Link></li>
+                <li><Link to={'/ver-mis-incripciones'}>Ver mis inscripciones</Link></li>
                 <li><Link to={'/Sobrenosotros'}>Sobre Nosotros</Link></li>
                 <li><Link to={'/MisArchivos'}>Mis Archivos</Link></li>
-                
             </ul>
         </section>
         </>

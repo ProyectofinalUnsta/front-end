@@ -3,12 +3,27 @@ import { useLocation } from "react-router"
 import "./DisertantePage.css"
 import { useDisertante } from "../hooks/useDisertante"
 import { SucessPopUp } from "../Files/components/SucessPopUp"
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function DisertantePage() {
     const location = useLocation()
     const {title,_id} = location.state || {}
    const {succes,loading,pass,handleCode,error,handleSubmitDisertante,code,Data,handleDisertanteNombre,handleFileChange,disertantegmail,handleDisertanteGmail,disertantenombre,handlePresentacionesSubmitDisertantes} = useDisertante(_id,title)
+    const [showPopup, setShowPopup] = useState(false);
+    const navigate = useNavigate();
 
+
+    useEffect(() => {
+        if (succes === true) {
+            setShowPopup(true);
+            const timer = setTimeout(() => {
+                setShowPopup(false);
+                navigate('/');
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [succes, navigate]);
 
 
     return (
@@ -35,111 +50,106 @@ export default function DisertantePage() {
                         </button>
                     </div>
                 </>
-            ) : null}
-
-            <header className="w-full h-30 bg-white flex flex-col gap-6 rounded-2xl shadow-lg ">
-                <small style={{marginLeft:'10px',marginTop:'10px'}} className="text-gray-500 ml-4 mr-4">{_id}</small>
-                <h2 className="text-center text-md md:text-2xl nowrap">{title}</h2>
-            </header>
-
-                <form className="upload-disertante-form">
-        
-            <div className="form-disertante-group">
-                <input
-                type={'text'}
-                id={'nombreEvento'}
-                name={'nombreEvento'}
-                value={Data.nombreEvento}
-                disabled
-                required
-                className="input-upload-disertante text-center"
-                />
-             
-            </div>
-
-              <div className="form-disertante-group">
-                <input
-                type={'text'}
-                id={'CodigoEvento'}
-                name={'CodigoEvento'}
-                value={code}
-                disabled
-                required
-                className="input-upload-disertante text-green-700 text-center"
-                />
-            </div>
-
-             <div className="form-disertante-group">
-                <input
-                type={'text'}
-                id={'Rol'}
-                name={'Rol'}
-                value={'Disertante'}
-                disabled
-                required
-                className="input-upload-disertante text-center"
-                />
-            </div>
-            
-             <div className="form-disertante-group">
-                <label className="text-md font-poppins" htmlFor="user">Nombre y Apellido</label>
-                <input
-                type={'text'}
-                id={'user'}
-                name={'user'}
-                value={disertantenombre}
-                placeholder="Juan Perez"
-                onChange={(e)=>handleDisertanteNombre(e)}
-                required
-                style={{borderColor : error.value == true ? 'red' : 'gray'}}
-                className="input-upload-disertante "
-                />
-                {error.value == true ? <small style={{color:'red'}} >{error.message}</small> : null}
-            </div>
-
-              <div className="form-disertante-group">
-                <label className="text-md font-poppins" htmlFor="gmail">gmail</label>
-                <input
-                type={'text'}
-                id={'gmail'}
-                name={'gmail'}
-                value={disertantegmail}
-                placeholder="example@gmail.com"
-                onChange={(e)=>handleDisertanteGmail(e)}
-                required
-                style={{borderColor : error.value == true ? 'red' : 'gray'}}
-                className="input-upload-disertante "
-                />
-                {error.value == true ? <small style={{color:'red'}}>{error.message}</small> : null}
-            </div>
-
-         <div className="form-disertante-group">
-           <label htmlFor="file">Archivo:</label>
-             <input
-            type="file"
-            id="file"
-            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png"
-            onChange={(e)=>handleFileChange(e)}
-            required
-               />
-        <small className="text-xs">Formatos permitidos: PDF, DOC, DOCX, PPT, PPTX, JPG, PNG (Máx. 10MB)</small>
-    </div>
-    {Data.file != null ?  <div className="form-disertante-group">
-        <label className="text-center" htmlFor="">Preview</label>
-          <img id="preview" alt="" width={'100%'} height={'200px'} />
-    </div> : null
-    
-    }
-      <button 
-      disabled={loading == true}
-      onClick={(e)=>handlePresentacionesSubmitDisertantes(e)}
-      className="register-event-btn">
-        Subir Archivo</button>
-        </form>
-
-         {succes == true ? <SucessPopUp/> : null }
-
+            ) : (
+                <>
+                    {showPopup && <SucessPopUp />}
+                    <header className="disertante-header-card">
+                        <small className="disertante-event-id">{_id}</small>
+                        <h2 className="disertante-title">{title}</h2>
+                    </header>
+                    <form className="upload-disertante-form" autoComplete="off">
+                        <div className="form-disertante-group">
+                            <input
+                                type={'text'}
+                                id={'nombreEvento'}
+                                name={'nombreEvento'}
+                                value={Data.nombreEvento}
+                                disabled
+                                required
+                                className="input-upload-disertante text-center"
+                            />
+                        </div>
+                        <div className="form-disertante-group">
+                            <input
+                                type={'text'}
+                                id={'CodigoEvento'}
+                                name={'CodigoEvento'}
+                                value={code}
+                                disabled
+                                required
+                                className="input-upload-disertante text-green-700 text-center"
+                            />
+                        </div>
+                        <div className="form-disertante-group">
+                            <input
+                                type={'text'}
+                                id={'Rol'}
+                                name={'Rol'}
+                                value={'Disertante'}
+                                disabled
+                                required
+                                className="input-upload-disertante text-center"
+                            />
+                        </div>
+                        <div className="form-disertante-group">
+                            <label className="input-label" htmlFor="user">Nombre y Apellido</label>
+                            <input
+                                type={'text'}
+                                id={'user'}
+                                name={'user'}
+                                value={disertantenombre}
+                                placeholder="Juan Perez"
+                                onChange={(e)=>handleDisertanteNombre(e)}
+                                required
+                                style={{borderColor : error.value == true ? 'red' : 'gray'}}
+                                className="input-upload-disertante"
+                            />
+                            {error.value == true ? <small className="error-message">{error.message}</small> : null}
+                        </div>
+                        <div className="form-disertante-group">
+                            <label className="input-label" htmlFor="gmail">Gmail</label>
+                            <input
+                                type={'email'}
+                                id={'gmail'}
+                                name={'gmail'}
+                                value={disertantegmail}
+                                placeholder="example@gmail.com"
+                                onChange={(e)=>handleDisertanteGmail(e)}
+                                required
+                                style={{borderColor : error.value == true ? 'red' : 'gray'}}
+                                className="input-upload-disertante"
+                            />
+                            {error.value == true ? <small className="error-message">{error.message}</small> : null}
+                        </div>
+                        <div className="form-disertante-group file-upload-group">
+                            <label className="input-label" htmlFor="file">Archivo</label>
+                            <div className="file-upload-wrapper">
+                                <input
+                                    type="file"
+                                    id="file"
+                                    accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png"
+                                    onChange={(e)=>handleFileChange(e)}
+                                    required
+                                    className="input-file-upload"
+                                />
+                                <label htmlFor="file" className="file-upload-btn">Seleccionar archivo</label>
+                                <span className="file-upload-name">{Data.file ? Data.file.name : 'Ningún archivo seleccionado'}</span>
+                            </div>
+                            <small className="file-upload-info">Formatos permitidos: PDF, DOC, DOCX, PPT, PPTX, JPG, PNG (Máx. 10MB)</small>
+                        </div>
+                        {Data.file != null ?  <div className="form-disertante-group">
+                            <label className="input-label" htmlFor="">Vista previa</label>
+                            <img id="preview" alt="Preview archivo" className="file-preview-img" />
+                        </div> : null}
+                        <button 
+                            disabled={loading === true}
+                            onClick={(e)=>handlePresentacionesSubmitDisertantes(e)}
+                            className="register-event-btn main-upload-btn">
+                            {loading ? 'Subiendo...' : 'Subir Archivo'}
+                        </button>
+                    </form>
+                </>
+            )}
         </div>
     )
-    
 }

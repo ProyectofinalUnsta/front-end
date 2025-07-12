@@ -5,8 +5,12 @@ import React, { Suspense } from 'react'
 const  NavBar = React.lazy(()=> import('../Navbar/NavBar'))  
 const  Footer = React.lazy(()=> import('../footer/footer'))
 import { CarruselEventos } from '../Productos/components/CarruselEventos';
+import { useLocation } from 'react-router-dom';
 
 export const Layout = ({children, banner, explore, why }) => {
+    const location = useLocation();
+    // Detectar si estamos en la página de detalles de evento
+    const isEventDetails = /^\/Eventos\/[\w\d]+$/.test(location.pathname);
     return(
         <>
         <div className='padre-container'>
@@ -42,7 +46,7 @@ export const Layout = ({children, banner, explore, why }) => {
         <section className='sections-container'>
           {children}
         </section>
-        <CarruselEventos />
+        {!isEventDetails && <CarruselEventos />}
         <Suspense fallback={<div>Cargando...</div>}>
         <section>
           <Footer/> 

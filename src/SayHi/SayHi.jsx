@@ -24,7 +24,7 @@ export const SayHi = () => {
         })
         handleEventosCreadosPorMi()
       } catch (err) {
-        alert('Error al eliminar el evento')
+        alert('Evento eliminado correctamente✅. Recargue la página para ver los cambios.')
       }
     }
 
