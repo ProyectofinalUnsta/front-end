@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Card } from './Card';
 import '../../Productos/style/carrusel.css';
 import { getitems } from '../../utils/peticiones';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const getSlidesToShow = (width) => {
   if (width <= 600) return 1;
@@ -22,6 +23,8 @@ export const CarruselEventos = () => {
   const [slidesToShow, setSlidesToShow] = useState(getSlidesToShow(window.innerWidth));
   const intervalRef = useRef(null);
   const carruselRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getitems().then(setEventos);
@@ -78,12 +81,22 @@ export const CarruselEventos = () => {
     return [...eventos.slice(start), ...eventos.slice(0, end)];
   };
 
+  // Detectar si estamos en la página de detalles de evento
+  const isEventDetails = location.pathname.startsWith('/Eventos/');
+
+  // Navegación al hacer click en una card del carrusel
+  const handleCardClick = (evento) => {
+    // Permitir navegación siempre, incluso en detalles
+    navigate(`/Eventos/${evento._id}`, { state: { ...evento } });
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+  };
+
   return (
     <div className="carrusel-eventos-container">
       <h2 className="carrusel-title">Eventos destacados de la comunidad</h2>
       <div className="carrusel-eventos" ref={carruselRef}>
         {getVisible().map((evento, idx) => (
-          <div className="carrusel-slide" key={evento._id || idx}>
+          <div className="carrusel-slide" key={evento._id || idx} style={{cursor: 'pointer'}} onClick={() => handleCardClick(evento)}>
             <Card products={evento} />
           </div>
         ))}

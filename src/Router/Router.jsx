@@ -18,6 +18,7 @@ const  MisArchivos = React.lazy(()=> import('../pages/MisArchivos'))
 const  MisEventos = React.lazy(()=> import('../pages/MisEventos'))
 const PresentationPage = React.lazy(()=> import('../pages/PresentationPage'))
 const AdminMetricas = React.lazy(()=> import('../pages/AdminMetricas'))
+const VerMisIncripciones = React.lazy(()=> import('../pages/VerMisIncripciones'))
 
 export default function Router () {
     return(
@@ -61,6 +62,9 @@ export default function Router () {
                   <Route path='/Presentacion' element={<Suspense fallback={<div>Cargando..</div>}>
                     <PresentationPage/>
                   </Suspense>} />
+                  <Route path='/ver-mis-incripciones' element={ <Suspense fallback={<div>Cargando...</div>}>
+                      <VerMisIncripciones/>
+                  </Suspense>}/>
                   <Route path='*' element={ <Suspense fallback={<div>cargando...</div>}>
                     <ErrorPage/>
                   </Suspense> }/>

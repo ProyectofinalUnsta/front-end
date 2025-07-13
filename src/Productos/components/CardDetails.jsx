@@ -14,6 +14,8 @@ import { EventRegistrationPopup } from '../../components/EventRegistrationPopup'
 import '../style/carddetails.css'
 import { deburr } from 'lodash'
 import { useLogin } from '../../hooks/useLogin'
+import { useLocation } from 'react-router-dom';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export const CardDetails = ({_id, lugar, fecha, hora, title, descripcion, imagen}) => {
   const {inscripto} = useInscriptos({_id, title})
@@ -27,6 +29,23 @@ export const CardDetails = ({_id, lugar, fecha, hora, title, descripcion, imagen
   const gmail = localStorage.getItem('Inscripto-Gmail')
   const [showImageModal, setShowImageModal] = useState(false)
   const [bajaLoading, setBajaLoading] = useState(false)
+  const location = useLocation();
+  const [copied, setCopied] = useState(false);
+
+  // Obtener el link absoluto del evento
+  const eventUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}/Eventos/${_id}`
+    : '';
+
+  const handleShare = async () => {
+    try {
+      await navigator.clipboard.writeText(eventUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      alert('No se pudo copiar el enlace');
+    }
+  };
 
   useEffect(() => {
     if(!_id) return
@@ -109,9 +128,38 @@ export const CardDetails = ({_id, lugar, fecha, hora, title, descripcion, imagen
             onClick={()=>setShowImageModal(true)}
           />
         </div>
-        <div className="event-header-info-pro">
-          <h1 className="event-title-pro">{title}</h1>
-          <div className="event-meta-pro">
+        <div className="event-header-info-pro" style={{display:'flex',flexDirection:'column',justifyContent:'center',width:'100%'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'1rem',width:'100%',flexWrap:'wrap'}}>
+            <h1 className="event-title-pro" style={{flex:1,margin:0}}>{title}</h1>
+            <div style={{display:'flex',alignItems:'center',gap:'0.3rem'}}>
+              <button
+                onClick={handleShare}
+                title={copied ? '¡Enlace copiado!' : 'Compartir evento'}
+                style={{background:'none',border:'none',cursor:'pointer',padding:'0.2rem',borderRadius:'50%',transition:'background 0.2s',position:'relative',display:'flex',alignItems:'center'}}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{verticalAlign:'middle'}}>
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+                {copied && (
+                  <span style={{position:'absolute',top:'-2.2rem',right:0,background:'#2563eb',color:'#fff',padding:'0.3rem 0.7rem',borderRadius:'6px',fontSize:'0.95rem',fontWeight:600,whiteSpace:'nowrap',zIndex:10,boxShadow:'0 2px 8px rgba(37,99,235,0.10)'}}>¡Enlace copiado!</span>
+                )}
+              </button>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent('¡Mirá este evento! ' + eventUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Compartir por WhatsApp"
+                style={{background:'none',border:'none',cursor:'pointer',padding:'0.2rem',borderRadius:'50%',transition:'background 0.2s',display:'flex',alignItems:'center'}}
+              >
+                <FaWhatsapp size={22} color="#25D366" style={{verticalAlign:'middle'}} />
+              </a>
+            </div>
+          </div>
+          <div className="event-meta-pro" style={{marginTop:'0.5rem'}}>
             <span><DateIcon /> {fecha}</span>
             <span><RelojIcon /> {hora}</span>
             <span><PlaceIcon /> {lugar}</span>

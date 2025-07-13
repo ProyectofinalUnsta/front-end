@@ -121,3 +121,8 @@ export const verificarCodigoDisertante = async (Code,id) => {
  const response = await axios.post(`${endpoints.disertantes}verifyCode`,{code:Code,id})
   return response
 }
+
+export const getMisEventosInscripto = async (gmail) => {
+  const response = await axios.get(`${endpoints.inscripciones}mis-eventos/${gmail}`)
+  return response
+}

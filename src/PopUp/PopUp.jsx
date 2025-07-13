@@ -3,8 +3,9 @@ import './style/popUp.css'
 
 import { useNavegacion } from '../hooks/useNavegacion'
 import { useState,useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess,submit , code}) => {
-
+    const navigate = useNavigate();
     return (
         <>
          <div ref={ref}  className="pop-up-container">
@@ -20,7 +21,12 @@ export const PopUp = ({content,role,event,ref,namebtn,error,nombre,isSuccess,sub
       
        <div class="separator"></div>
        {role == 'Disertante' ? <button onClick={(e)=>submit(e)}>{namebtn}</button> : <button onClick={()=>event(false)}>{namebtn}</button> }
- 
+       {/* Botón para regresar atrás */}
+       {role === 'Disertante' && (
+         <button style={{marginTop:'1rem',background:'#e5e7eb',color:'#222'}} onClick={()=>navigate(-1)}>
+           Volver atrás
+         </button>
+       )}
         </div>
         </div> 
 
