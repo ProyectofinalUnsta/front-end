@@ -1,173 +1,139 @@
-import { useState } from 'react'
-import '../global/MisArchivos.css'
-import { Layout } from './Layout'
+import { useState } from 'react';
+import '../global/MisArchivos.css';
+import { Layout } from './Layout';
 import FiltroArchivo from '../FiltroArchivos/FiltroArchivo';
 import useHandleFiles from '../FiltroArchivos/hook/useHandleFiles';
 import { formatSize } from '../Files/utils/formatSize';
 import { formatDate } from '../Files/utils/formatDate';
-import { MappedPresentations } from '../Files/components/MappedPresentations';
+// import { MappedPresentations } from '../Files/components/MappedPresentations'; // No se usa directamente aquí
 import { useGetEventsById } from '../hooks/useGetEventsById';
 import endpoints from '../utils/endpoints';
 import axios from 'axios';
 import { useLogin } from '../hooks/useLogin';
 import { MappedPresentationsByMe } from '../Files/components/MappedPresentationsByMe';
-import { useRef } from 'react';
-
 
 export default function MisArchivos() {
-    const {porMi,loading,handlePresentacionesDelete} = useHandleFiles()
-   const [error,setError] = useState(false)
-   const {eventosinscripto,archivoscreados} = useGetEventsById()
-  const {token} = useLogin()
+    const { porMi, loading, handlePresentacionesDelete } = useHandleFiles();
+    const [error, setError] = useState(false);
+    const { eventosinscripto, archivoscreados } = useGetEventsById();
+    const { token } = useLogin();
+
+    // --- NUEVOS ESTADOS PARA LA VISTA PREVIA ---
+    const [previewUrl, setPreviewUrl] = useState(null);
+    const [isPreviewLoading, setIsPreviewLoading] = useState(false);
+    const [previewError, setPreviewError] = useState(null);
 
     const getFileIcon = (fileType) => {
-        switch(fileType.toLowerCase()) {
-            case '.pdf': return '📄';
-            case '.doc':
-            case '.docx': return '📝';
-            case '.ppt':
-            case '.pptx': return '📊';
-            case '.jpg':
-            case '.jpeg':
-            case '.png': return '🖼️';
-            default: return '📁';
+        // Asegúrate de que fileType pueda ser el mimetype completo (ej. 'application/pdf')
+        // o la extensión (ej. '.pdf'). Si es mimetype, ajústalo.
+        if (fileType.includes('pdf')) return '📄';
+        if (fileType.includes('doc') || fileType.includes('word')) return '📝';
+        if (fileType.includes('docx') || fileType.includes('word')) return '📝';
+        if (fileType.includes('pptx') || fileType.includes('powerpoint')) return '📊';
+        if (fileType.includes('ppt') || fileType.includes('powerpoint')) return '📊';
+        if (fileType.includes('image')) return '🖼️';
+        return '📁';
+    };
+
+    // --- FUNCIÓN PARA VISTA PREVIA ---
+    const handleVerArchivo = async (fileId) => {
+        setIsPreviewLoading(true);
+        setPreviewError(null);
+        setPreviewUrl(null); // Limpiar URL anterior por si acaso
+
+        const url = `${endpoints.presentaciones}download/${fileId}`;
+
+        try {
+            const response = await axios.get(url, {
+                headers: { Authorization: `Bearer ${token}` },
+                responseType: 'blob', // Importante para manejar archivos binarios
+            });
+
+            // Crear un Object URL del blob. El navegador usará el Content-Type de la respuesta HTTP
+            // que viene del backend para renderizar el Blob correctamente en el iframe.
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+            const objectUrl = URL.createObjectURL(blob);
+            setPreviewUrl(objectUrl);
+        } catch (err) {
+            console.error("Error al abrir el archivo:", err);
+            setPreviewError("No se pudo cargar la vista previa del archivo. Asegúrate de que el formato sea compatible (PDF, imágenes, etc.) o verifica tu conexión.");
+            setPreviewUrl(null); // Limpiar URL en caso de error
+        } finally {
+            setIsPreviewLoading(false);
         }
     };
 
-       const downloadPresentacion = async (ruta) => {
-  try {
-    const response = await axios.get(ruta, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      responseType: 'blob'
-    });
-
-    const blob = new Blob([response.data]);
-    const url = window.URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = url;
-
-    // Opcional: intentá extraer el nombre del header
-const contentDisposition = response.headers['content-disposition']
-console.log(contentDisposition)
-let filename;
-
-
-  filename = contentDisposition
-    .split('filename=')[1]
-    .split(':')[0]
-    .replace(/["']/g, '');
-    console.log(contentDisposition)
-
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
-  } catch (err) {
-    console.error("Error al descargar:", err);
-  }
-};
-
-    // Crear un mapa de id a título de evento para referencia cruzada
-    const idToTitle = (eventosinscripto || []).reduce((acc, ev) => {
-        if (ev.event && ev.event._id && ev.event.title) {
-            acc[ev.event._id] = ev.event.title;
-        } else if (ev._id && ev.title) {
-            acc[ev._id] = ev.title;
+    // --- FUNCIÓN PARA CERRAR EL MODAL DE VISTA PREVIA Y LIBERAR MEMORIA ---
+    const closePreviewModal = () => {
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl); // Libera la URL del objeto Blob de la memoria
         }
-        return acc;
-    }, {});
+        setPreviewUrl(null);
+        setPreviewError(null);
+        setIsPreviewLoading(false);
+    };
 
-    // Agrupar archivos inscriptos por evento usando el título correcto
-    const archivosPorEvento = (eventosinscripto || []).reduce((acc, presentacion) => {
-        let eventTitle = presentacion.event?.title;
-        if (!eventTitle && presentacion.event && idToTitle[presentacion.event]) {
-            eventTitle = idToTitle[presentacion.event];
-        }
-        if (!eventTitle) eventTitle = 'Evento sin nombre';
-        if (!acc[eventTitle]) acc[eventTitle] = [];
-        acc[eventTitle].push(presentacion);
-        return acc;
-    }, {});
-
-    // Carrusel simple con scroll horizontal y flechas
-    const CarruselArchivos = ({ archivos }) => {
-        const scrollRef = useRef(null);
-        const scroll = (dir) => {
-            if (scrollRef.current) {
-                scrollRef.current.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    // --- FUNCIÓN PARA PANTALLA COMPLETA ---
+    const handleFullscreen = () => {
+        const container = document.getElementById("preview-container");
+        if (container) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen(); // Safari
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen(); // IE11
             }
-        };
-        return (
-            <div style={{ position: 'relative', width: '100%' }}>
-                <button onClick={() => scroll(-1)} className="carrusel-flecha left">◀</button>
-                <div
-                    ref={scrollRef}
-                    style={{
-                        display: 'flex',
-                        overflowX: 'auto',
-                        gap: '1.2rem',
-                        padding: '1rem 0',
-                        scrollSnapType: 'x mandatory',
-                        scrollbarWidth: 'thin',
-                        width: '100%',
-                    }}
-                >
-                    {archivos.map((presentacion) => (
-                        <div key={presentacion._id} className="archivo-card" style={{ minWidth: 300, maxWidth: 340, scrollSnapAlign: 'start' }}>
-                            <div className="archivo-icon" style={{ fontSize: '2.5rem', textAlign: 'center' }}>
-                                {getFileIcon(presentacion.filename)}
-                            </div>
-                            <div className="archivo-info">
-                                <h3>Nombre: {presentacion.filename}</h3>
-                                <p>Subido Por: {presentacion.user}</p>
-                                <p>Gmail: {presentacion.gmail}</p>
-                                <p>Evento: {presentacion.event?.title}</p>
-                                <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
-                                <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
-                            </div>
-                            <div className="archivo-actions">
-                                <a
-                                    onClick={() => downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
-                                    className="btn-download"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Descargar
-                                </a>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <button onClick={() => scroll(1)} className="carrusel-flecha right">▶</button>
-                <style>{`
-                    .carrusel-flecha {
-                        position: absolute;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        background: #fff;
-                        border: 1px solid #ddd;
-                        border-radius: 50%;
-                        width: 36px;
-                        height: 36px;
-                        font-size: 1.5rem;
-                        cursor: pointer;
-                        z-index: 2;
-                        box-shadow: 0 2px 8px #0001;
-                        opacity: 0.7;
-                        transition: opacity 0.2s;
+        }
+    };
+
+
+    const downloadPresentacion = async (ruta) => {
+        try {
+            const response = await axios.get(ruta, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                responseType: 'blob'
+            });
+
+            const blob = new Blob([response.data]);
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+
+            // Optional: try to extract filename from header
+            const contentDisposition = response.headers['content-disposition'];
+            console.log(contentDisposition); // Para debug
+
+            let filename = "archivo"; // Default filename
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"';]+)['"]?/i);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = decodeURIComponent(filenameMatch[1].replace(/\"/g, ''));
+                } else {
+                    // Fallback for older/different filename formats
+                    const oldFilenameMatch = contentDisposition.match(/filename=(.+)/);
+                    if (oldFilenameMatch && oldFilenameMatch[1]) {
+                        filename = oldFilenameMatch[1].replace(/["']/g, '');
                     }
-                    .carrusel-flecha.left { left: -18px; }
-                    .carrusel-flecha.right { right: -18px; }
-                    @media (max-width: 700px) {
-                        .carrusel-flecha { display: none; }
-                    }
-                `}</style>
-            </div>
-        );
+                }
+            } else {
+                   const presentationId = ruta.split('/').pop(); // Get ID from URL
+            }
+
+            console.log("Downloading as:", filename); // Para debug
+
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            console.error("Error al descargar:", err);
+            setError("Error al descargar el archivo. Por favor, inténtalo de nuevo."); // Mensaje de error para el usuario
+        }
     };
 
 
@@ -175,61 +141,99 @@ let filename;
         <Layout>
             <div className="mis-archivos-container">
                 <div className="header">
-                  
                     <h1 className="page-title">Archivos Disponibles</h1>
                     <div className="title-divider"></div>
-                    <FiltroArchivo/>
+                    <FiltroArchivo />
                     <p className="page-subtitle">Descarga y gestiona todos los archivos de presentaciones</p>
                 </div>
 
                 {error && <div className="alert alert-error">{error}</div>}
 
                 <div className="">
-                {porMi == true ? <MappedPresentationsByMe/> : (
-                    Object.keys(archivosPorEvento || {}).length === 0 ? (
-                        loading ? <div className="loading">Cargando archivos...</div> : <div className="no-archivos">No hay archivos disponibles</div>
-                    ) : (
-                        Object.entries(archivosPorEvento).map(([evento, archivos]) => (
-                            <div key={evento} style={{ marginBottom: '2.5rem' }}>
-                                <h2 style={{ fontWeight: 700, fontSize: '1.2rem', margin: '1.2rem 0 0.5rem 0', color: '#2563eb' }}>{evento}</h2>
-                                <CarruselArchivos archivos={archivos} />
-                            </div>
-                        ))
-                    )
-                )}
-{/*                  
-                    { loading ? (
-                        <div className="loading">Cargando archivos...</div>
-                    ) : archivos.length === 0 ? (
-                        <div className="no-archivos">No hay archivos disponibles</div>
-                    ) : (
-                        archivos.map(archivo => (
-                            <div key={archivo._id} className="archivo-card">
-                                <div className="archivo-icon">
-                                    {getFileIcon(archivo.fileType)}
+                    {porMi == true ? <MappedPresentationsByMe /> : <div className="archivos-grid">
+                        {loading && !eventosinscripto.length ? (
+                            <div className="loading">Cargando archivos...</div>
+                        ) : eventosinscripto?.length === 0 ? (
+                            <div className="no-archivos">No hay archivos disponibles</div>
+                        ) : (
+                            eventosinscripto?.map(presentacion => (
+                                <div key={presentacion._id} className="archivo-card">
+                                    <div className="archivo-icon">
+                                        {getFileIcon(presentacion.fileType)}
+                                    </div>
+                                    <div className="archivo-info">
+                                        <h3>Nombre: {presentacion.filename}</h3>
+                                        <p>Subido Por: {presentacion.user}</p>
+                                        <p>Gmail:{presentacion.gmail} </p>
+                                        <p>Evento: {presentacion.event?.title}</p>
+                                        <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
+                                        <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
+                                    </div>
+                                    <div className="archivo-actions">
+                                        {/* --- BOTÓN DE DESCARGAR --- */}
+                                        <button
+                                            onClick={() => downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
+                                            className="event-file-download-pro"
+                                            title="Descargar archivo"
+                                        >
+                                            Descargar
+                                        </button>
+                                        {/* --- NUEVO BOTÓN DE VISTA PREVIA --- */}
+                                        <button
+                                            onClick={() => handleVerArchivo(presentacion._id)}
+                                            className="event-file-download-pro" // Puedes darle una clase diferente para estilos
+                                            disabled={isPreviewLoading}
+                                            title="Ver vista previa"
+                                        >
+                                            {isPreviewLoading ? 'Cargando...' : 'Vista Previa'}
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="archivo-info">
-                                    <h3>{archivo.originalName}</h3>
-                                    <p>Evento: {archivo.eventCode}</p>
-                                    <p>Fecha: {formatDate(archivo.uploadDate)}</p>
-                                    <p>Tamaño: {formatSize(archivo.size)}</p>
-                                </div>
-                                <div className="archivo-actions">
-                                    <a 
-                                        href={`https://back-end-fiq8.onrender.com${archivo.fileUrl}`}
-                                        className="btn-download"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        Descargar
-                                    </a>
-                                </div>
-                            </div>
-                        ))
-                    )} */}
+                            ))
+                        )}
+                    </div>}
+
                 </div>
             </div>
+
+            {/* --- MODAL DE VISTA PREVIA --- */}
+            {previewUrl && (
+                <div className="preview-modal-overlay">
+                    <div className="preview-modal-content" id="preview-container">
+                        {isPreviewLoading && (
+                            <div className="preview-loading-text">Cargando vista previa...</div>
+                        )}
+                        {previewError && (
+                            <div className="preview-error-text" style={{ color: 'red', marginBottom: '10px' }}>{previewError}</div>
+                        )}
+
+                        {previewUrl && !previewError && (
+                            <iframe
+                                src={previewUrl}
+                                title="Vista previa del archivo"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 'none' }}
+                            />
+                        )}
+
+                        <div className="preview-buttons">
+                            <button
+                                onClick={closePreviewModal}
+                                className="event-file-download-pro" // Clase específica para cerrar
+                            >
+                                Cerrar
+                            </button>
+                            <button
+                                onClick={handleFullscreen}
+                                className="event-file-download-pro" // Clase específica para pantalla completa
+                            >
+                                Pantalla completa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </Layout>
     );
-} 
-
+}
