@@ -1,4 +1,4 @@
-/* --- Estilos base del contenedor para centrar el contenido --- */
+/* --- Estilos base del contenedor --- */
 .error404-container {
     display: flex;
     flex-direction: column;
@@ -6,15 +6,14 @@
     justify-content: center;
     min-height: 100vh;
     text-align: center;
-    background-color: #f8f9fa; /* Fondo suave */
+    background-color: #e7ebee;
     padding: 20px;
     box-sizing: border-box;
-    /* position: relative; /* Podría ser útil si quieres posicionar el misil de forma absoluta */
 }
 
-/* --- Estilos para el título 404 --- */
+/* --- Estilos para el h1 que contiene los 4s y el misil --- */
 .font-404-text {
-    font-size: 12rem;
+    font-size: 15rem; /* Tamaño grande para los 4s */
     font-weight: 600;
     background: linear-gradient(
         to top,
@@ -26,22 +25,62 @@
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-top: 20px; /* Asegura espacio después del misil */
+    margin-top: 20px; /* Ajusta el margen superior según necesites */
     margin-bottom: 0.2em;
+
+    /* Propiedades Flexbox para alinear el 4, el misil y el 4 */
+    display: flex; /* Convierte el h1 en un contenedor flex */
+    align-items: center; /* Centra verticalmente los ítems (4s y misil) */
+    justify-content: center; /* Centra horizontalmente el conjunto completo */
+    gap: 20px; /* **AJUSTA ESTE VALOR para el espacio entre los elementos** */
+    /* Este 'gap' afectará el espacio entre "4" y "misil", y entre "misil" y "4" */
 }
 
-/* --- Estilos generales para H1 y P si los mantienes --- */
-h1 {
-    font-size: 2rem;
-    color: #333;
+/* Para asegurar que los spans hereden el estilo del degradado */
+.font-404-text span {
+    background: inherit;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Puedes ajustar el padding o margin de los spans si necesitas más control sobre el espacio interno del 4 */
+    /* padding: 0 10px; */
 }
 
-p {
-    font-size: 1.2rem;
-    color: #666;
+/* --- Estilos para la imagen del misil dentro del h1 --- */
+.spinning-missile {
+    width: 150px; /* **AJUSTA ESTE VALOR para el tamaño de tu misil** */
+    height: auto; /* Mantiene la proporción de la imagen */
+    /* margin-bottom: 0; */ /* Asegúrate de que no tenga un margen inferior excesivo que lo separe */
+    
+    /* Animación de giro */
+    animation: spinInfinite 4s linear infinite; /* 4s para una vuelta, linear, infinito */
+    
+    /* Puedes ajustar su posición un poco si necesitas microajustes */
+    /* position: relative;
+    top: -5px; */
 }
 
-/* --- Estilos para el enlace "Volver al inicio" --- */
+/* Definición del Keyframe para el giro infinito (ya lo tenías) */
+@keyframes spinInfinite {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* --- Otros estilos generales (descripción, enlace, etc.) --- */
+.descripcion-text {
+    font-size: 2em;
+    color: #b43d3d;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.small-text {
+    font-size: 1.1em;
+    color: #855c5c;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
 .home-link {
     display: inline-block;
     margin-top: 15px;
@@ -57,63 +96,46 @@ p {
     background-color: #0056b3;
 }
 
-/* --- ESTILOS CLAVE PARA EL MISIL GIRATORIO --- */
-.spinning-missile {
-    width: 200px; /* Ajusta el tamaño de tu misil */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin-bottom: 20px; /* Espacio debajo del misil */
-    
-    /* Animación de giro */
-    animation: spinInfinite 4s linear infinite; /* 4s para una vuelta completa, linear para velocidad constante, infinite para que no pare */
-
-    /* Si quieres que esté flotando un poco más independiente en el centro */
-    /*
-    position: absolute;
-    top: 30%; /* Ajusta la posición vertical */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); /* Centra el elemento en sí */
-    /* z-index: 10; /* Asegura que esté por encima de otros elementos si hay superposición */
-    
-}
-
-/* Definición del Keyframe para el giro infinito */
-@keyframes spinInfinite {
-    0% {
-        transform: rotate(0deg); /* Empieza sin rotación */
-    }
-    100% {
-        transform: rotate(360deg); /* Una vuelta completa */
-    }
-}
-
 
 /* --- Media Queries (Ajustes responsivos) --- */
-@media (width < 1200px) {
+@media (max-width: 1200px) {
     .font-404-text {
         font-size: 10rem;
-    } 
+        gap: 30px; /* Ajusta el gap */
+    }
+    .spinning-missile {
+        width: 120px; /* Ajusta el tamaño del misil */
+    }
 }
 
-@media (width < 800px) {
+@media (max-width: 800px) {
     .font-404-text {
         font-size: 8rem;
-    } 
+        gap: 20px; /* Ajusta el gap */
+    }
     .spinning-missile {
-        width: 150px; /* Más pequeño en pantallas medianas */
+        width: 100px; /* Ajusta el tamaño del misil */
+    }
+    .descripcion-text {
+        font-size: 1.6em;
+    }
+    .small-text {
+        font-size: 1em;
     }
 }
 
-@media (width < 500px) {
+@media (max-width: 500px) {
     .font-404-text {
         font-size: 5rem;
-    } 
-    .descripcion-text {
-        font-size: 1.4rem;
-    }
-    .small-text {
-        font-size: 1rem;
+        gap: 15px; /* Ajusta el gap */
     }
     .spinning-missile {
-        width: 100px; /* Aún más pequeño en móviles */
+        width: 70px; /* Ajusta el tamaño del misil */
+    }
+    .descripcion-text {
+        font-size: 1.2em;
+    }
+    .small-text {
+        font-size: 0.9em;
     }
 }
