@@ -1,4 +1,4 @@
-import { AdminMetrics } from '../AdminComponents/AdminMetrics'
+import './adminmetricas.css'
 import { useNavigate } from 'react-router-dom'
 import { PermisosTable } from '../Metricas/PermisosTable'
 import  Inscriptos  from '../Metricas/Inscriptos'
@@ -16,7 +16,7 @@ export default function AdminMetricas() {
 
   return (
     <div style={{height:'auto',background:'#f7f8fa'}}>
-      <div className='flex flex-col gap-4' style={{maxWidth:800,margin:'0 auto',paddingTop:32}}>
+      <div className='flex flex-col gap-4 max-w-[800px] mx-auto pt-8'>
         <button
         className='w-80'
           onClick={()=>navigate('/Admin')}
@@ -42,7 +42,7 @@ export default function AdminMetricas() {
            <h2 className='text font-semibold text-lg'>{filteredEvents?.title} </h2>
         </section>
         {/* <AdminMetrics/> */}
-        <div className='w-auto  mb-4 mt-4 flex justify-center items-center  md:flex-row flex-col gap-4 '>
+        <div className='w-full  chartsContainer mb-4 mt-4 gap-4 '>
         <Inscriptos keyword={keyword} />
         <DescargasMetrica id={id} title={filteredEvents?.title}/>
         </div>

@@ -44,7 +44,7 @@ const forwardPage = () => {
    }
 
 return(
-    <div className="w-auto h-auto p-3 flex flex-col gap-4 bg-white shadow rounded-xl z-0">
+    <div className="w-auto h-auto DisertanteLista flex flex-col gap-4 bg-white shadow rounded-xl z-0">
       <header className="flex flex-col gap-2">
         <h2 className="font-semibold text-2xl font-sans">Disertantes</h2>
         <small className="text-thin text-gray-500 font-sans">Gestiona tus disertantes.</small>
@@ -55,10 +55,10 @@ return(
       
       </header>
      <section className="border border-gray-200 rounded-lg h-58 overflow-y-scroll">
-  <div className="w-full grid grid-cols-6 sm:grid-cols-10 gap-0 px-4 py-2 border-b border-gray-200 hover:bg-[#e5e5e533]">
-    <h2 className="md:col-span-3 col-span-2 text md:text-md text-xs  font-sans font-semibold">Nombre</h2>
-    <h2 className="md:col-span-6 col-span-3 text md:text-md text-xs  font-semibold">Gmail</h2>
-    <h2 className="md:col-span-1 col-span-1 text md:text-md text-xs   font-semibold">Acciones</h2>
+  <div className="w-full grillalistadisertante  border-b border-gray-200 hover:bg-[#e5e5e533]">
+    <h2 className=" nombregrilla flex items-center text labelsText font-sans font-semibold">Nombre</h2>
+    <h2 className=" mailgrilla flex items-center text labelsText  font-semibold">Gmail</h2>
+    <h2 className=" actionsgrilla text labelsText  font-semibold">Acciones</h2>
   </div>
 
 
@@ -71,14 +71,14 @@ return(
    :  paginatedItems?.map((disertante, index) => (
     <aside
       key={index}
-      className="w-full grid grid-cols-6 sm:grid-cols-10 gap-0 px-4 py-2 border-t border-gray-100 hover:bg-[#e5e5e533]"
+      className="w-full h-[49px] grillalistadisertante  sm:grid-cols-10 gap-0 px-4 py-2 border-t border-gray-100 hover:bg-[#e5e5e533]"
     >
-      <h2 className="md:col-span-3 col-span-2 text-xs md:text-sm text-[#222] overflow-hidden">
+      <h2 className="nombregrilla flex items-center rowText text-[#222] overflow-hidden">
         {disertante.fullName}
       </h2>
-      <h2 className="md:col-span-6 col-span-3 text-xs md:text-sm overflow-hidden">{disertante.gmail}</h2>
+      <h2 className="mailgrilla flex items-center rowText overflow-hidden">{disertante.gmail}</h2>
 
-      <div className="md:col-span-1 col-span-1 flex md:justify-center justify-end relative items-center">
+      <div className="actionsgrilla f relative ">
         <span
           onClick={() =>
             setActiveToolTip(activeToolTip === index ? null : index)
