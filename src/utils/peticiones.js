@@ -121,3 +121,30 @@ export const verificarCodigoDisertante = async (Code,id) => {
  const response = await axios.post(`${endpoints.disertantes}verifyCode`,{code:Code,id})
   return response
 }
+
+export const obtenerListaDisertante  = async (id) => {
+  const IdEvento = id
+  const response = await axios.get(`${endpoints.disertantes}listadeDisertante/${IdEvento}`)
+  return response
+}
+
+export const getrecuentoInscripciones = async (email) => {
+  const res = await axios.get(`${endpoints.inscripciones}recuentos/admin?adminEmail=${email}`)
+  return res.data
+}
+
+export const getpublicDownloads = async (id) => {
+  const res = await axios.get(`${endpoints.publicdownloads}TotalDownloads/${id}`)
+  return res.data
+}
+
+export const getDisertanteRegistro = async ({_id,gmail}) => {
+  const IdEvento = _id
+  const res = await axios.get(`${endpoints.disertantes}isertante/${IdEvento}?gmail=${gmail}`)
+  return res.data
+}
+
+export const crearDisertante = async ({gmail , IdEvento , fullName}) => {
+  const res = await axios.post(`${endpoints.disertantes}crearDisertante`, {gmail , IdEvento , fullName})
+  return res.data
+}

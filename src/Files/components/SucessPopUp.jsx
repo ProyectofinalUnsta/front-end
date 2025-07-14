@@ -28,7 +28,7 @@ export const SucessPopUp = () => {
              <div style={{marginBottom:'3rem'}} className="icon">✔️</div>
            <h2 className='popUp-text-disertante'>Archivo subido Con exito!</h2>
           <div className="separator"></div>
-           <button className='popup-disertante'>regresando a home en {segundos}</button>
+           <button className='popup-disertante-button'>regresando a home en {segundos}</button>
          </div>
         </div>
     )

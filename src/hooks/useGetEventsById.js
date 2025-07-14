@@ -16,7 +16,7 @@ const [email,setEmail] = useState('')
 const [error, setError] = useState(null);
 const [isAuthenticated, setIsAuthenticated] = useState(false);
 const [isfetched,setIsFetched] = useState(false)
-
+const [metricaEvento,setMetricaEvento] = useState()
 const handleGetEventosById = async (e) => {
     e.preventDefault()
       setIsLoading(true);
