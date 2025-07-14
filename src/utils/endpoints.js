@@ -13,6 +13,7 @@ if (import.meta.env.MODE === "production") {
   endpoints.files = import.meta.env.VITE_ENDPOINT_FILES;
   endpoints.presentaciones = import.meta.env.VITE_ENDPOINT_PRESENTACIONES;
   endpoints.inscripciones = import.meta.env.VITE_ENDPOINT_INSCRIPCIONES;
+  endpoints.disertantes = import.meta.env.VITE_ENDPOINT_DISERTANTES;
 }
 if (import.meta.env.MODE === "development") {
   (endpoints.get = "https://back-end-fiq8.onrender.com/api/"),
@@ -31,5 +32,7 @@ if (import.meta.env.MODE === "development") {
       "https://back-end-fiq8.onrender.com/api/presentations/");
   endpoints.inscripciones =
     "https://back-end-fiq8.onrender.com/api/inscriptos/";
+  endpoints.disertantes =
+    "https://back-end-fiq8.onrender.com/api/disertante/";
 }
 export default endpoints;
