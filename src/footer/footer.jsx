@@ -47,13 +47,13 @@ export const MobileFooter = () => {
               <a href="/">Contactanos</a>
             </li>
             <li>
-              <a href="#" target="_blank">Facebook</a>
+              <a href="/" target="_blank">Facebook</a>
             </li>
             <li>
-              <a href="#" target="_blank">Twitter</a>
+              <a href="/" target="_blank">Twitter</a>
             </li>
             <li>
-              <a href="#" target="_blank">Instagram</a>
+              <a href="/" target="_blank">Instagram</a>
             </li>
           </ul>
         </div>
@@ -98,13 +98,13 @@ export const NormalFooter = () => {
               <a href="/Error404">Contactanos</a>
             </li>
             <li>
-              <a href="#" target="_blank">Facebook</a>
+              <a href="/" target="_blank">Facebook</a>
             </li>
             <li>
-              <a href="#" target="_blank">Twitter</a>
+              <a href="/" target="_blank">Twitter</a>
             </li>
             <li>
-              <a href="#" target="_blank">Instagram</a>
+              <a href="/" target="_blank">Instagram</a>
             </li>
           </ul>
         </div>
