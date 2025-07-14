@@ -23,6 +23,23 @@ export const FormUploadPresentaciones = () => {
       }
     }, [success, setSuccess, navigate]);
 
+    useEffect(() => {
+      if (eventoscreados.length === 1) {
+        // Seleccionar automáticamente el único evento
+        const unicoEvento = eventoscreados[0];
+        handleSelectChange({
+          target: {
+            value: JSON.stringify({ _id: unicoEvento._id, title: unicoEvento.title })
+          }
+        });
+      }
+    }, [eventoscreados]);
+
+    useEffect(() => {
+      if (showPopup) return; // No limpiar si está mostrando el popup
+      setSuccess(''); // Limpiar success al montar o al abrir el formulario
+    }, [setSuccess, showPopup]);
+
     return (
         <>
          {showPopup && <SucessPopUp />}

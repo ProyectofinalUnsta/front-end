@@ -567,3 +567,21 @@
         padding: 0.6rem 1rem;
     }
 } 
+
+@media (max-width: 360px) {
+  .navbar-content {
+    padding: 0 0.2rem;
+  }
+  .logo-eventum {
+    font-size: 1rem;
+  }
+  .modal {
+    width: 220px;
+    right: 0.1rem;
+  }
+  .admin-btn, .dropdown-btn {
+    width: 98%;
+    font-size: 0.7rem;
+    padding: 0.5rem 0.7rem;
+  }
+} 
