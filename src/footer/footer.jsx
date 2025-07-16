@@ -2,6 +2,7 @@ import { useWidth } from "../hooks/useWidth";
 import { EventumSvg } from "../icons/EventumSvg";
 import { UnstaLogo } from "../icons/UnstaLogo";
 import "./style/footer.css";
+import { Link } from "react-router-dom";
 
 export default function Footer  ()  {
   const { width } = useWidth();
@@ -38,22 +39,19 @@ export const MobileFooter = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <a href="/">Políticas</a>
+              <Link to="/politicas">Políticas</Link>
             </li>
             <li>
               <a href="/SobreNosotros">Sobre Nosotros</a>
             </li>
             <li>
-              <a href="/">Contactanos</a>
+              <Link to="/contactanos">Contactanos</Link>
             </li>
             <li>
-              <a href="#" target="_blank">Facebook</a>
+              <a href="https://x.com/eventumLat" target="_blank" rel="noopener noreferrer">Twitter</a>
             </li>
             <li>
-              <a href="#" target="_blank">Twitter</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Instagram</a>
+              <a href="https://www.instagram.com/eventum.lat/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </li>
           </ul>
         </div>
@@ -78,7 +76,7 @@ export const NormalFooter = () => {
         <UnstaLogo width={'42px'} heigth={'42px'} fill={'#000'} stroke={'#000'}/>
           </a>
           <a
-            href="http://localhost:5173/"
+            href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -89,22 +87,19 @@ export const NormalFooter = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <a href="/Error404">Políticas</a>
+              <Link to="/politicas">Políticas</Link>
             </li>
             <li>
               <a href="/SobreNosotros">Sobre Nosotros</a>
             </li>
             <li>
-              <a href="/Error404">Contactanos</a>
+              <Link to="/contactanos">Contactanos</Link>
             </li>
             <li>
-              <a href="#" target="_blank">Facebook</a>
+              <a href="https://x.com/eventumLat" target="_blank" rel="noopener noreferrer">Twitter</a>
             </li>
             <li>
-              <a href="#" target="_blank">Twitter</a>
-            </li>
-            <li>
-              <a href="#" target="_blank">Instagram</a>
+              <a href="https://www.instagram.com/eventum.lat/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </li>
           </ul>
         </div>
