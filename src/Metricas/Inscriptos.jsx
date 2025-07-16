@@ -23,7 +23,6 @@ const {data,isPending,error} = useQuery({
   queryFn:() => getListaInscriptosMetricas(keyword)
 })
 
-console.log(data)
 
 
 
@@ -33,8 +32,8 @@ console.log(data)
        <>
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-sm text-gray-500">Inscriptos {isPending ? 'Cargando..' : data?.nombreEvento} </p>
-          <h2 className="text-2xl font-bold text-black">+ {isPending ? 'Cargando..' : data?.cantidadInscriptos}</h2>
+          <p className="text-sm text-gray-500">Inscriptos {isPending ? 'Cargando..' : data?.nombreEvento ? data?.nombreEvento : 'No hay eventos!'} </p>
+          <h2 className="text-2xl font-bold text-black">+ {isPending ? 'Cargando..' : data?.nombreEvento ? data?.cantidadInscriptos : 'No hay eventos'}</h2>
           <p className="text-sm text-gray-400">+180.1% from last month</p>
         </div>
       </div>

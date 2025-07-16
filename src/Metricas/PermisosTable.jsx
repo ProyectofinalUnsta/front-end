@@ -46,7 +46,7 @@ const forwardPage = () => {
 return(
     <div className="w-auto h-auto DisertanteLista flex flex-col gap-4 bg-white shadow rounded-xl z-0">
       <header className="flex flex-col gap-2">
-        <h2 className="font-semibold text-2xl font-sans">Disertantes</h2>
+        <h2 className="font-semibold text-2xl font-sans"> Disertantes</h2>
         <small className="text-thin text-gray-500 font-sans">Gestiona tus disertantes.</small>
         <div className="w-full h-12 flex flex-row justify-between items-center text-center">
          <input className="h-3/4 w-3/4 text-sm pl-2 mt-2 border-1 border-gray-300 rounded-lg" type="text" value={url} disabled/>
@@ -64,7 +64,7 @@ return(
 
 {isPending ? (<div className="px-4 py-6 text-center text-sm text-gray-500">
     Cargando..
-  </div> ) : (data.total == 0 ? 
+  </div> ) : (data.total == 0 || !data?.length ? 
      <div className="px-4 py-6 text-center text-sm text-gray-500">
     Aún no hay disertantes.
   </div>

@@ -13,25 +13,42 @@ const {token,user} = useContext(LoginContext)
 const getinitialLista = async () => {
 const {email} = user
 const events = await getEventsById(`${endpoints.eventoPorId}${email}`, token);
-setFilteredEvents(events[0])
+if(events.length) {
+ setFilteredEvents(events[0])
 setkeyword(events[0].title)
 setId(events[0]._id)
-return events
+return events   
+}
+else {
+setId(null)
+setkeyword(null)
+setFilteredEvents([])
+return
+}
+
 }
 
 
 const getListaInscriptosMetricas = async (keyword) => {
-console.log(keyword)
 const response = await getrecuentoInscripciones(user.email)
 const data = response.filter(inscriptos => inscriptos.nombreEvento == keyword)
-console.log(data)
+if(!data.length){
+    return []
+}
 return data[0]
+
 }
 
 const getListaDisertantesMetricas = async (id) => {
+if(id) {
 const response = await obtenerListaDisertante(id)
 const {data} = response
 return data
+}
+else {
+const data = []
+return data
+}
 }
 
 const handlefilterEvent = async (keyword) => {
@@ -45,8 +62,15 @@ return;
 }
 
 const handlePublicDownloads = async (id) => {
-    const response = await getpublicDownloads(id)
+    if(id) {
+     const response = await getpublicDownloads(id)
     return response
+    }
+    else {
+    const response = []
+    return response
+    }
+
 }
 
 

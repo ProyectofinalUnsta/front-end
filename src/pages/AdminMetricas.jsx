@@ -14,6 +14,7 @@ export default function AdminMetricas() {
   const {filteredEvents,handlefilterEvent,id,keyword} = useDisertanteFilter()
 
 
+
   return (
     <div style={{height:'auto',background:'#f7f8fa'}}>
       <div className='flex flex-col gap-4 max-w-[800px] mx-auto pt-8'>
@@ -31,15 +32,31 @@ export default function AdminMetricas() {
           <FilterIcon/>
           <h2 className='text font-normal text-md'>Filtrar</h2>
           </aside>
-         <select className='h-10 w-60 p-1 bg-gray-100 rounded-xl shadow' name="misEventos" id="" onChange={(e)=>handlefilterEvent(e.target.value)}>
-          {eventoscreados.map(miseventos => (
-             <option key={miseventos._id} value={miseventos.title}>{miseventos.title}</option>
-          ))}
-         
-         </select>
+        <select
+  className="h-10 w-60 p-1 bg-gray-100 rounded-xl shadow"
+  name="misEventos"
+  onChange={(e) => handlefilterEvent(e.target.value)}
+>
+  {eventoscreados?.length === 1 ? (
+    <option key={eventoscreados[0]._id} value={eventoscreados[0].title}>
+      {eventoscreados[0].title}
+    </option>
+  ) : eventoscreados.length > 1 ? (
+    <>
+      {eventoscreados?.map((miseventos) => (
+        <option key={miseventos._id} value={miseventos.title}>
+          {miseventos.title}
+        </option>
+      ))}
+    </>
+  ) : (
+    <option value="">No hay Eventos!</option>
+  )}
+</select>
+
         </header>
         <section className='w-full flex justify-center items-center h-15 bg-white'>
-           <h2 className='text font-semibold text-lg'>{filteredEvents?.title} </h2>
+           <h2 className='text font-semibold text-lg'>{ filteredEvents?.title ? filteredEvents?.title : 'No hay Eventos!'} </h2>
         </section>
         {/* <AdminMetrics/> */}
         <div className='w-full  chartsContainer mb-4 mt-4 gap-4 '>
@@ -47,7 +64,7 @@ export default function AdminMetricas() {
         <DescargasMetrica id={id} title={filteredEvents?.title}/>
         </div>
         <div className='w-auto m-4 pb-4'>
-          <PermisosTable id={id}/>
+          <PermisosTable id={id}/> 
         </div>
       </div>
     </div>
