@@ -1,12 +1,12 @@
 .disertante-page-container {
     width: 100%;
-    height: auto;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    background: #f7f8fa;
     display: flex;
     flex-direction: column;
     align-items: center;
-     gap: 5rem;
-    padding: 2rem;
+    gap: 3rem;
+    padding: 2rem 0 3rem 0;
 }
 
 .register-button-container {
@@ -19,47 +19,185 @@
 
 .register-event-btn {
     margin-top: 1rem;
-    background: linear-gradient(145deg, #6a11cb, #2575fc);
-    color: white;
+    background: #222;
+    color: #fff;
     border: none;
-    border-radius: 30px;
+    border-radius: 8px;
     padding: 12px 24px;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s;
+    box-shadow: none;
 }
 
 .register-event-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #444;
 } 
 
-.upload-disertante-form {
-  background-color: white;
-  min-width: 300px;
-  max-width: 800px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction:column ;
-  gap: 1rem;
-  padding: 1.5rem;
+.disertante-header-card {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
   border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #ececec;
 }
-
-.form-disertante-group{
-width: 100%;
-display: flex;
-flex-direction: column;
-gap: 1rem;
+.disertante-event-id {
+  color: #b0b0b0;
+  font-size: 0.93rem;
+  margin-bottom: 0.2rem;
+  word-break: break-all;
 }
-
-.input-upload-disertante{
-width: 100%;
-border: 1px solid rgb(192, 192, 192);
-border-radius: 6px;
-padding-top: 1em;
-padding-bottom: 1em;
-padding-left: 0.2em;
+.disertante-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.upload-disertante-form {
+  background: #fff;
+  min-width: 240px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  border: 1px solid #ececec;
+}
+.input-label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.2rem;
+  font-size: 0.98rem;
+}
+.input-upload-disertante {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  padding: 0.8em 1em;
+  font-size: 1rem;
+  background: #fafbfc;
+  transition: border-color 0.2s;
+  color: #222;
+}
+.input-upload-disertante:focus {
+  border-color: #b3c6e6;
+  outline: none;
+  background: #f5faff;
+}
+.error-message {
+  color: #d32f2f;
+  font-size: 0.95rem;
+  margin-top: -0.5rem;
+}
+.file-upload-group {
+  margin-bottom: 0.2rem;
+}
+.file-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.input-file-upload {
+  display: none;
+}
+.file-upload-btn {
+  background: #f3f4f6;
+  color: #222;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  padding: 0.7em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+  margin-right: 0.5rem;
+  margin-bottom: 0.2rem;
+  box-shadow: none;
+}
+.file-upload-btn:hover {
+  background: #e5e7eb;
+  border: 1px solid #b3c6e6;
+}
+.file-upload-name {
+  font-size: 0.97rem;
+  color: #666;
+  background: #f7f7f7;
+  border-radius: 6px;
+  padding: 0.3em 0.8em;
+  min-width: 100px;
+  text-align: left;
+  word-break: break-all;
+  border: 1px solid #ececec;
+}
+.file-upload-info {
+  font-size: 0.91rem;
+  color: #888;
+  margin-top: 0.1rem;
+}
+.file-preview-img {
+  width: 100%;
+  max-width: 260px;
+  max-height: 140px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #0001;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  border: 1px solid #ececec;
+}
+.main-upload-btn {
+  margin-top: 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.85em 0;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  transition: background 0.2s;
+  letter-spacing: 0.01em;
+}
+.main-upload-btn:hover {
+  background: #444;
+}
+@media (max-width: 700px) {
+  .disertante-header-card {
+    max-width: 98vw;
+    padding: 1rem 0.5rem;
+  }
+  .upload-disertante-form {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .disertante-header-card {
+    padding: 0.7rem 0.2rem;
+  }
+  .upload-disertante-form {
+    padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+  }
+  .file-upload-btn {
+    font-size: 0.95rem;
+    padding: 0.6em 1em;
+  }
+  .file-upload-name {
+    font-size: 0.93rem;
+    min-width: 80px;
+  }
 }

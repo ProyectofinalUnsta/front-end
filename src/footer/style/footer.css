@@ -150,3 +150,13 @@
         font-size: 0.75rem;
     }
 }
+
+@media (max-width: 360px) {
+  .footer-links a {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.5rem;
+  }
+  .footer-copy {
+    font-size: 0.7rem;
+  }
+}

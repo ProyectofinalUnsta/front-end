@@ -122,6 +122,7 @@ export const verificarCodigoDisertante = async (Code,id) => {
   return response
 }
 
+
 export const obtenerListaDisertante  = async (id) => {
   const IdEvento = id
   const response = await axios.get(`${endpoints.disertantes}listadeDisertante/${IdEvento}`)
@@ -147,4 +148,9 @@ export const getDisertanteRegistro = async ({_id,gmail}) => {
 export const crearDisertante = async ({gmail , IdEvento , fullName}) => {
   const res = await axios.post(`${endpoints.disertantes}crearDisertante`, {gmail , IdEvento , fullName})
   return res.data
+}
+export const getMisEventosInscripto = async (gmail) => {
+  const response = await axios.get(`${endpoints.inscripciones}mis-eventos/${gmail}`)
+  return response
+
 }

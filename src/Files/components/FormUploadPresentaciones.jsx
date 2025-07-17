@@ -2,13 +2,47 @@ import { useGetEventsById } from "../../hooks/useGetEventsById"
 import useFiles from "../hook/useFiles"
 import { FileField } from "./FieldsFile"
 import { FieldFile } from "./FieldsFile"
+import { useEffect, useState } from 'react';
+import { SucessPopUp } from './SucessPopUp';
+import { useNavigate } from 'react-router-dom';
 export const FormUploadPresentaciones = () => {
-    const {handlePresentacionesSubmit,loading,handleInputChange,handleFileChange , handleSelectChange , formsData} = useFiles()
-    const {eventoscreados,isloading} = useGetEventsById()
-     
+    const {handlePresentacionesSubmit,loading,handleInputChange,handleFileChange , handleSelectChange , formsData, success, setSuccess} = useFiles();
+    const {eventoscreados,isloading} = useGetEventsById();
+    const navigate = useNavigate();
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+      if (success) {
+        setShowPopup(true);
+        const timer = setTimeout(() => {
+          setShowPopup(false);
+          setSuccess('');
+          navigate('/Admin/Archivos');
+        }, 3500);
+        return () => clearTimeout(timer);
+      }
+    }, [success, setSuccess, navigate]);
+
+    useEffect(() => {
+      if (eventoscreados.length === 1) {
+        // Seleccionar automáticamente el único evento
+        const unicoEvento = eventoscreados[0];
+        handleSelectChange({
+          target: {
+            value: JSON.stringify({ _id: unicoEvento._id, title: unicoEvento.title })
+          }
+        });
+      }
+    }, [eventoscreados]);
+
+    useEffect(() => {
+      if (showPopup) return; // No limpiar si está mostrando el popup
+      setSuccess(''); // Limpiar success al montar o al abrir el formulario
+    }, [setSuccess, showPopup]);
 
     return (
         <>
+         {showPopup && <SucessPopUp />}
          <form onSubmit={handlePresentacionesSubmit} className="upload-form" disabled={isloading}>
 
               <div className="form-group">

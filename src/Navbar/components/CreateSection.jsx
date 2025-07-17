@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 import { CrearIcon } from "../../icons/CrearIcon"
 export const CreateSection = ({displayed}) => {
     return (

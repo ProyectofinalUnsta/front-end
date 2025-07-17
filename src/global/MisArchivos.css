@@ -192,7 +192,7 @@ button:disabled {
 /* Grid de archivos */
 .archivos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -205,6 +205,9 @@ button:disabled {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
 }
 
 .archivo-card:hover {
@@ -250,20 +253,50 @@ button:disabled {
     grid-column: 1 / -1;
 }
 
+@media (max-width: 900px) {
+  .archivos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
 @media (max-width: 640px) {
     .mis-archivos-container {
         padding: 1rem;
     }
-
     .page-title {
         font-size: 2rem;
     }
-
     .page-subtitle {
         font-size: 1rem;
     }
-
     .archivo-actions {
         flex-direction: column;
     }
+    .archivos-grid {
+      grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+  .archivo-card {
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .archivo-info h3 {
+    font-size: 1rem;
+  }
+  .archivo-info p {
+    font-size: 0.85rem;
+  }
+  .archivo-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .btn-download, .btn-delete {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7rem 0;
+    border-radius: 6px;
+  }
 } 

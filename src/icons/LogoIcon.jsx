@@ -5,7 +5,7 @@ export const LogoIcon = ({prop}) => {
         <>
         <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
         <img src={logo} alt="" width={'50px'} height={'50px'} />
-         {prop ? null : <h2 className="logo"> <a href="/">Eventum</a></h2>}
+         {prop ? null : <h2 className="logo"> <span>Eventum</span></h2>}
         </div>
         </>
     )
