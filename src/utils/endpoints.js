@@ -1,7 +1,6 @@
 const endpoints = {}
 
 if(import.meta.env.MODE ===   'production'){
-
     endpoints.get = import.meta.env.VITE_ENDPOINT_GET,
     endpoints.keepserveralive = import.meta.env.VITE_ENDPOINT_SERVER,
     endpoints.keepservicealive = import.meta.env.VITE_SERVICE_IMAGE,
@@ -16,8 +15,6 @@ if(import.meta.env.MODE ===   'production'){
     endpoints.inscripciones = import.meta.env.VITE_ENDPOINT_INSCRIPCIONES
     endpoints.disertantes = import.meta.env.VITE_ENDPOINT_DISERTANTES
     endpoints.publicdownloads = import.meta.env.VITE_ENDPOINT_PUBLIC_DOWNLOADS
-
-
 }
 if(import.meta.env.MODE === 'development'){
       endpoints.get = 'https://back-end-fiq8.onrender.com/api/',
