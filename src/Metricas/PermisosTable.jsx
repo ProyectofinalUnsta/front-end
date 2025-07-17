@@ -113,7 +113,6 @@ return(
 )
 }
 
-
 export const PermisosToolTip = () => {
     return(
         <div className="z-50 absolute w-40 bg-white p-2 rounded-xl border-1 border-gray-300 flex flex-col gap-2"> 
