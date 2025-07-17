@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import './ContactanosPage.css';
+import { Link } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5';
 
 const CATEGORIAS = [
   'Problemas de registro',
@@ -66,6 +68,11 @@ export default function ContactanosPage() {
 
   return (
     <div className="contactanos-container">
+      <div className="home-btn-wrapper left">
+        <Link to="/" className="home-btn" title="Volver al inicio">
+          <IoArrowBack size={22} />
+        </Link>
+      </div>
       <h1>Contáctanos</h1>
       <form className="contact-form" onSubmit={handleSubmit} autoComplete="off">
         <label>
