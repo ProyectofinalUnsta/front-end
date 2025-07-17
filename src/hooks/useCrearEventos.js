@@ -22,7 +22,7 @@ export function useCrearEventos (onSuccess) {
             imagen:'',
             email:user.email
         })
-        const [loading,setloading] = useState({value:false,message:'Cargando..'})
+        const [loading,setloading] = useState({value:false,message:'Enviar'})
       const {handlesucess} = useAdminMenu()
        const {navigatewithoutparams} = useNavegacion()
         const handletext = (e) => {
@@ -104,17 +104,18 @@ export function useCrearEventos (onSuccess) {
 
     
         const handlesubmit = async () => {
-           setloading({value:true})
+           setloading({value:true,message:'Cargando..'})
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
 
              let res = await createEvent(sendToBack,token)
              if(res?.status === 200) {
-              setloading({value:false})
+              setloading({value:false,message:'Enviar'})
              handlesucess(true)
               if (onSuccess) onSuccess();
               navigatewithoutparams({ruta:'/Admin/'})
              }
+            setloading({value:false,message:'Enviar'})
         }
     
     
