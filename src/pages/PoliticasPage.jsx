@@ -1,9 +1,16 @@
 import React from 'react';
 import './PoliticasPage.css';
+import { Link } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5';
 
 export default function PoliticasPage() {
   return (
     <div className="politicas-container">
+      <div className="home-btn-wrapper left">
+        <Link to="/" className="home-btn" title="Volver al inicio">
+          <IoArrowBack size={22} />
+        </Link>
+      </div>
       <h1>Políticas y Términos de Uso</h1>
       <section>
         <h2>Sobre este proyecto</h2>

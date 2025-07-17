@@ -2,26 +2,58 @@
   max-width: 800px;
   margin: 60px auto 60px auto;
   padding: 2.5rem 2rem 2rem 2rem;
-  background: linear-gradient(135deg, #f8fafc 80%, #e3e9f7 100%);
+  background: linear-gradient(135deg, #f6f8fc 80%, #e3e9f7 100%);
   border-radius: 18px;
   box-shadow: 0 6px 32px rgba(60,60,120,0.10), 0 1.5px 6px rgba(60,60,120,0.07);
   font-family: 'Inter', Arial, sans-serif;
   animation: fadeIn 0.8s cubic-bezier(0.4,0,0.2,1);
   border: 1.5px solid #e0e7ef;
+  color: #23243a;
+  position: relative;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+.home-btn-wrapper {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  z-index: 2;
+}
+
+.home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f6fa;
+  color: #283593;
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: none;
+  border: 1px solid #e3e9f7;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  min-width: 38px;
+  min-height: 38px;
+}
+.home-btn:hover {
+  background: #e3e9f7;
+  color: #1565c0;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
 }
 
 .politicas-container h1 {
-  font-size: 2.3rem;
-  margin-bottom: 1.7rem;
+  font-size: 2.1rem;
+  margin-bottom: 2.2rem;
   color: #1a237e;
   text-align: center;
   letter-spacing: 0.5px;
+  font-weight: 700;
+  border-bottom: 1.5px solid #e3e9f7;
+  padding-bottom: 1rem;
+  background: none;
 }
+
 .politicas-container section {
   margin-bottom: 2.2rem;
   background: #fff;
@@ -30,21 +62,31 @@
   padding: 1.2rem 1.5rem;
   border: 1px solid #e3e9f7;
   transition: box-shadow 0.2s;
+  color: #23243a;
 }
+
 .politicas-container section:hover {
   box-shadow: 0 4px 18px rgba(60,60,120,0.13);
 }
+
 .politicas-container h2 {
   font-size: 1.25rem;
   color: #283593;
   margin-bottom: 0.5rem;
 }
+
 .politicas-container p {
-  color: #333;
+  color: #23243a;
   line-height: 1.7;
   margin: 0;
 }
+
 .politicas-container a {
   color: #1976d2;
   text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 } 
