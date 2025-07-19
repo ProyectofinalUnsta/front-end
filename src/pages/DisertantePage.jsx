@@ -7,7 +7,7 @@ import { SucessPopUp } from "../Files/components/SucessPopUp"
 export default function DisertantePage() {
     const location = useLocation()
     const {title,_id} = location.state || {}
-   const {succes,loading,pass,handleCode,error,handleSubmitDisertante,code,Data,handleDisertanteNombre,handleFileChange,disertantegmail,handleDisertanteGmail,disertantenombre,handlePresentacionesSubmitDisertantes} = useDisertante(_id,title)
+   const {succes,loading,pass,handleCode,error,handleSubmitDisertante,code,Data,handleDisertanteNombre,handleFileChange,handleDisertanteGmail,handlePresentacionesSubmitDisertantes} = useDisertante(_id,title)
 
 
 
@@ -50,7 +50,7 @@ export default function DisertantePage() {
                 id={'nombreEvento'}
                 name={'nombreEvento'}
                 value={Data.nombreEvento}
-                disabled
+                disabled={true}
                 required
                 className="input-upload-disertante text-center"
                 />
@@ -63,7 +63,7 @@ export default function DisertantePage() {
                 id={'CodigoEvento'}
                 name={'CodigoEvento'}
                 value={code}
-                disabled
+                disabled={true}
                 required
                 className="input-upload-disertante text-green-700 text-center"
                 />
@@ -75,7 +75,7 @@ export default function DisertantePage() {
                 id={'Rol'}
                 name={'Rol'}
                 value={'Disertante'}
-                disabled
+                disabled={true}
                 required
                 className="input-upload-disertante text-center"
                 />
@@ -87,7 +87,7 @@ export default function DisertantePage() {
                 type={'text'}
                 id={'user'}
                 name={'user'}
-                value={disertantenombre}
+                value={''}
                 placeholder="Juan Perez"
                 onChange={(e)=>handleDisertanteNombre(e)}
                 required
@@ -103,7 +103,7 @@ export default function DisertantePage() {
                 type={'text'}
                 id={'gmail'}
                 name={'gmail'}
-                value={disertantegmail}
+                value={''}
                 placeholder="example@gmail.com"
                 onChange={(e)=>handleDisertanteGmail(e)}
                 required

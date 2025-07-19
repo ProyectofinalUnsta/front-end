@@ -5,7 +5,7 @@ import '../Productos/style/carddetails.css'
 export const EventRegistrationPopup = ({Modal,closeModal}) => {
     const location = useLocation()
     const {_id,title} = location.state || {}
-    const {gmail,nombre,apellido,InscritosActions,data, handleInscriptosSubmit,showSuccess, setShowSuccess } = useInscriptos({_id,title})
+    const {InscritosActions,data, handleInscriptosSubmit,showSuccess } = useInscriptos({_id,title})
 
 
 
@@ -19,7 +19,7 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                     <input
                         type="email"
                         placeholder="Ingresa tu correo electrónico"
-                        value={gmail}
+                        value={''}
                         onChange={(e) => InscritosActions.updateGmail(e.target.value)}
                         disabled={data != true ? false : true}
                         required
@@ -27,14 +27,14 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                      <input
                         type="text"
                         placeholder="Ingresa tu nombre"
-                        value={nombre}
+                        value={''}
                         onChange={(e) => InscritosActions.updateNombre(e.target.value)}
                         required
                     />
                      <input
                         type="text"
                         placeholder="Ingresa tu apellido"
-                        value={apellido}
+                        value={''}
                         onChange={(e) => InscritosActions.updateApellido(e.target.value)}
                         required
                     />

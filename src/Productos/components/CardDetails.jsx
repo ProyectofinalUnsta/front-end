@@ -12,7 +12,6 @@ import { formatDate } from '../../Files/utils/formatDate'
 import { formatSize } from '../../Files/utils/formatSize'
 import { EventRegistrationPopup } from '../../components/EventRegistrationPopup'
 import '../style/carddetails.css'
-import { deburr } from 'lodash'
 import { useLogin } from '../../hooks/useLogin'
 
 export const CardDetails = ({_id, lugar, fecha, hora, title, descripcion, imagen}) => {
