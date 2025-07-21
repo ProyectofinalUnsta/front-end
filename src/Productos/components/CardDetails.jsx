@@ -16,6 +16,7 @@ import "../style/carddetails.css";
 import { useLogin } from "../../hooks/useLogin";
 import { useLocation } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
+import { FaRegCalendarPlus } from "react-icons/fa";
 
 // Importa los estilos del modal de vista previa, si aún no los tienes en carddetails.css
 // (Si ya los pusiste en carddetails.css, no es necesario aquí)
@@ -50,10 +51,13 @@ export const CardDetails = ({
   const [previewError, setPreviewError] = useState(null); // Para errores en la vista previa
 
   // Obtener el link absoluto del evento
+  // URL pública de producción
+  const PUBLIC_URL = "https://eventum-front.vercel.app";
+  const LOCAL_URL = typeof window !== "undefined" ? window.location.origin : "";
   const eventUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/Eventos/${_id}`
-      : "";
+    import.meta.env.MODE === "production"
+      ? `${PUBLIC_URL}/Eventos/${_id}`
+      : `${LOCAL_URL}/Eventos/${_id}`;
 
   const handleShare = async () => {
     try {
@@ -190,6 +194,74 @@ export const CardDetails = ({
     }
   };
 
+  // --- Google Calendar ---
+  // Función para parsear fecha y hora a objeto Date
+  function parseFechaHora(fechaStr, horaStr) {
+    // Ejemplo fecha: "Mayo 19, 2000" o "2024-07-20"
+    // Ejemplo hora: "11:11 AM - 11:12 AM" o "14:00 - 15:00"
+    if (!fechaStr || !horaStr) return null;
+    let fechaISO = '';
+    // Intentar parsear fecha a formato YYYY-MM-DD
+    if (/\d{4}-\d{2}-\d{2}/.test(fechaStr)) {
+      fechaISO = fechaStr;
+    } else {
+      // Si es formato "Mayo 19, 2000"
+      const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+      const partes = fechaStr.toLowerCase().replace(/,/g, '').split(' ');
+      const mes = meses.findIndex(m => partes[0].startsWith(m.slice(0,3)));
+      if (mes >= 0) {
+        fechaISO = `${partes[2]}-${(mes+1).toString().padStart(2,'0')}-${partes[1].padStart(2,'0')}`;
+      }
+    }
+    // Tomar la hora de inicio (antes del guion)
+    let horaInicio = horaStr.split('-')[0].trim();
+    // Si es formato 11:11 AM, convertir a 24h
+    let [h, m] = horaInicio.split(':');
+    let ampm = m.match(/am|pm/i);
+    m = m.replace(/am|pm/i, '');
+    h = parseInt(h,10);
+    m = parseInt(m,10);
+    if (ampm) {
+      if (/pm/i.test(ampm[0]) && h < 12) h += 12;
+      if (/am/i.test(ampm[0]) && h === 12) h = 0;
+    }
+    const fechaHora = new Date(`${fechaISO}T${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:00`);
+    return fechaHora;
+  }
+
+  // Generar link de Google Calendar
+  const fechaInicio = parseFechaHora(fecha, hora);
+  let fechaFin = null;
+  if (fechaInicio && hora && hora.includes('-')) {
+    // Calcular fechaFin usando la hora de fin
+    let horaFin = hora.split('-')[1].trim();
+    let [h, m] = horaFin.split(':');
+    let ampm = m.match(/am|pm/i);
+    m = m.replace(/am|pm/i, '');
+    h = parseInt(h,10);
+    m = parseInt(m,10);
+    if (ampm) {
+      if (/pm/i.test(ampm[0]) && h < 12) h += 12;
+      if (/am/i.test(ampm[0]) && h === 12) h = 0;
+    }
+    fechaFin = new Date(fechaInicio);
+    fechaFin.setHours(h, m, 0, 0);
+  }
+  // Formato Google Calendar: YYYYMMDDTHHmmssZ
+  function toGCalFormat(date) {
+    if (!date) return '';
+    const y = date.getUTCFullYear();
+    const mo = (date.getUTCMonth()+1).toString().padStart(2,'0');
+    const d = date.getUTCDate().toString().padStart(2,'0');
+    const h = date.getUTCHours().toString().padStart(2,'0');
+    const mi = date.getUTCMinutes().toString().padStart(2,'0');
+    const s = date.getUTCSeconds().toString().padStart(2,'0');
+    return `${y}${mo}${d}T${h}${mi}${s}Z`;
+  }
+  const gcalStart = toGCalFormat(fechaInicio);
+  const gcalEnd = toGCalFormat(fechaFin || fechaInicio);
+  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${gcalStart}/${gcalEnd}&details=${encodeURIComponent(descripcion)}&location=${encodeURIComponent(lugar)}`;
+
   return (
     <div className="event-details-main-container">
       {/* Botón volver */}
@@ -234,6 +306,45 @@ export const CardDetails = ({
             <div
               style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}
             >
+              {/* Botón Google Calendar */}
+              <a
+                href={gcalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Agregar a Google Calendar"
+                style={{
+                  background: '#f3f4f6',
+                  color: '#2563eb',
+                  border: '1.5px solid #2563eb',
+                  borderRadius: '7px',
+                  padding: '0.32rem 0.7rem',
+                  fontWeight: 500,
+                  fontSize: '0.97rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  boxShadow: 'none',
+                  cursor: 'pointer',
+                  transition: 'background 0.18s, color 0.18s, border 0.18s',
+                  textDecoration: 'none',
+                  minHeight: '32px',
+                  minWidth: 'auto',
+                }}
+                onMouseOver={e => {
+                  e.currentTarget.style.background = '#2563eb';
+                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.border = '1.5px solid #2563eb';
+                }}
+                onMouseOut={e => {
+                  e.currentTarget.style.background = '#f3f4f6';
+                  e.currentTarget.style.color = '#2563eb';
+                  e.currentTarget.style.border = '1.5px solid #2563eb';
+                }}
+              >
+                <FaRegCalendarPlus size={16} />
+                <span className="gcal-btn-text">Google Calendar</span>
+              </a>
+              {/* Botón compartir y WhatsApp existentes */}
               <button
                 onClick={handleShare}
                 title={copied ? "¡Enlace copiado!" : "Compartir evento"}
