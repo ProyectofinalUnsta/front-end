@@ -52,7 +52,7 @@ export default function AdminMetricas() {
               <option key={eventoscreados[0]._id} value={eventoscreados[0].title}>
                 {eventoscreados[0].title}
               </option>
-            ) : eventoscreados.length > 1 ? (
+            ) : eventoscreados?.length > 1 ? (
               <>
                 {eventoscreados?.map((miseventos) => (
                   <option key={miseventos._id} value={miseventos.title}>

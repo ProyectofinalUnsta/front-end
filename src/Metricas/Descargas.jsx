@@ -30,8 +30,8 @@ const {data, isPending} = useQuery({
     <div className="w-full h-[222px] max-w-sm rounded-xl shadow border p-4 bg-white flex flex-col gap-2">
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-sm text-gray-500"> {isPending ? 'Cargando..' : data  ? `Descargas Archivos ${title}`: !data.length  ?  'No hay archivos!' : null}  </p>
-          <h2 className="text-2xl font-bold text-black"> {isPending ? 'Cargando..' : data ? `+${data?.descargas}` : !data.length  ? 'No hay archivos!' : null}</h2>
+          <p className="text-sm text-gray-500"> {isPending ? 'Cargando..' : data  ? `Descargas Archivos ${title}`: !data ?  'No hay archivos!' : null}  </p>
+          <h2 className="text-2xl font-bold text-black"> {isPending ? 'Cargando..' : data ? `+${data?.descargas}` : !data  ? 'No hay archivos!' : null}</h2>
           <p className="text-sm text-gray-400">+20.1% from last month</p>
         </div>
       </div>
