@@ -12,11 +12,13 @@ import { DisertanteProvider } from './context/DisertanteContext.jsx'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import './index.css'
 import App from './App.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
 
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
+  <AuthProvider>
   <ServerProvider>
     <DisertanteProvider>
     <InscriptoProvider>
@@ -36,5 +38,6 @@ createRoot(document.getElementById('root')).render(
   </InscriptoProvider>
   </DisertanteProvider>
   </ServerProvider>
+  </AuthProvider>
   </QueryClientProvider>,
 )
