@@ -39,6 +39,7 @@ const handleEventosCreadosPorMi = useCallback(
     
     setIsLoading(true);
     const { email } = user;
+
     try {
       const response = await getEventsById(`${endpoints.eventoPorId}${email}`, token);
       setEventosCreados(response);
@@ -67,8 +68,8 @@ setEventosInscriptos(data.data)
 }
 
 const getArchivosCreadosPorMi = async() => {
-const gmail = localStorage.getItem('Inscripto-Gmail')
-const data = await getPresentacionesByMail(gmail)
+const {email} = user
+const data = await getPresentacionesByMail(email)
 
 if(data.data == []){
   setArchivosCreados([])
