@@ -52,7 +52,7 @@ export const CardDetails = ({
 
   // Obtener el link absoluto del evento
   // URL pública de producción
-  const PUBLIC_URL = "https://eventum-front.vercel.app";
+  const PUBLIC_URL = "https://eventum.lat";
   const LOCAL_URL = typeof window !== "undefined" ? window.location.origin : "";
   const eventUrl =
     import.meta.env.MODE === "production"

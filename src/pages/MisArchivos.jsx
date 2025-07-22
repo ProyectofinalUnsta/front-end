@@ -7,9 +7,11 @@ import { formatSize } from '../Files/utils/formatSize';
 import { formatDate } from '../Files/utils/formatDate';
 import endpoints from '../utils/endpoints';
 import axios from 'axios';
+import { MappedPresentationsByMe } from '../Files/components/MappedPresentationsByMe';
+import { getArchivosEvetnoInscripto } from '../utils/peticiones';
 
 export default function MisArchivos() {
-    const { porMi, loading, handlePresentacionesDelete } = useHandleFiles();
+    const { porMi, loading } = useHandleFiles();
     const [error, setError] = useState(false);
     const [archivos, setArchivos] = useState([]);
     const [gmail, setGmail] = useState('');
@@ -30,7 +32,7 @@ export default function MisArchivos() {
         }
         try {
             setBuscado(true);
-            const res = await axios.get(`${endpoints.presentaciones}mispresentaciones/${gmail}`);
+            const res = await getArchivosEvetnoInscripto(gmail);
             setArchivos(res.data || []);
         } catch (err) {
             setError('No se pudieron cargar los archivos para ese Gmail.');
@@ -229,7 +231,7 @@ export default function MisArchivos() {
                         <div className="archivos-grid">
                             {loading ? (
                                 <div className="loading">Cargando archivos...</div>
-                            ) : archivos.length === 0 ? (
+                            ) : porMi == true ? <MappedPresentationsByMe/> : archivos.length === 0 ? (
                                 <div className="no-archivos">No hay archivos disponibles para este Gmail</div>
                             ) : (
                                 archivos.map(presentacion => (
