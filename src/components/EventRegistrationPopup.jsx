@@ -19,7 +19,6 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                     <input
                         type="email"
                         placeholder="Ingresa tu correo electrónico"
-                        value={''}
                         onChange={(e) => InscritosActions.updateGmail(e.target.value)}
                         disabled={data != true ? false : true}
                         required
@@ -27,14 +26,12 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                      <input
                         type="text"
                         placeholder="Ingresa tu nombre"
-                        value={''}
                         onChange={(e) => InscritosActions.updateNombre(e.target.value)}
                         required
                     />
                      <input
                         type="text"
                         placeholder="Ingresa tu apellido"
-                        value={''}
                         onChange={(e) => InscritosActions.updateApellido(e.target.value)}
                         required
                     />
