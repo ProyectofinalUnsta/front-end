@@ -91,7 +91,25 @@ export const AdminMenu = () =>{
                 <span className='admin-role-name' style={{display: displayed && width < 470 ? 'none' : 'flex'}}>Admin</span>
             </div>
             <figure className='img-container-user' style={{zIndex:2}}>
-               <MiUserIcon width={'26px'} height={'26px'}/>
+               {user?.profileImage ? (
+                 <img 
+                   src={user.profileImage} 
+                   alt="Foto de perfil" 
+                   style={{
+                     width: '100%',
+                     height: '100%',
+                     borderRadius: '50%',
+                     objectFit: 'cover',
+                     border: '2px solid #7367F0'
+                   }}
+                   onError={(e) => {
+                     e.target.style.display = 'none';
+                     e.target.nextSibling.style.display = 'block';
+                   }}
+                 />
+               ) : (
+                 <MiUserIcon width={'26px'} height={'26px'}/>
+               )}
             </figure>
             {showLogout && (
               <div
