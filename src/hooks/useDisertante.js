@@ -68,7 +68,6 @@ const handlePresentacionesSubmitDisertantes = async (e) => {
        
        const disertante = await getDisertanteRegistro({_id,disertantegmail})
         
-         console.log(disertantegmail,Data.file,disertantenombre)
 
         if ( !disertantegmail || !Data.file || !disertantenombre) {
             setError({message:'Todos los campos son obligatorios',value:true});

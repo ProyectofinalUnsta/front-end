@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import './permiso.css'
 import { useQuery } from "@tanstack/react-query"
 import { useDisertanteFilter } from "../hooks/useDisertanteFilter"
@@ -16,12 +16,12 @@ const {getListaDisertantesMetricas} = useDisertanteFilter()
 
   const itemsPerPage = 4;
 
-  const lista = data?.lista ?? [];
+  const lista = useMemo(()=>{
+     return data?.lista ?? [];
+  },[data]) 
 
   const paginatedItems = lista.slice((page - 1) * itemsPerPage, page * itemsPerPage);
-
   const totalPages = Math.ceil(lista.length / itemsPerPage);
-
 const nextPage = () => {
   if(page >= totalPages) return
   setPage(page + 1)
@@ -64,11 +64,11 @@ return(
 
 {isPending ? (<div className="px-4 py-6 text-center text-sm text-gray-500">
     Cargando..
-  </div> ) : (data.total == 0 || !data?.length ? 
+  </div> ) : (!data.total  ? 
      <div className="px-4 py-6 text-center text-sm text-gray-500">
     Aún no hay disertantes.
   </div>
-   :  paginatedItems?.map((disertante, index) => (
+   :  paginatedItems.map((disertante, index) => (
     <aside
       key={index}
       className="w-full h-[49px] grillalistadisertante  sm:grid-cols-10 gap-0 px-4 py-2 border-t border-gray-100 hover:bg-[#e5e5e533]"

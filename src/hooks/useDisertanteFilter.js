@@ -46,7 +46,7 @@ const {data} = response
 return data
 }
 else {
-const data = []
+const data = {total:0}
 return data
 }
 }
