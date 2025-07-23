@@ -21,6 +21,7 @@ const AdminMetricas = React.lazy(()=> import('../pages/AdminMetricas'))
 const VerMisIncripciones = React.lazy(()=> import('../pages/VerMisIncripciones'))
 const PoliticasPage = React.lazy(()=> import('../pages/PoliticasPage'))
 const ContactanosPage = React.lazy(()=> import('../pages/ContactanosPage'))
+const UserProfilePage = React.lazy(()=> import('../pages/UserProfilePage'))
 
 export default function Router () {
     return(
@@ -72,6 +73,9 @@ export default function Router () {
                   </Suspense>} />
                   <Route path='/contactanos' element={<Suspense fallback={<div>Cargando...</div>}>
                     <ContactanosPage/>
+                  </Suspense>} />
+                  <Route path='/usuario' element={<Suspense fallback={<div>Cargando...</div>}>
+                    <UserProfilePage/>
                   </Suspense>} />
                   <Route path='*' element={ <Suspense fallback={<div>cargando...</div>}>
                     <ErrorPage/>
