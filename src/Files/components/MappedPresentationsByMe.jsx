@@ -58,39 +58,43 @@ let filename;
                     ) : archivoscreados.length === 0 ? (
                         <div className="no-archivos">No hay archivos disponibles</div>
                     ) : (
-                        archivoscreados.map(presentacion => (
-                            <div key={presentacion._id} className="archivo-card">
-                                <div className="archivo-icon">
-                               {getFileIcon(presentacion.fileType)}
-                                </div>
-                                <div className="archivo-info">
-                                    <h3>Nombre: {presentacion.filename}</h3>
-                                    {/* <p>Evento: {presentacion.event}</p> */}
-                                    <p>Subido Por: {presentacion.user}</p>
-                                    <p>Gmail:{presentacion.gmail} </p>
-                                    <p>Evento: {presentacion.event?.title} </p>
-                                    <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
-                                    <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
-                                </div>
-                                <div className="archivo-actions">
-                                    <a 
-                                        onClick={()=> downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
-                                        className="btn-download"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        Descargar
-                                    </a>
-                                     <button
-                                        onClick={() => handlePresentacionesDelete(presentacion._id)}
-                                        className="btn-delete"
-                                        disabled={loading}
-                                    >
-                                        Eliminar
-                                    </button>
-                                </div>
-                            </div>
-                        ))
+                        <div className="archivos-grid">
+                          {[...archivoscreados]
+                            .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
+                            .map(presentacion => (
+                              <div key={presentacion._id} className="archivo-card">
+                                  <div className="archivo-icon">
+                                 {getFileIcon(presentacion.fileType)}
+                                  </div>
+                                  <div className="archivo-info">
+                                      <h3>Nombre: {presentacion.filename}</h3>
+                                      {/* <p>Evento: {presentacion.event}</p> */}
+                                      <p>Subido Por: {presentacion.user}</p>
+                                      <p>Gmail:{presentacion.gmail} </p>
+                                      <p>Evento: {presentacion.event?.title} </p>
+                                      <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
+                                      <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
+                                  </div>
+                                  <div className="archivo-actions">
+                                      <a 
+                                          onClick={()=> downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
+                                          className="btn-download"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                      >
+                                          Descargar
+                                      </a>
+                                       <button
+                                          onClick={() => handlePresentacionesDelete(presentacion._id)}
+                                          className="btn-delete"
+                                          disabled={loading}
+                                      >
+                                          Eliminar
+                                      </button>
+                                  </div>
+                              </div>
+                          ))}
+                        </div>
                     )}
         </>
     )

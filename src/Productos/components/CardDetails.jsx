@@ -50,18 +50,17 @@ export const CardDetails = ({
   const [isPreviewLoading, setIsPreviewLoading] = useState(false); // Para mostrar carga en el modal
   const [previewError, setPreviewError] = useState(null); // Para errores en la vista previa
 
-  // Obtener el link absoluto del evento
-  // URL pública de producción
+  // Obtener el link absoluto de la sección de eventos (no del evento específico)
   const PUBLIC_URL = "https://eventum.lat";
   const LOCAL_URL = typeof window !== "undefined" ? window.location.origin : "";
-  const eventUrl =
+  const eventosUrl =
     import.meta.env.MODE === "production"
-      ? `${PUBLIC_URL}/Eventos/${_id}`
-      : `${LOCAL_URL}/Eventos/${_id}`;
+      ? `${PUBLIC_URL}/Eventos/`
+      : `${LOCAL_URL}/Eventos/`;
 
   const handleShare = async () => {
     try {
-      await navigator.clipboard.writeText(eventUrl);
+      await navigator.clipboard.writeText(eventosUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -400,7 +399,8 @@ export const CardDetails = ({
               </button>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(
-                  "¡Mirá este evento! " + eventUrl
+                  "¡No te pierdas los mejores eventos de la comunidad!\n\n" +
+                  "Consulta la agenda, inscríbete y participa >>>  " + eventosUrl
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
