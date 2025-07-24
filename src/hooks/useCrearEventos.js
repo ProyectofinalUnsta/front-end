@@ -34,40 +34,29 @@ export function useCrearEventos (onSuccess) {
         }
     
         const handledate = (e) => {
-            
-         let arr = String(e.target.value)
-         let copy = arr.split('-')
-    
-         let mes = parser(copy[1])
-         let datetoShow = `${mes} ${copy[2]}, ${copy[0]}`
-    
-         setForm((prevData) => ({
-            ...prevData,
-            ['fecha']:datetoShow
-         }))
-    
+            setForm((prevData) => ({
+                ...prevData,
+                ['fecha']: e.target.value // formato YYYY-MM-DD
+            }))
         }
         const handleTime = (e) => {
             const { value, id } = e.target;
-            const hora = value.split(':');
-            const esAM = hora[0] < 12;
-          
             let nuevaEntrada = form.horaentrada || "";
             let nuevaSalida = form.horasalida || "";
           
             if (id === 'hora_entrada') {
-              nuevaEntrada = `${value} ${esAM ? 'AM' : 'PM'} `;
+              nuevaEntrada = value; // formato HH:mm
             }
           
             if (id === 'hora_salida') {
-              nuevaSalida = `- ${value} ${esAM ? 'AM' : 'PM'}`;
+              nuevaSalida = value; // formato HH:mm
             }
           
             setForm((prevData) => ({
               ...prevData,
               horaentrada: nuevaEntrada,
               horasalida: nuevaSalida,
-              hora: `${nuevaEntrada}${nuevaSalida}`,
+              hora: `${nuevaEntrada} - ${nuevaSalida}`,
             }));
           };
           

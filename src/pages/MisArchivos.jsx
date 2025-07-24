@@ -221,53 +221,59 @@ export default function MisArchivos() {
 }
 `}</style>
                     {buscado && !error && <FiltroArchivo />}
-                    <p className="page-subtitle">Descarga y gestiona todos los archivos de presentaciones</p>
+                    {porMi !== true && (
+                        <p className="page-subtitle">Descarga y gestiona todos los archivos de presentaciones</p>
+                    )}
                 </div>
 
                 {error && typeof error === 'string' && <div className="alert alert-error">{error}</div>}
 
                 <div className="">
                     {buscado && !error && (
-                        <div className="archivos-grid">
-                            {loading ? (
-                                <div className="loading">Cargando archivos...</div>
-                            ) : porMi == true ? <MappedPresentationsByMe/> : archivos.length === 0 ? (
-                                <div className="no-archivos">No hay archivos disponibles para este Gmail</div>
-                            ) : (
-                                archivos.map(presentacion => (
-                                    <div key={presentacion._id} className="archivo-card">
-                                        <div className="archivo-icon">
-                                            {getFileIcon(presentacion.fileType)}
-                                        </div>
-                                        <div className="archivo-info">
-                                            <h3>Nombre: {presentacion.filename}</h3>
-                                            <p>Subido Por: {presentacion.user}</p>
-                                            <p>Gmail:{presentacion.gmail} </p>
-                                            <p>Evento: {presentacion.event?.title}</p>
-                                            <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
-                                            <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
-                                        </div>
-                                        <div className="archivo-actions">
-                                            <button
-                                                onClick={() => downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
-                                                className="event-file-download-pro"
-                                                title="Descargar archivo"
-                                            >
-                                                Descargar
-                                            </button>
-                                            <button
-                                                onClick={() => handleVerArchivo(presentacion._id)}
-                                                className="event-file-download-pro"
-                                                disabled={isPreviewLoading}
-                                                title="Ver vista previa"
-                                            >
-                                                {isPreviewLoading ? 'Cargando...' : 'Vista Previa'}
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))
-                            )}
-                        </div>
+                        porMi === true ? null : (
+                            <div className="archivos-grid">
+                                {loading ? (
+                                    <div className="loading">Cargando archivos...</div>
+                                ) : archivos.length === 0 ? (
+                                    <div className="no-archivos">No hay archivos disponibles para este Gmail</div>
+                                ) : (
+                                    archivos
+                                        .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
+                                        .map(presentacion => (
+                                            <div key={presentacion._id} className="archivo-card">
+                                                <div className="archivo-icon">
+                                                    {getFileIcon(presentacion.fileType)}
+                                                </div>
+                                                <div className="archivo-info">
+                                                    <h3>Nombre: {presentacion.filename}</h3>
+                                                    <p>Subido Por: {presentacion.user}</p>
+                                                    <p>Gmail:{presentacion.gmail} </p>
+                                                    <p>Evento: {presentacion.event?.title}</p>
+                                                    <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
+                                                    <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
+                                                </div>
+                                                <div className="archivo-actions">
+                                                    <button
+                                                        onClick={() => downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
+                                                        className="event-file-download-pro"
+                                                        title="Descargar archivo"
+                                                    >
+                                                        Descargar
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleVerArchivo(presentacion._id)}
+                                                        className="event-file-download-pro"
+                                                        disabled={isPreviewLoading}
+                                                        title="Ver vista previa"
+                                                    >
+                                                        {isPreviewLoading ? 'Cargando...' : 'Vista Previa'}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))
+                                )}
+                            </div>
+                        )
                     )}
                 </div>
             </div>

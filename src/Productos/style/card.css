@@ -22,7 +22,10 @@
     border-top-left-radius: 12px;
     width: 100%;
     height: 220px;
-    object-fit: contain;
+    object-fit: cover; /* Cambiado de contain a cover para uniformidad */
+    aspect-ratio: 16/9; /* Mantener proporción uniforme */
+    background: #f3f4f6; /* Fondo neutro si la imagen no carga */
+    display: block;
     transition: transform 0.3s ease;
 }
 
@@ -446,6 +449,13 @@
   .event-file-download {
     width: 100%;
     margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .img-container {
+    height: 160px;
+    aspect-ratio: 16/9;
   }
 }
 
