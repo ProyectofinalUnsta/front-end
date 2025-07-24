@@ -12,15 +12,10 @@ import { formatDate } from "../../Files/utils/formatDate";
 import { formatSize } from "../../Files/utils/formatSize";
 import { EventRegistrationPopup } from "../../components/EventRegistrationPopup";
 import "../style/carddetails.css";
-// import { deburr } from "lodash"; // Parece no usarse, considera quitarla
 import { useLogin } from "../../hooks/useLogin";
 import { useLocation } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaRegCalendarPlus } from "react-icons/fa";
-
-// Importa los estilos del modal de vista previa, si aún no los tienes en carddetails.css
-// (Si ya los pusiste en carddetails.css, no es necesario aquí)
-// import '../style/previewModal.css'; // Ejemplo de un CSS para el modal si lo pones separado
 
 export const CardDetails = ({
   _id,
@@ -49,6 +44,7 @@ export const CardDetails = ({
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isPreviewLoading, setIsPreviewLoading] = useState(false); // Para mostrar carga en el modal
   const [previewError, setPreviewError] = useState(null); // Para errores en la vista previa
+  const [fileTypeForPreview, setFileTypeForPreview] = useState(null); // Nuevo estado para guardar el tipo de archivo
 
   // Obtener el link absoluto de la sección de eventos (no del evento específico)
   const PUBLIC_URL = "https://eventum.lat";
@@ -73,9 +69,7 @@ export const CardDetails = ({
     const fetchArchivos = async () => {
       setLoading(true);
       try {
-        // Buscar archivos por eventId (relación por _id)
         const res = await axios.get(`${endpoints.presentaciones}`);
-        // Filtrar presentaciones cuyo campo event sea igual al _id del evento
         const archivosEvento = res.data.filter(
           (a) => String(a.event) === String(_id) || a.event?._id === _id
         );
@@ -91,30 +85,38 @@ export const CardDetails = ({
   }, [_id]);
 
   // --- Función para manejar la vista previa del archivo ---
-  const handleVerArchivo = async (fileId) => {
+  const handleVerArchivo = async (fileId, fileType) => { // Agregamos fileType como parámetro
     setIsPreviewLoading(true);
     setPreviewError(null);
     setPreviewUrl(null); // Limpiar la URL anterior
+    setFileTypeForPreview(fileType); // Guardamos el tipo de archivo
 
-    const url = `${endpoints.presentaciones}download/${fileId}`;
+    const downloadUrl = `${endpoints.presentaciones}download/${fileId}`;
 
     try {
-      // Axios fetch con responseType 'blob'
-      const response = await axios.get(url, {
-        headers: { Authorization: `Bearer ${token}` },
-        responseType: "blob", // Importante para manejar archivos binarios
-      });
-
-      // Crear un Object URL del blob. El navegador usará el Content-Type de la respuesta
-      // HTTP para renderizar el Blob correctamente en el iframe.
-      const blob = new Blob([response.data], { type: response.headers['content-type'] }); // Usa el Content-Type del encabezado
-      const objectUrl = URL.createObjectURL(blob);
-      setPreviewUrl(objectUrl);
+      // Si es PDF o imagen, usamos el método Blob existente
+      if (fileType.includes('pdf') || fileType.includes('image')) {
+        const response = await axios.get(downloadUrl, {
+          headers: { Authorization: `Bearer ${token}` },
+          responseType: "blob",
+        });
+        const blob = new Blob([response.data], { type: response.headers['content-type'] });
+        const objectUrl = URL.createObjectURL(blob);
+        setPreviewUrl(objectUrl);
+      } else if (
+        fileType.includes('doc') || fileType.includes('docx') ||
+        fileType.includes('ppt') || fileType.includes('pptx')
+      ) {
+         const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(downloadUrl)}&embedded=true`;
+        setPreviewUrl(googleViewerUrl);
+      } else {
+        setPreviewError("Este tipo de archivo no tiene una vista previa disponible en el navegador.");
+        setPreviewUrl(null);
+      }
     } catch (err) {
       console.error("Error al abrir el archivo:", err);
-      setPreviewError("No se pudo cargar la vista previa del archivo. Asegúrate de que el formato sea compatible (PDF, imágenes, etc.) o verifica tu conexión.");
-      // Limpia la URL en caso de error para evitar que el iframe intente cargarla
-      setPreviewUrl(null);
+      setPreviewError("No se pudo cargar la vista previa del archivo. Asegúrate de que el formato sea compatible o verifica tu conexión.");
+      setPreviewUrl(null); // Limpia la URL en caso de error
     } finally {
       setIsPreviewLoading(false);
     }
@@ -135,12 +137,19 @@ export const CardDetails = ({
       const contentDisposition = response.headers["content-disposition"];
       let filename;
       if (contentDisposition) {
-        filename =
-          contentDisposition
-            .split("filename=")[1]
-            ?.split(":")[0]
-            ?.replace(/["']/g, "") || "archivo";
+        // Mejorar la extracción del nombre de archivo del header
+        const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"';]+)['"]?/i);
+        if (filenameMatch && filenameMatch[1]) {
+          filename = decodeURIComponent(filenameMatch[1].replace(/\"/g, ''));
+        } else {
+          // Fallback para otros formatos de filename
+          const oldFilenameMatch = contentDisposition.match(/filename=(.+)/);
+          if (oldFilenameMatch && oldFilenameMatch[1]) {
+            filename = oldFilenameMatch[1].replace(/["']/g, '');
+          }
+        }
       } else {
+        // Fallback si no hay content-disposition (idealmente tu backend lo enviaría)
         filename = "archivo";
       }
       link.download = filename;
@@ -156,7 +165,7 @@ export const CardDetails = ({
 
   const handleFullscreen = () => {
     const container = document.getElementById("preview-container");
-    if (container) { // Asegúrate de que el contenedor existe
+    if (container) {
       if (container.requestFullscreen) {
         container.requestFullscreen();
       } else if (container.webkitRequestFullscreen) {
@@ -169,11 +178,14 @@ export const CardDetails = ({
 
   // Función para cerrar el modal de vista previa y limpiar la URL
   const closePreviewModal = () => {
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl); // Libera la URL del objeto Blob
+    // Solo revoca la URL del objeto Blob si no es una URL de Google Viewer
+    if (previewUrl && (fileTypeForPreview.includes('pdf') || fileTypeForPreview.includes('image'))) {
+      URL.revokeObjectURL(previewUrl);
     }
     setPreviewUrl(null);
     setPreviewError(null);
+    setIsPreviewLoading(false);
+    setFileTypeForPreview(null); // Resetea el tipo de archivo
   };
 
   // Baja de evento
@@ -520,9 +532,9 @@ export const CardDetails = ({
                   <div style={{ display: 'flex', gap: '8px' }}>
                     {/* Botón "Vista previa" - MODIFICADO */}
                     <button
-                      onClick={() => handleVerArchivo(archivo._id)} // Pasa solo el ID del archivo
-                      className="event-file-download-pro" // Usa una clase específica para "Ver"
-                      disabled={isPreviewLoading} // Deshabilita mientras se carga
+                      onClick={() => handleVerArchivo(archivo._id, archivo.fileType)} // Pasa también el tipo de archivo
+                      className="event-file-download-pro"
+                      disabled={isPreviewLoading}
                       title="Vista previa del archivo"
                     >
                       {isPreviewLoading ? "Cargando..." : "Ver"}
@@ -539,7 +551,7 @@ export const CardDetails = ({
                     >
                       Descargar
                     </button>
-                    
+
                   </div>
                 </li>
               ))}
@@ -590,14 +602,14 @@ export const CardDetails = ({
 
       {/* --- Modal de Vista Previa con Iframe --- */}
       {previewUrl && (
-        <div className="preview-modal-overlay"> {/* Nuevo overlay */}
+        <div className="preview-modal-overlay">
           <div className="preview-modal-content" id="preview-container">
             {/* Mensaje de carga o error */}
             {isPreviewLoading && (
               <div className="preview-loading-text">Cargando vista previa...</div>
             )}
             {previewError && (
-              <div className="preview-error-text" style={{color: 'red', marginBottom: '10px'}}>{previewError}</div>
+              <div className="preview-error-text" style={{ color: 'red', marginBottom: '10px' }}>{previewError}</div>
             )}
 
             {/* Iframe solo se muestra si hay una URL y no hay error */}
@@ -606,21 +618,24 @@ export const CardDetails = ({
                 src={previewUrl}
                 title="Vista previa del archivo"
                 width="100%"
-                height="100%" // Ajusta la altura al 100% del contenido del modal
-                style={{ border: 'none' }} // Elimina el borde predeterminado del iframe
+                height="100%"
+                style={{ border: 'none' }}
+                allowFullScreen // Permite que el iframe entre en modo de pantalla completa
               />
             )}
 
             <div className="preview-buttons">
               <button
-                onClick={closePreviewModal} // Usa la nueva función para cerrar
-                className="event-file-download-pro" // Considera una clase más específica como "btn-close-preview"
+                onClick={closePreviewModal}
+                className="event-file-download-pro"
               >
                 Cerrar
               </button>
-              <button onClick={handleFullscreen} className="event-file-download-pro">
-                Pantalla completa
-              </button>
+              {previewUrl && !previewError && ( // Solo muestra el botón si hay algo que previsualizar
+                <button onClick={handleFullscreen} className="event-file-download-pro">
+                  Pantalla completa
+                </button>
+              )}
             </div>
           </div>
         </div>

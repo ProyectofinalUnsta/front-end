@@ -5,13 +5,14 @@ import FiltroArchivo from '../FiltroArchivos/FiltroArchivo';
 import useHandleFiles from '../FiltroArchivos/hook/useHandleFiles';
 import { formatSize } from '../Files/utils/formatSize';
 import { formatDate } from '../Files/utils/formatDate';
+// import { useGetEventsById } from '../hooks/useGetEventsById'; // No se está usando directamente aquí
 import endpoints from '../utils/endpoints';
 import axios from 'axios';
 import { MappedPresentationsByMe } from '../Files/components/MappedPresentationsByMe';
 import { getArchivosEvetnoInscripto } from '../utils/peticiones';
 
 export default function MisArchivos() {
-    const { porMi, loading } = useHandleFiles();
+    const { porMi, loading: loadingPorMiFiles } = useHandleFiles(); // Renombrado para evitar conflicto
     const [error, setError] = useState(false);
     const [archivos, setArchivos] = useState([]);
     const [gmail, setGmail] = useState('');
@@ -19,66 +20,95 @@ export default function MisArchivos() {
     const [previewUrl, setPreviewUrl] = useState(null);
     const [isPreviewLoading, setIsPreviewLoading] = useState(false);
     const [previewError, setPreviewError] = useState(null);
+    const [fileTypeToPreview, setFileTypeToPreview] = useState(null);
+    const [loadingArchivosInscriptos, setLoadingArchivosInscriptos] = useState(false); // Estado para la carga de archivos inscriptos
+
+    // Asume que obtienes el token de alguna parte (ej. localStorage, contexto de autenticación)
+    // Reemplaza 'tu_token_aqui' con la forma real de obtener el token
+    const token = localStorage.getItem('token'); // Ejemplo: si lo guardas en localStorage
 
     // Pedir archivos solo si hay gmail y se buscó
     const handleBuscarArchivos = async (e) => {
         e.preventDefault();
         setError(false);
-        setBuscado(false);
+        setBuscado(false); // Restablecer buscado antes de la nueva búsqueda
         setArchivos([]);
         if (!gmail || !/^[^@\s]+@gmail\.com$/.test(gmail)) {
             setError('Por favor ingresa un Gmail válido.');
             return;
         }
         try {
+            setLoadingArchivosInscriptos(true); // Iniciar carga
             setBuscado(true);
             const res = await getArchivosEvetnoInscripto(gmail);
             setArchivos(res.data || []);
+            if (res.data?.length === 0) { // Usar optional chaining y verificar la longitud
+                setError('No tienes archivos inscriptos con ese gmail.');
+            }
         } catch (err) {
+            console.error("Error al buscar archivos:", err);
             setError('No se pudieron cargar los archivos para ese Gmail.');
             setArchivos([]);
+        } finally {
+            setLoadingArchivosInscriptos(false); // Finalizar carga
         }
     };
 
     const getFileIcon = (fileType) => {
-        if (!fileType) return '📁';
+        if (!fileType) return '📁'; // Manejar caso de fileType undefined
         if (fileType.includes('pdf')) return '📄';
-        if (fileType.includes('doc') || fileType.includes('word')) return '📝';
-        if (fileType.includes('docx') || fileType.includes('word')) return '📝';
-        if (fileType.includes('pptx') || fileType.includes('powerpoint')) return '📊';
-        if (fileType.includes('ppt') || fileType.includes('powerpoint')) return '📊';
+        if (fileType.includes('doc') || fileType.includes('word')) return '📝'; // doc/docx
+        if (fileType.includes('ppt') || fileType.includes('powerpoint')) return '📊'; // ppt/pptx
         if (fileType.includes('image')) return '🖼️';
         return '📁';
     };
 
     // --- FUNCIÓN PARA VISTA PREVIA ---
-    const handleVerArchivo = async (fileId) => {
+    const handleVerArchivo = async (fileId, fileType) => {
         setIsPreviewLoading(true);
         setPreviewError(null);
-        setPreviewUrl(null);
-        const url = `${endpoints.presentaciones}download/${fileId}`;
+        setPreviewUrl(null); // Limpiar URL anterior por si acaso
+        setFileTypeToPreview(fileType); // Guarda el tipo de archivo
+
+        const downloadUrl = `${endpoints.presentaciones}download/${fileId}`;
+
         try {
-            const response = await axios.get(url, {
-                responseType: 'blob',
-            });
-            const blob = new Blob([response.data], { type: response.headers['content-type'] });
-            const objectUrl = URL.createObjectURL(blob);
-            setPreviewUrl(objectUrl);
+            if (fileType.includes('pdf') || fileType.includes('image')) {
+                const response = await axios.get(downloadUrl, {
+                    headers: { Authorization: `Bearer ${token}` }, // Asegúrate de que 'token' esté definido
+                    responseType: 'blob',
+                });
+                const blob = new Blob([response.data], { type: response.headers['content-type'] });
+                const objectUrl = URL.createObjectURL(blob);
+                setPreviewUrl(objectUrl);
+            } else if (
+                fileType.includes('doc') || fileType.includes('docx') ||
+                fileType.includes('ppt') || fileType.includes('pptx')
+            ) {
+                // Usar Google Docs Viewer para Word y PowerPoint
+                const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(downloadUrl)}&embedded=true`;
+                setPreviewUrl(googleViewerUrl);
+            } else {
+                setPreviewError("Este tipo de archivo no tiene una vista previa disponible.");
+            }
         } catch (err) {
-            setPreviewError("No se pudo cargar la vista previa del archivo. Asegúrate de que el formato sea compatible (PDF, imágenes, etc.) o verifica tu conexión.");
-            setPreviewUrl(null);
+            console.error("Error al abrir el archivo:", err);
+            setPreviewError("No se pudo cargar la vista previa del archivo. Asegúrate de que el formato sea compatible (PDF, imágenes, Word, PowerPoint) o verifica tu conexión.");
+            setPreviewUrl(null); // Limpiar URL en caso de error
         } finally {
             setIsPreviewLoading(false);
         }
     };
 
     const closePreviewModal = () => {
-        if (previewUrl) {
+        // Solo revocar ObjectURL si el tipo de archivo es PDF o imagen (porque Google Viewer no usa Blob local)
+        if (previewUrl && (fileTypeToPreview?.includes('pdf') || fileTypeToPreview?.includes('image'))) {
             URL.revokeObjectURL(previewUrl);
         }
         setPreviewUrl(null);
         setPreviewError(null);
         setIsPreviewLoading(false);
+        setFileTypeToPreview(null);
     };
 
     const handleFullscreen = () => {
@@ -89,7 +119,7 @@ export default function MisArchivos() {
             } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen();
             } else if (container.msRequestFullscreen) {
-                container.msRequestFullscreen();
+                container.msFullscreenElement(); // O .msRequestFullscreen()
             }
         }
     };
@@ -97,12 +127,14 @@ export default function MisArchivos() {
     const downloadPresentacion = async (ruta) => {
         try {
             const response = await axios.get(ruta, {
-                responseType: 'blob'
+                responseType: 'blob',
+                headers: { Authorization: `Bearer ${token}` }, // Asegúrate de que 'token' esté definido
             });
             const blob = new Blob([response.data]);
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
+
             const contentDisposition = response.headers['content-disposition'];
             let filename = "archivo";
             if (contentDisposition) {
@@ -115,6 +147,15 @@ export default function MisArchivos() {
                         filename = oldFilenameMatch[1].replace(/["']/g, '');
                     }
                 }
+            } else {
+                const presentationId = ruta.split('/').pop();
+                // Aquí, 'archivos' es la fuente de datos actual.
+                const presentacion = archivos.find(p => p._id === presentationId);
+                if (presentacion) {
+                    filename = presentacion.filename;
+                } else {
+                    filename = `archivo-${presentationId}`;
+                }
             }
             link.download = filename;
             document.body.appendChild(link);
@@ -122,6 +163,7 @@ export default function MisArchivos() {
             link.remove();
             window.URL.revokeObjectURL(url);
         } catch (err) {
+            console.error("Error al descargar el archivo:", err);
             setError("Error al descargar el archivo. Por favor, inténtalo de nuevo.");
         }
     };
@@ -147,6 +189,7 @@ export default function MisArchivos() {
                         <button
                             type="submit"
                             className="btn-ver-animado"
+                            disabled={loadingArchivosInscriptos} // Deshabilitar mientras se busca
                             style={{
                                 width: '100%',
                                 padding: '0.9rem 0',
@@ -168,7 +211,7 @@ export default function MisArchivos() {
                             onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
                             onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                         >
-                            <span className="btn-text">Ver mis archivos</span>
+                            <span className="btn-text">{loadingArchivosInscriptos ? 'Buscando...' : 'Ver mis archivos'}</span>
                             <span className="btn-anim-bg"></span>
                         </button>
                         {error && <div className="alert alert-error" style={{ marginTop: 10 }}>{error}</div>}
@@ -228,52 +271,62 @@ export default function MisArchivos() {
 
                 {error && typeof error === 'string' && <div className="alert alert-error">{error}</div>}
 
-                <div className="">
-                    {buscado && !error && (
-                        porMi === true ? null : (
-                            <div className="archivos-grid">
-                                {loading ? (
-                                    <div className="loading">Cargando archivos...</div>
-                                ) : archivos.length === 0 ? (
-                                    <div className="no-archivos">No hay archivos disponibles para este Gmail</div>
-                                ) : (
-                                    archivos
-                                        .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
-                                        .map(presentacion => (
-                                            <div key={presentacion._id} className="archivo-card">
-                                                <div className="archivo-icon">
-                                                    {getFileIcon(presentacion.fileType)}
+                <div className="archivos-section-content"> {/* Nuevo div para contener las dos posibles secciones de archivos */}
+                    {porMi === true ? (
+                        // Renderiza MappedPresentationsByMe si porMi es true
+                        <MappedPresentationsByMe />
+                    ) : (
+                        // Renderiza la lista de archivos inscriptos si porMi no es true
+                        <div className="archivos-grid">
+                            {loadingArchivosInscriptos ? (
+                                <div className="loading">Cargando archivos...</div>
+                            ) : (
+                                <>
+                                    {archivos.length === 0 ? (
+                                        buscado && !error ? ( // Solo mostrar este mensaje si ya se buscó y no hay error
+                                            <div className="no-archivos">No hay archivos disponibles para este Gmail.</div>
+                                        ) : ( // Mensaje inicial si no se ha buscado todavía
+                                            <div className="no-archivos">Ingresa tu Gmail para buscar archivos.</div>
+                                        )
+                                    ) : (
+                                        archivos
+                                            .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
+                                            .map(presentacion => (
+                                                <div key={presentacion._id} className="archivo-card">
+                                                    <div className="archivo-icon">
+                                                        {getFileIcon(presentacion.fileType)}
+                                                    </div>
+                                                    <div className="archivo-info">
+                                                        <h3>Nombre: {presentacion.filename}</h3>
+                                                        <p>Subido Por: {presentacion.user}</p>
+                                                        <p>Gmail: {presentacion.gmail} </p>
+                                                        <p>Evento: {presentacion.event?.title}</p> {/* Uso seguro de optional chaining */}
+                                                        <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
+                                                        <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
+                                                    </div>
+                                                    <div className="archivo-actions">
+                                                        <button
+                                                            onClick={() => downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
+                                                            className="event-file-download-pro"
+                                                            title="Descargar archivo"
+                                                        >
+                                                            Descargar
+                                                        </button>
+                                                        <button
+                                                            onClick={() => handleVerArchivo(presentacion._id, presentacion.fileType)}
+                                                            className="event-file-download-pro"
+                                                            disabled={isPreviewLoading && fileTypeToPreview === presentacion.fileType} // Deshabilitar solo el botón que se está cargando
+                                                            title="Ver vista previa"
+                                                        >
+                                                            {isPreviewLoading && fileTypeToPreview === presentacion.fileType ? 'Cargando...' : 'Vista Previa'}
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div className="archivo-info">
-                                                    <h3>Nombre: {presentacion.filename}</h3>
-                                                    <p>Subido Por: {presentacion.user}</p>
-                                                    <p>Gmail:{presentacion.gmail} </p>
-                                                    <p>Evento: {presentacion.event?.title}</p>
-                                                    <p>Fecha: {formatDate(presentacion.uploadDate)}</p>
-                                                    <p>Tamaño: {formatSize(presentacion.fileSize)}</p>
-                                                </div>
-                                                <div className="archivo-actions">
-                                                    <button
-                                                        onClick={() => downloadPresentacion(`${endpoints.presentaciones}download/${presentacion._id}`)}
-                                                        className="event-file-download-pro"
-                                                        title="Descargar archivo"
-                                                    >
-                                                        Descargar
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleVerArchivo(presentacion._id)}
-                                                        className="event-file-download-pro"
-                                                        disabled={isPreviewLoading}
-                                                        title="Ver vista previa"
-                                                    >
-                                                        {isPreviewLoading ? 'Cargando...' : 'Vista Previa'}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        ))
-                                )}
-                            </div>
-                        )
+                                            ))
+                                    )}
+                                </>
+                            )}
+                        </div>
                     )}
                 </div>
             </div>
@@ -295,6 +348,7 @@ export default function MisArchivos() {
                                 width="100%"
                                 height="100%"
                                 style={{ border: 'none' }}
+                                allowFullScreen
                             />
                         )}
 
@@ -305,12 +359,14 @@ export default function MisArchivos() {
                             >
                                 Cerrar
                             </button>
-                            <button
-                                onClick={handleFullscreen}
-                                className="event-file-download-pro"
-                            >
-                                Pantalla completa
-                            </button>
+                            {previewUrl && !previewError && (
+                                <button
+                                    onClick={handleFullscreen}
+                                    className="event-file-download-pro"
+                                >
+                                    Pantalla completa
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

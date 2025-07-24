@@ -255,8 +255,8 @@ button:disabled {
 
 @media (max-width: 900px) {
   .archivos-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    grid-template-columns: repeat(3, 1fr);
+   }
 }
 
 @media (max-width: 640px) {
@@ -275,10 +275,4 @@ button:disabled {
     .archivos-grid {
       grid-template-columns: 1fr;
     }
-}
-
-@media (min-width: 901px) {
-  .archivos-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 } 

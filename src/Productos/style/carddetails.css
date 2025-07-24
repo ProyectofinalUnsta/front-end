@@ -1,18 +1,27 @@
-.preview-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-    flex-direction: column; /* Para centrar el contenido y los botones */
-    padding: 20px; /* Un poco de padding */
-    box-sizing: border-box; /* Para que el padding no desborde */
+/* --- Base y Fuentes --- */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Asegura que padding y border se incluyan en el ancho/alto */
 }
+
+/* --- Animación de Gradiente (si la usas) --- */
+@keyframes logo-gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+/* --- Modal de Vista Previa (Iframe para PDFs, etc.) --- */
+
 
 .preview-modal-content {
     background-color: #fff;
@@ -21,20 +30,331 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    max-width: 90%; /* Ancho máximo para el modal */
-    max-height: 90%; /* Alto máximo para el modal */
+    max-width: 95%; /* Ocupa la mayoría del ancho disponible */
+    max-height: 95%; /* Ocupa la mayoría del alto disponible */
     width: 100%; /* Permite que ocupe el ancho disponible */
     height: 100%; /* Permite que ocupe el alto disponible */
-    overflow: hidden; /* Oculta el desbordamiento si el contenido es demasiado grande */
-    position: relative; /* Para posicionar el spinner/mensaje de error */
+    overflow: hidden; /* **Importante:** Oculta el desbordamiento general del contenido */
+    position: relative;
 }
 
+/* Estilos para el iframe (usado para PDFs, PPTs, DOCs) */
 .preview-modal-content iframe {
-    flex-grow: 1; /* Permite que el iframe ocupe el espacio disponible */
-    min-height: 0; /* Asegura que el iframe se encoja correctamente */
+    flex-grow: 1; /* Permite que el iframe ocupe todo el espacio vertical disponible */
+    min-height: 0; /* Asegura que el iframe se encoja correctamente si es necesario */
+    width: 100%; /* **Esencial:** Ocupa el 100% del ancho del modal */
+    height: 100%; /* **Esencial:** Ocupa el 100% del alto del espacio disponible */
+    border: none;
+    display: block; /* Asegura que no haya espacios extra */
 }
 
-.preview-loading-text, .preview-error-text {
+.image-modal-overlay { /* Si usas una clase diferente para tu modal de imagen, cámbiala aquí */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Fondo muy oscuro para centrar la atención en la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1002; /* Asegúrate de que esté por encima del modal de previsualización */
+}
+
+.image-modal-overlay img {
+    max-width: 95vw; /* La imagen no superará el 95% del ancho del viewport */
+    max-height: 95vh; /* La imagen no superará el 95% del alto del viewport */
+    width: auto; /* Permite que la imagen se escale manteniendo su proporción */
+    height: auto; /* Permite que la imagen se escale manteniendo su proporción */
+    object-fit: contain; /* **CLAVE:** Escala la imagen para que quepa completamente sin recortarse */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    display: block; /* Elimina cualquier espacio adicional */
+}
+
+/* --- Contenedor Principal del Evento --- */
+.event-details-main-container {
+    max-width: 1400px; /* Limita el ancho máximo para pantallas grandes */
+    margin: 2.5rem auto 2rem auto; /* Centra el contenido, ajustado para mayor espaciado */
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(37,99,235,0.08);
+    padding: 2.5rem 2rem 2rem 2rem; /* Relleno general del contenedor */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Espacio entre secciones principales */
+}
+
+/* --- Botón Volver --- */
+.back-button-pro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+.back-button-pro:hover {
+    color: #dc2626; /* Rojo al pasar el ratón */
+}
+
+/* --- Encabezado del Evento (Imagen y Título/Meta) --- */
+.event-header-pro {
+    display: flex;
+    flex-direction: column; /* Por defecto, apilado para móviles */
+    gap: 2rem;
+    align-items: flex-start; /* Alinea los elementos al inicio */
+}
+
+/* Imagen del Evento */
+.event-image-pro img {
+    width: 100%; /* Ocupa el 100% del ancho del contenedor en móvil */
+    max-width: 260px; /* Ancho máximo original para la imagen */
+    height: 180px;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsión */
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: #f4f6fa;
+}
+
+/* Información del Encabezado (Título, Compartir, Meta) */
+.event-header-info-pro {
+    flex: 1; /* Permite que el contenido ocupe el espacio restante */
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.event-title-pro {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: logo-gradient-move 8s ease-in-out infinite;
+    word-break: break-word; /* Permite que el texto se rompa */
+    overflow-wrap: break-word;
+}
+
+.event-meta-pro {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea */
+    gap: 1rem; /* Ajustado para menor espacio en móvil, luego se expandirá */
+    color: #374151;
+    font-size: 1.1rem;
+    font-weight: 500;
+    align-items: center;
+}
+.event-meta-pro span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* --- Descripción del Evento --- */
+.event-description-pro {
+    background: #f4f6fa;
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    border: 1px solid #e5e7eb;
+}
+.event-description-pro h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #2563eb;
+}
+.event-description-pro p {
+    color: #374151;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* --- Acciones del Evento (Botones) --- */
+.event-actions-pro {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan a la siguiente línea */
+    gap: 1.5rem;
+    align-items: center;
+}
+.register-event-btn-pro,
+.disertante-event-btn-pro,
+.event-unsubscribe-btn-pro {
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(37,99,235,0.10);
+    white-space: nowrap; /* Evita que el texto del botón se rompa */
+}
+
+.disertante-event-btn-pro {
+    background: rgb(90, 153, 173);
+    color: #fff;
+}
+.disertante-event-btn-pro:hover:not(:disabled) {
+    background: rgb(84, 82, 209);
+}
+
+.register-event-btn-pro {
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    color: #fff;
+}
+.register-event-btn-pro:disabled {
+    background: #e5e7eb;
+    color: #64748b;
+    cursor: not-allowed;
+}
+.register-event-btn-pro:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ef4444, #3b82f6);
+}
+
+.event-unsubscribe-btn-pro {
+    background-color: #fff;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    /* Ajusta el padding si es necesario para que sea consistente */
+    padding: 0.7rem 1.5rem; /* Ajustado */
+}
+.event-unsubscribe-btn-pro:hover {
+    background-color: #ffeaea;
+}
+.event-unsubscribe-btn-pro:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- Sección de Archivos del Evento --- */
+.event-files-section-pro {
+    margin-top: 0.5rem;
+    padding: 1.25rem 1rem;
+    background: #f4f6fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+    border: 1px solid #e5e7eb;
+}
+.event-files-section-pro h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: logo-gradient-move 8s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-files-loading-pro,
+.event-files-empty-pro {
+    color: #64748b;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+.event-files-list-pro {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Por defecto, apilado para móvil */
+    gap: 0.75rem;
+}
+.event-file-item-pro {
+    display: flex;
+    flex-direction: column; /* Apila los elementos para móvil */
+    align-items: flex-start; /* Alinea al inicio cuando están apilados */
+    gap: 0.5rem; /* Espacio entre los elementos apilados */
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.2s;
+}
+.event-file-item-pro:hover {
+    box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+}
+.event-file-name-pro {
+    flex: 2;
+    font-weight: 500;
+    color: #1e293b;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+.event-file-date-pro,
+.event-file-size-pro {
+    flex: 1;
+    color: #64748b;
+    font-size: 0.95rem;
+    text-align: left; /* Alinea a la izquierda en móvil */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+/* Contenedor de botones para archivos */
+.event-file-item-pro > div {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan */
+    gap: 8px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+.event-file-download-pro {
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(37,99,235,0.10);
+    flex-grow: 1; /* Permite que los botones crezcan para llenar el espacio */
+    text-align: center; /* Centra el texto en botones flexibles */
+    min-width: 100px; /* Ancho mínimo para el botón */
+}
+.event-file-download-pro:hover {
+    background: linear-gradient(135deg, #ef4444, #3b82f6);
+    box-shadow: 0 4px 12px rgba(220,38,38,0.10);
+}
+
+
+/* --- Modal de Vista Previa (Iframe) --- */
+.preview-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85); /* Fondo más oscuro para mejor contraste */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    padding: 10px; /* Pequeño padding alrededor del modal para pantallas muy pequeñas */
+    box-sizing: border-box;
+}
+
+
+.preview-loading-text,
+.preview-error-text {
     color: #333;
     font-size: 1.2rem;
     text-align: center;
@@ -43,7 +363,6 @@
     border-radius: 5px;
     background-color: #f0f0f0;
 }
-
 .preview-error-text {
     background-color: #ffebee;
     color: #ba6363;
@@ -55,9 +374,10 @@
     justify-content: center;
     gap: 15px;
     margin-top: 20px;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
 }
 
-.btn-download { /* Puedes reutilizar esta clase o crear una nueva para los botones del modal */
+.btn-download, .event-file-download-pro { /* Reutiliza tu clase de botón o usa una nueva específica */
     background-color: #1e49a6;
     color: white;
     border: none;
@@ -66,274 +386,98 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    flex-grow: 1; /* Permite que los botones crezcan para llenar el espacio */
+    min-width: 120px; /* Ancho mínimo para cada botón */
+    text-align: center; /* Centra el texto en los botones */
 }
 
-.btn-download:hover {
+.btn-download:hover, .event-file-download-pro:hover {
     background-color: #1a3c8a;
 }
 
 
-/* Estilos para la nueva estructura profesional del detalle de evento */
+/* --- Media Queries para Adaptación a Diferentes Tamaños de Pantalla --- */
 
+/* Para tablets y pantallas medianas (más de 600px) */
+@media (min-width: 601px) {
+    .event-details-main-container {
+        padding: 2.5rem; /* Relleno un poco más grande */
+    }
 
+    .event-header-pro {
+        flex-direction: row; /* Imagen y texto lado a lado */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+    }
 
-.event-details-main-container {
-  max-width: 1400px;
-  margin: 2.5rem auto 2rem auto;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(37,99,235,0.08);
-  padding: 2.5rem 2rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-.back-button-pro {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: none;
-  border: none;
-  color: #2563eb;
-  font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin-bottom: 0.5rem;
-  transition: color 0.2s;
-}
-.back-button-pro:hover {
-  color: #dc2626;
-}
-.event-header-pro {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-.event-image-pro img {
-  width: 260px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background: #f4f6fa;
-}
-.event-header-info-pro {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.event-title-pro {
-  font-size: 2.2rem;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(135deg, #dc2626, #2563eb);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: logo-gradient-move 8s ease-in-out infinite;
-}
-.event-meta-pro {
-  display: flex;
-  gap: 1.5rem;
-  color: #374151;
-  font-size: 1.1rem;
-  font-weight: 500;
-  align-items: center;
-}
-.event-meta-pro span {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.event-description-pro {
-  background: #f4f6fa;
-  border-radius: 10px;
-  padding: 1.25rem 1rem;
-  border: 1px solid #e5e7eb;
-}
-.event-description-pro h2 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #2563eb;
-}
-.event-description-pro p {
-  color: #374151;
-  font-size: 1.05rem;
-  margin: 0;
-}
-.event-actions-pro {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.register-event-btn-pro {
-  background: linear-gradient(135deg, #dc2626, #2563eb);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(37,99,235,0.10);
+    .event-image-pro img {
+        width: 260px; /* Vuelve al tamaño fijo para pantallas más grandes */
+    }
+
+    .event-header-info-pro {
+        padding-left: 1.5rem; /* Espacio entre imagen y texto */
+        width: auto; /* Ancho automático gestionado por flexbox */
+    }
+
+    .event-meta-pro {
+        gap: 1.5rem; /* Espaciado original para meta */
+    }
+
+    .event-file-item-pro {
+        flex-direction: row; /* Vuelve a poner los elementos de archivo en fila */
+        align-items: center;
+        justify-content: space-between; /* Espacia los elementos */
+    }
+
+    .event-file-name-pro {
+        white-space: nowrap; /* Mantén el nombre en una línea con elipsis */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: auto; /* Ancho automático gestionado por flex */
+    }
+
+    .event-file-date-pro,
+    .event-file-size-pro {
+        text-align: right; /* Alinea a la derecha */
+        width: auto; /* Ancho automático gestionado por flex */
+    }
+
+    .event-file-item-pro > div { /* Contenedor de botones para archivo */
+        width: auto;
+        flex-shrink: 0; /* Evita que los botones se encojan demasiado */
+    }
+
+    .event-file-download-pro {
+        flex-grow: 0; /* Los botones no crecen tanto en pantallas más grandes */
+        min-width: unset; /* Reinicia el ancho mínimo */
+    }
 }
 
-.disertante-event-btn-pro{
-  background: rgb(90, 153, 173);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(37,99,235,0.10);
-}
+/* Para desktops y pantallas grandes (más de 900px) */
+@media (min-width: 901px) {
+    .event-details-main-container {
+        padding: 2.5rem 3rem; /* Más padding horizontal */
+        margin: 3rem auto; /* Más margen superior */
+    }
 
-.disertante-event-btn-pro:hover:not(:disabled) {
-  background: rgb(84, 82, 209);
-}
+    .event-title-pro {
+        font-size: 2.8rem; /* Tamaño de fuente más grande */
+    }
 
+    .event-meta-pro {
+        gap: 2rem; /* Más espacio entre elementos meta */
+    }
 
-.register-event-btn-pro:disabled {
-  background: #e5e7eb;
-  color: #64748b;
-  cursor: not-allowed;
-}
-.register-event-btn-pro:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ef4444, #3b82f6);
-}
-.event-files-section-pro {
-  margin-top: 0.5rem;
-  padding: 1.25rem 1rem;
-  background: #f4f6fa;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(37,99,235,0.07);
-  border: 1px solid #e5e7eb;
-}
-.event-files-section-pro h3 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #dc2626, #2563eb);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: logo-gradient-move 8s ease-in-out infinite;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.event-files-list-pro {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.event-file-item-pro {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: #fff;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  border: 1px solid #e5e7eb;
-  transition: box-shadow 0.2s;
-}
-.event-file-item-pro:hover {
-  box-shadow: 0 4px 16px rgba(37,99,235,0.10);
-}
-.event-file-name-pro {
-  flex: 2;
-  font-weight: 500;
-  color: #1e293b;
-  font-size: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.event-file-date-pro, .event-file-size-pro {
-  flex: 1;
-  color: #64748b;
-  font-size: 0.95rem;
-  text-align: right;
-}
-.event-file-download-pro {
-  background: linear-gradient(135deg, #dc2626, #2563eb);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(37,99,235,0.10);
-}
-.event-file-download-pro:hover {
-  background: linear-gradient(135deg, #ef4444, #3b82f6);
-  box-shadow: 0 4px 12px rgba(220,38,38,0.10);
-}
-.event-files-loading-pro, .event-files-empty-pro {
-  color: #64748b;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-  text-align: center;
-}
-@media (max-width: 900px) {
-  .event-details-main-container {
-    padding: 1.5rem 0.5rem;
-  }
-  .event-header-pro {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-  }
-  .event-image-pro img {
-    width: 100%;
-    height: 180px;
-    margin-bottom: 1rem;
-  }
-}
-@media (max-width: 600px) {
-  .event-details-main-container {
-    padding: 0.5rem 0.1rem;
-    gap: 1.2rem;
-  }
-  .event-title-pro {
-    font-size: 1.3rem;
-  }
-  .event-meta-pro {
-    font-size: 0.95rem;
-    gap: 0.7rem;
-  }
-  .event-description-pro {
-    padding: 0.7rem 0.5rem;
-  }
-  .event-files-section-pro {
-    padding: 0.7rem 0.5rem;
-  }
-  .event-file-item-pro {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 0.75rem 0.5rem;
-  }
-  .event-file-name-pro, .event-file-date-pro, .event-file-size-pro {
-    text-align: left;
-    font-size: 0.95rem;
-  }
-  .event-file-download-pro {
-    width: 100%;
-    margin-top: 0.5rem;
-  }
+    .event-actions-pro {
+        gap: 2rem; /* Más espacio entre botones de acción */
+    }
+
+    .event-file-item-pro {
+        padding: 1rem 1.5rem; /* Más padding para los ítems de archivo */
+    }
+
+    .preview-modal-content {
+        max-width: 1200px; /* Aumenta el ancho máximo del modal de vista previa */
+        max-height: 800px; /* Aumenta el alto máximo */
+        padding: 30px; /* Más padding para el modal */
+    }
 }

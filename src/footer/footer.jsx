@@ -48,7 +48,7 @@ export const MobileFooter = () => {
               <Link to="/contactanos">Contactanos</Link>
             </li>
             <li>
-              <a href="https://x.com/eventumLat" target="_blank" rel="noopener noreferrer">Twitter</a>
+               <a href="https://x.com/eventumLat" target="_blank" rel="noopener noreferrer">Twitter</a>
             </li>
             <li>
               <a href="https://www.instagram.com/eventum.lat/" target="_blank" rel="noopener noreferrer">Instagram</a>

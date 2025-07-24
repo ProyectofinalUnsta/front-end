@@ -1,48 +1,88 @@
+/* --- Estilos base del contenedor --- */
 .error404-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     text-align: center;
-    height: 100vh;
-    background-color: #f8f9fa;
-  }
-  .font-404-text {
-  font-size: 12rem;
-  font-weight: 600;
-  background: linear-gradient(
-    to top,
-    #2e2e2e 0%,
-    #4d4d4d 25%,
-    #000000 40%,
-    #003f5c 60%,
-    #3399ff 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  }
-  .loading-logo {
-    width: 150px;
-    height: auto;
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
+    background-color: #e7ebee;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* --- Estilos para el h1 que contiene los 4s y el misil --- */
+.font-404-text {
+    font-size: 15rem; /* Tamaño grande para los 4s */
+    font-weight: 600;
+    background: linear-gradient(
+        to top,
+        #2e2e2e 0%,
+        #4d4d4d 25%,
+        #000000 40%,
+        #003f5c 60%,
+        #3399ff 100%
+    );
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 20px; /* Ajusta el margen superior según necesites */
+    margin-bottom: 0.2em;
+
+    /* Propiedades Flexbox para alinear el 4, el misil y el 4 */
+    display: flex; /* Convierte el h1 en un contenedor flex */
+    align-items: center; /* Centra verticalmente los ítems (4s y misil) */
+    justify-content: center; /* Centra horizontalmente el conjunto completo */
+    gap: 20px; /* **AJUSTA ESTE VALOR para el espacio entre los elementos** */
+    /* Este 'gap' afectará el espacio entre "4" y "misil", y entre "misil" y "4" */
+}
+
+/* Para asegurar que los spans hereden el estilo del degradado */
+.font-404-text span {
+    background: inherit;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Puedes ajustar el padding o margin de los spans si necesitas más control sobre el espacio interno del 4 */
+    /* padding: 0 10px; */
+}
+
+/* --- Estilos para la imagen del misil dentro del h1 --- */
+.spinning-missile {
+    width: 150px; /* **AJUSTA ESTE VALOR para el tamaño de tu misil** */
+    height: auto; /* Mantiene la proporción de la imagen */
+    /* margin-bottom: 0; */ /* Asegúrate de que no tenga un margen inferior excesivo que lo separe */
+    
+    /* Animación de giro */
+    animation: spinInfinite 4s linear infinite; /* 4s para una vuelta, linear, infinito */
+    
+    /* Puedes ajustar su posición un poco si necesitas microajustes */
+    /* position: relative;
+    top: -5px; */
+}
+
+/* Definición del Keyframe para el giro infinito (ya lo tenías) */
+@keyframes spinInfinite {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-  
-  h1 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  p {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .home-link {
+}
+
+
+/* --- Otros estilos generales (descripción, enlace, etc.) --- */
+.descripcion-text {
+    font-size: 2em;
+    color: #b43d3d;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.small-text {
+    font-size: 1.1em;
+    color: #855c5c;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.home-link {
     display: inline-block;
     margin-top: 15px;
     padding: 10px 20px;
@@ -51,33 +91,52 @@
     text-decoration: none;
     border-radius: 5px;
     transition: 0.3s;
-  }
-  
-  .home-link:hover {
+}
+
+.home-link:hover {
     background-color: #0056b3;
-  }
+}
 
 
-  @media (width < 1200px) {
+/* --- Media Queries (Ajustes responsivos) --- */
+@media (max-width: 1200px) {
     .font-404-text {
-      font-size: 10rem;
-      } 
-  }
+        font-size: 10rem;
+        gap: 30px; /* Ajusta el gap */
+    }
+    .spinning-missile {
+        width: 120px; /* Ajusta el tamaño del misil */
+    }
+}
 
-  @media (width < 800px) {
+@media (max-width: 800px) {
     .font-404-text {
-      font-size: 8rem;
-      } 
-  }
-
-  @media (width < 500px) {
-    .font-404-text {
-      font-size: 5rem;
-      } 
-      .descripcion-text {
-        font-size: 1.4rem;
-      }
+        font-size: 8rem;
+        gap: 20px; /* Ajusta el gap */
+    }
+    .spinning-missile {
+        width: 100px; /* Ajusta el tamaño del misil */
+    }
+    .descripcion-text {
+        font-size: 1.6em;
+    }
     .small-text {
-      font-size: 1rem;
+        font-size: 1em;
     }
+}
+
+@media (max-width: 500px) {
+    .font-404-text {
+        font-size: 5rem;
+        gap: 15px; /* Ajusta el gap */
     }
+    .spinning-missile {
+        width: 70px; /* Ajusta el tamaño del misil */
+    }
+    .descripcion-text {
+        font-size: 1.2em;
+    }
+    .small-text {
+        font-size: 0.9em;
+    }
+}
