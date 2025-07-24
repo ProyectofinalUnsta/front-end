@@ -5,7 +5,7 @@ import '../Productos/style/carddetails.css'
 export const EventRegistrationPopup = ({Modal,closeModal}) => {
     const location = useLocation()
     const {_id,title} = location.state || {}
-    const {gmail,nombre,apellido,InscritosActions,data, handleInscriptosSubmit,showSuccess, setShowSuccess } = useInscriptos({_id,title})
+    const {InscritosActions,data, handleInscriptosSubmit,showSuccess, setShowSuccess } = useInscriptos({_id,title})
 
 
 
@@ -19,7 +19,6 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                     <input
                         type="email"
                         placeholder="Ingresa tu correo electrónico"
-                        value={gmail}
                         onChange={(e) => InscritosActions.updateGmail(e.target.value)}
                         disabled={data != true ? false : true}
                         required
@@ -27,14 +26,12 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                      <input
                         type="text"
                         placeholder="Ingresa tu nombre"
-                        value={nombre}
                         onChange={(e) => InscritosActions.updateNombre(e.target.value)}
                         required
                     />
                      <input
                         type="text"
                         placeholder="Ingresa tu apellido"
-                        value={apellido}
                         onChange={(e) => InscritosActions.updateApellido(e.target.value)}
                         required
                     />
@@ -42,7 +39,7 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                         type="text"
                         placeholder="Nombre Evento"
                         value={title}
-                        disabled={true}
+                        disabled
                         required
                     />
 
@@ -50,7 +47,7 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                         type="text"
                         placeholder="Id Evento"
                         value={_id}
-                        disabled={true}
+                        disabled
                         required
                     />
                     <button onClick={(e)=>handleInscriptosSubmit(e)} type="submit">Registrarse</button>

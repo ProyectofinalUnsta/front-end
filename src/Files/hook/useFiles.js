@@ -128,7 +128,8 @@ const CargarPresentaciones = async () => {
 
     
     const handlePresentacionesDelete = async (id) => {
-        if (!window.confirm('¿Está seguro de eliminar este archivo?')) return;
+        if (!window.confirm('¿Está seguro de eliminar este archivo?\nLuego de presionar aceptar, actualiza la página para ver los cambios.')) return;
+
 
         try {
             setLoading(true);
@@ -145,7 +146,7 @@ const CargarPresentaciones = async () => {
 
 
     const handleDelete = async (id) => {
-        if (!window.confirm('¿Está seguro de eliminar este archivo?')) return;
+        if (!window.confirm('¿Está seguro de eliminar este archivo?\nLuego de presionar aceptar, actualiza la página para ver los cambios.')) return;
 
         try {
             setLoading(true);
@@ -186,5 +187,5 @@ const CargarPresentaciones = async () => {
 
 
 
-    return {handleSubmit,handleDelete,handleInputChange,handleFileChange,archivos,loading,showForm,success,error,setShowForm,formData,setLoading,presentaciones, handleSelectChange , formsData , handlePresentacionesSubmit , handlePresentacionesDelete}
+    return {handleSubmit,handleDelete,handleInputChange,handleFileChange,archivos,loading,showForm,success,error,setShowForm,formData,setLoading,presentaciones, handleSelectChange , formsData , handlePresentacionesSubmit , handlePresentacionesDelete, setSuccess}
 }
