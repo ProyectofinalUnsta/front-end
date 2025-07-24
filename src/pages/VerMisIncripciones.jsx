@@ -58,7 +58,7 @@ export default function VerMisIncripciones() {
         {gmail && <p className="email-display">Eventos registrados para: {gmail}</p>}
         {error && <p className="error-message">{error}</p>}
       </div>
-      <div className="eventos-grid" style={{marginTop:0,display:'flex',justifyContent:'center',alignItems:'flex-start',width:'100%'}}>
+      <div className="eventos-grid">
         {eventos.length === 0 && !loading && !error ? (
           <p className="no-eventos">No tienes eventos registrados</p>
         ) : (

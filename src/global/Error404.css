@@ -23,6 +23,7 @@
         #003f5c 60%,
         #3399ff 100%
     );
+    
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-top: 20px; /* Ajusta el margen superior según necesites */

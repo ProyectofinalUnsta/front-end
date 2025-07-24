@@ -1,295 +1,327 @@
 /* Mis Eventos Page */
 .mis-eventos-page {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    padding-top: 70px; /* Espacio para el navbar fijo */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding-top: 70px; /* Espacio para el navbar fijo */
 }
 
 .mis-eventos-container {
-    min-height: calc(100vh - 70px);
-    width: 100%;
-    padding: 3rem 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  min-height: calc(100vh - 70px);
+  width: 100%;
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .email-auth-container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    position: relative;
-    overflow: hidden;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+  overflow: hidden;
 }
 
 .email-auth-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(135deg, #dc2626, #2563eb);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #dc2626, #2563eb);
 }
 
 .email-auth-container h2 {
-    color: #1e293b;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .email-auth-container p {
-    color: #64748b;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .email-auth-container form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .email-auth-container input {
-    padding: 1rem 1.25rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: #f8fafc;
+  padding: 1rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8fafc;
 }
 
 .email-auth-container input:focus {
-    outline: none;
-    border-color: #dc2626;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  outline: none;
+  border-color: #dc2626;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .email-auth-container button,
 .cambiar-email-btn {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(135deg, #dc2626, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .email-auth-container button:hover,
 .cambiar-email-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
-    background: linear-gradient(135deg, #ef4444, #3b82f6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+  background: linear-gradient(135deg, #ef4444, #3b82f6);
 }
 
 .email-auth-container button:disabled {
-    background: #94a3b8;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .error-message {
-    color: #dc2626;
-    margin-top: 1rem;
-    font-weight: 500;
-    padding: 0.75rem;
-    background: rgba(220, 38, 38, 0.1);
-    border-radius: 6px;
-    border: 1px solid rgba(220, 38, 38, 0.2);
+  color: #dc2626;
+  margin-top: 1rem;
+  font-weight: 500;
+  padding: 0.75rem;
+  background: rgba(220, 38, 38, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 .eventos-list-container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 1200px;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    position: relative;
-    overflow: hidden;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+  overflow: hidden;
 }
 
 .eventos-list-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(135deg, #dc2626, #2563eb);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #dc2626, #2563eb);
 }
 
 .eventos-list-container h2 {
-    color: #1e293b;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .email-display {
-    color: #64748b;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-style: italic;
-    font-size: 1.1rem;
-    padding: 0.75rem;
-    background: rgba(220, 38, 38, 0.05);
-    border-radius: 8px;
-    border: 1px solid rgba(220, 38, 38, 0.1);
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-style: italic;
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  background: rgba(220, 38, 38, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(220, 38, 38, 0.1);
 }
 
 .eventos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem; /* Espacio entre las tarjetas, mantenido para consistencia */
+  margin-bottom: 2rem;
 }
 
 .evento-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    position: relative;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+
+  /* --- CLAVES PARA EL TAMAÑO UNIFORME --- */
+  display: flex; /* Convierte la tarjeta en un contenedor flex */
+  flex-direction: column; /* Apila imagen y contenido verticalmente */
+  height: 100%; /* Permite que la tarjeta se estire para igualar la altura de otras en la misma fila de la cuadrícula */
 }
 
 .evento-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #dc2626, #2563eb);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .evento-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #dc2626;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #dc2626;
 }
 
 .evento-card:hover::before {
-    transform: scaleX(1);
+  transform: scaleX(1);
 }
 
 .evento-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .evento-card:hover img {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .evento-info {
-    padding: 1.5rem;
+  padding: 1.5rem;
+  display: flex; /* Convierte el info en flexbox */
+  flex-direction: column; /* Apila los elementos internos (h3, p) */
+  flex-grow: 1;
 }
 
 .evento-info h3 {
-    color: #1e293b;
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-    font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  word-break: break-word; /* Permite que títulos largos se rompan */
+  overflow-wrap: break-word;
 }
 
 .evento-info p {
-    color: #64748b;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .no-eventos {
-    text-align: center;
-    color: #64748b;
-    font-style: italic;
-    margin: 3rem 0;
-    font-size: 1.1rem;
-    padding: 2rem;
-    background: rgba(220, 38, 38, 0.05);
-    border-radius: 12px;
-    border: 1px solid rgba(220, 38, 38, 0.1);
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  margin: 3rem 0;
+  font-size: 1.1rem;
+  padding: 2rem;
+  background: rgba(220, 38, 38, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(220, 38, 38, 0.1);
 }
 
 .cambiar-email-btn {
-    display: block;
-    width: fit-content;
-    margin: 2rem auto 0;
-    padding: 0.8rem 1.5rem;
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0;
+  padding: 0.8rem 1.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .mis-eventos-page {
-        padding-top: 60px;
-    }
+  .mis-eventos-page {
+    padding-top: 60px;
+  }
 
-    .mis-eventos-container {
-        min-height: calc(100vh - 60px);
-        padding: 2rem 1rem;
-    }
+  .mis-eventos-container {
+    min-height: calc(100vh - 60px);
+    padding: 2rem 1rem;
+  }
 
-    .email-auth-container,
-    .eventos-list-container {
-        padding: 2rem 1.5rem;
-    }
+  .email-auth-container,
+  .eventos-list-container {
+    padding: 2rem 1.5rem;
+  }
 
-    .email-auth-container h2,
-    .eventos-list-container h2 {
-        font-size: 1.75rem;
-    }
+  .email-auth-container h2,
+  .eventos-list-container h2 {
+    font-size: 1.75rem;
+  }
 
-    .eventos-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
+  .eventos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .mis-eventos-page {
-        padding-top: 55px;
-    }
+  .mis-eventos-page {
+    padding-top: 55px;
+  }
 
-    .mis-eventos-container {
-        min-height: calc(100vh - 55px);
-        padding: 1.5rem 0.75rem;
-    }
+  .mis-eventos-container {
+    min-height: calc(100vh - 55px);
+    padding: 1.5rem 0.75rem;
+  }
 
-    .email-auth-container,
-    .eventos-list-container {
-        padding: 1.5rem 1rem;
-    }
+  .email-auth-container,
+  .eventos-list-container {
+    padding: 1.5rem 1rem;
+  }
 
-    .email-auth-container h2,
-    .eventos-list-container h2 {
-        font-size: 1.5rem;
-    }
+  .email-auth-container h2,
+  .eventos-list-container h2 {
+    font-size: 1.5rem;
+  }
 
-    .email-auth-container p,
-    .email-display {
-        font-size: 1rem;
-    }
-} 
+  .email-auth-container p,
+  .email-display {
+    font-size: 1rem;
+  }
+  .eventos-grid {
+    grid-template-columns: 1fr; /* Una sola columna en móviles pequeños */
+    gap: 1rem; /* Menor espacio entre tarjetas */
+  }
+
+  .evento-card img {
+    height: 180px; /* Ligeramente más pequeña en móviles */
+  }
+
+  .evento-info {
+    padding: 1rem; /* Menor padding para el contenido de la tarjeta */
+  }
+
+  .evento-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .evento-info p {
+    font-size: 0.9rem;
+  }
+}
