@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import '../MisEventos.css';
+import './MisEventos.css';
 import { useGetEventsById } from '../hooks/useGetEventsById';
 import '../global/layout.css'
 import '../global/global.css'
