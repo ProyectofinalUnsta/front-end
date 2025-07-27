@@ -4,7 +4,6 @@ import { useLogin } from "../../hooks/useLogin";
 import useFiles from "../hook/useFiles";
 import { formatDate } from "../utils/formatDate";
 import { formatSize } from "../utils/formatSize";
-import { getFileIcon } from "../utils/getFileIcon";
 import axios from "axios";
 import endpoints from "../../utils/endpoints";
 
@@ -219,14 +218,14 @@ export const MappedPresentationsByMe = () => {
                         <div className="preview-buttons">
                             <button
                                 onClick={closePreviewModal}
-                                className="event-file-download-pro" // Misma clase o una nueva para botones del modal
+                                className="event-file-download-pro delete-button" // Misma clase o una nueva para botones del modal
                             >
                                 Cerrar
                             </button>
                             {previewUrl && !previewError && ( // Solo muestra el botón de pantalla completa si hay algo para previsualizar
                                 <button
                                     onClick={handleFullscreen}
-                                    className="event-file-download-pro"
+                                    className="event-file-download-pro preview-button"
                                 >
                                     Pantalla completa
                                 </button>
