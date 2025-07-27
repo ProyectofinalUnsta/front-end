@@ -229,6 +229,35 @@ color: gray;
   transform: translateY(-2px) scale(1.04);
 }
 
+/* Estilos para las imágenes de perfil de usuario */
+.user-profile-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #7367F0;
+  transition: all 0.3s ease;
+}
+
+.user-profile-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(115, 103, 240, 0.3);
+}
+
+.user-profile-image-small {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #7367F0;
+  transition: all 0.3s ease;
+}
+
+.user-profile-image-small:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(115, 103, 240, 0.3);
+}
+
 @media (max-width: 900px) {
   .logout-btn-admin-container {
     margin-top: 1.2rem;

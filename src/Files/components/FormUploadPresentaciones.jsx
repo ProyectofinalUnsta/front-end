@@ -108,9 +108,7 @@ export const FormUploadPresentaciones = () => {
           name={"eventCode"}
           label={"Nombre Evento"}
           value={formsData.nombreEvento}
-          readOnly={true} // Se asume que este campo se llena automáticamente
-          // Se asume que 'loading' aquí es para indicar si el campo está cargando su valor
-          // Si no, puedes quitar 'loading={true}' ya que es un prop para los inputs
+          readOnly={true}
         />
 
         <FieldFile
@@ -119,8 +117,7 @@ export const FormUploadPresentaciones = () => {
           name={"eventCode"}
           label={"Código del Evento"}
           value={formsData.eventId}
-          readOnly={true} // Se asume que este campo se llena automáticamente
-          // Si no, puedes quitar 'loading={true}'
+          readOnly={true}
         />
 
         <FieldFile
@@ -166,8 +163,7 @@ export const FormUploadPresentaciones = () => {
                   <p>
                     No hay vista previa disponible para este tipo de archivo.
                   </p>
-                  {/* Puedes añadir un icono genérico aquí */}
-                </div>
+              </div>
               )}
             <button
               type="button"
@@ -190,3 +186,4 @@ export const FormUploadPresentaciones = () => {
     </>
   );
 };
+

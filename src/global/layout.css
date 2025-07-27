@@ -142,4 +142,12 @@
     .why-container {
         padding: 2rem 0.5rem;
     }
+    .padre-container {
+        padding: 0;
+        min-width: 100vw;
+    }
+    .sections-container {
+        padding: 0.5rem 0.2rem;
+        min-width: 100vw;
+    }
 }

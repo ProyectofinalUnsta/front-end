@@ -1,0 +1,60 @@
+.text {
+    font-family: "DM Sans", sans-serif;
+}
+
+.DisertanteLista {
+    padding: 1rem;
+}
+
+.labelsText {
+    font-size: 13px;
+}
+
+.rowText {
+    font-size: 0.75rem;
+}
+
+.grillalistadisertante {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* o los que quieras */
+  gap: 1rem;
+  padding: 0.6rem;
+}
+
+.nombredegrilla {
+  grid-column: span 2 / span 2;
+}
+
+.mailgrilla {
+  grid-column:span 3 / span 3;
+}
+
+.actionsgrilla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  grid-column: span 2 / span 2;
+}
+
+@media (min-width:768px) {
+  .grillalistadisertante {
+    grid-template-columns: repeat(8, 2fr);
+  }
+
+  .nombredegrilla {
+    grid-column: span 2 / span 2;
+  }
+
+  .mailgrilla {
+    grid-column: span 6 / span 6;
+    justify-content: center;
+  }
+
+  .actionsgrilla {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  grid-column: span 1 / span 1;
+}
+
+}

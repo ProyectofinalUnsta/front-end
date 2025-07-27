@@ -106,7 +106,7 @@ margin-right: 10px;
     flex-direction: column;
     gap: 2rem;
     transition: width ease 0.8s;
+    background-color: #eeeeee;
 }
-
 
 }

@@ -24,7 +24,7 @@ export const AdminMetrics = () => {
       }
     }
     fetchData()
-    const interval = setInterval(fetchData, 5000) // Actualiza cada 5 segundos
+    const interval = setInterval(fetchData, 50000) // Actualiza cada 5 segundos
     return () => clearInterval(interval)
   }, [user])
 

@@ -9,11 +9,11 @@ import '../AdminComponents/style/sayhi.css'
 
 export const SayHi = () => {
     const { eventoscreados, handleEventosCreadosPorMi } = useGetEventsById()
-    const { handlenavigate } = useNavegacion()
+    const { handlenavigate, navigatewithoutparams } = useNavegacion()
     const { token } = useContext(LoginContext)
 
     const handleCrearEvento = () => {
-      handlenavigate({ ruta: '/Admin/CrearEvento' })
+      navigatewithoutparams({ ruta: '/Admin/CrearEvento' })
     }
 
     const handleEliminarEvento = async (id) => {

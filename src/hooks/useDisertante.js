@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react"
-import { verificarCodigoDisertante } from "../utils/peticiones"
+import { crearDisertante, getDisertanteRegistro, verificarCodigoDisertante } from "../utils/peticiones"
 import { DisertanteContext } from "../context/DisertanteContext"
 import { useState } from "react"
 import { postPresentaciones } from "../Files/utils/postPresentaciones"
 export function useDisertante (_id,title) {
 const id = _id
 
- const {code,setCode,pass,setPass,error,setError,disertantegmail,setDisertanteGmail,disertantenombre,setDisertanteNombre} = useContext(DisertanteContext)
+ const {disertanteList,setDisertanteList,code,setCode,pass,setPass,error,setError,disertantegmail,setDisertanteGmail,disertantenombre,setDisertanteNombre} = useContext(DisertanteContext)
 
 
       const [Data, setData] = useState({
@@ -65,9 +65,9 @@ const saveDisertanteInLocal = () => {
 
 const handlePresentacionesSubmitDisertantes = async (e) => {
        e.preventDefault()
-
+       
+       const disertante = await getDisertanteRegistro({_id,disertantegmail})
         
-         console.log(disertantegmail,Data.file,disertantenombre)
 
         if ( !disertantegmail || !Data.file || !disertantenombre) {
             setError({message:'Todos los campos son obligatorios',value:true});
@@ -86,7 +86,9 @@ const handlePresentacionesSubmitDisertantes = async (e) => {
             saveDisertanteInLocal()
               setLoading(true);
              const response = await postPresentaciones(formDataToSend)
-             console.log(response)
+              if(response.status == 201 && disertante.registered == false) {
+                crearDisertante({gmail:disertantegmail, fullName:disertantegmail ,IdEvento:_id})
+              }
              setSucess(true);
             setData({ file: null });
          
@@ -117,5 +119,5 @@ if(Data.file == null) return;
 },[Data.file, Data.file != ''])
 
 
-return {succes,pass,handleCode,error,handleSubmitDisertante,code,setData,Data,handleFileChange,disertantegmail,handleDisertanteGmail,disertantenombre,handleDisertanteNombre,handlePresentacionesSubmitDisertantes,loading}
+return {disertanteList,setDisertanteList,succes,pass,handleCode,error,handleSubmitDisertante,code,setData,Data,handleFileChange,disertantegmail,handleDisertanteGmail,disertantenombre,handleDisertanteNombre,handlePresentacionesSubmitDisertantes,loading}
 }

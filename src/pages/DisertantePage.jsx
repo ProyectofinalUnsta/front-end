@@ -3,15 +3,29 @@ import { useLocation } from "react-router"
 import "./DisertantePage.css"
 import { useDisertante } from "../hooks/useDisertante"
 import { SucessPopUp } from "../Files/components/SucessPopUp"
-import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, useContext } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+import { DisertanteContext } from "../context/DisertanteContext";
 
 export default function DisertantePage() {
     const location = useLocation()
-    const {title,_id} = location.state || {}
-   const {succes,loading,pass,handleCode,error,handleSubmitDisertante,code,Data,handleDisertanteNombre,handleFileChange,disertantegmail,handleDisertanteGmail,disertantenombre,handlePresentacionesSubmitDisertantes} = useDisertante(_id,title)
+    const params = useParams();
+    // Si location.state existe, usarlo; si no, usar el id de la URL
+    const _id = (location.state && location.state._id) || params.id;
+    const title = (location.state && location.state.title) || '';
+    const { setPass, setCode, setError, setDisertanteGmail, setDisertanteNombre } = useContext(DisertanteContext);
+    const {succes,loading,pass,handleCode,error,handleSubmitDisertante,code,Data,handleDisertanteNombre,handleFileChange,disertantegmail,handleDisertanteGmail,disertantenombre,handlePresentacionesSubmitDisertantes} = useDisertante(_id,title)
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
+
+    // Limpiar contexto al montar
+    useEffect(() => {
+        setPass(false);
+        setCode("");
+        setError({ message: "", value: false });
+        setDisertanteGmail("");
+        setDisertanteNombre("");
+    }, [_id]);
 
 
     useEffect(() => {

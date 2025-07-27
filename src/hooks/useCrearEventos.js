@@ -22,7 +22,7 @@ export function useCrearEventos (onSuccess) {
             imagen:'',
             email:user.email
         })
-        const [loading,setloading] = useState({value:false,message:'Cargando..'})
+        const [loading,setloading] = useState({value:false,message:'Enviar'})
       const {handlesucess} = useAdminMenu()
        const {navigatewithoutparams} = useNavegacion()
         const handletext = (e) => {
@@ -34,40 +34,29 @@ export function useCrearEventos (onSuccess) {
         }
     
         const handledate = (e) => {
-            
-         let arr = String(e.target.value)
-         let copy = arr.split('-')
-    
-         let mes = parser(copy[1])
-         let datetoShow = `${mes} ${copy[2]}, ${copy[0]}`
-    
-         setForm((prevData) => ({
-            ...prevData,
-            ['fecha']:datetoShow
-         }))
-    
+            setForm((prevData) => ({
+                ...prevData,
+                ['fecha']: e.target.value // formato YYYY-MM-DD
+            }))
         }
         const handleTime = (e) => {
             const { value, id } = e.target;
-            const hora = value.split(':');
-            const esAM = hora[0] < 12;
-          
             let nuevaEntrada = form.horaentrada || "";
             let nuevaSalida = form.horasalida || "";
           
             if (id === 'hora_entrada') {
-              nuevaEntrada = `${value} ${esAM ? 'AM' : 'PM'} `;
+              nuevaEntrada = value; // formato HH:mm
             }
           
             if (id === 'hora_salida') {
-              nuevaSalida = `- ${value} ${esAM ? 'AM' : 'PM'}`;
+              nuevaSalida = value; // formato HH:mm
             }
           
             setForm((prevData) => ({
               ...prevData,
               horaentrada: nuevaEntrada,
               horasalida: nuevaSalida,
-              hora: `${nuevaEntrada}${nuevaSalida}`,
+              hora: `${nuevaEntrada} - ${nuevaSalida}`,
             }));
           };
           
@@ -104,17 +93,18 @@ export function useCrearEventos (onSuccess) {
 
     
         const handlesubmit = async () => {
-           setloading({value:true})
+           setloading({value:true,message:'Cargando..'})
             const {horaentrada,horasalida, ...data} = form
             let sendToBack = data
 
              let res = await createEvent(sendToBack,token)
              if(res?.status === 200) {
-              setloading({value:false})
+              setloading({value:false,message:'Enviar'})
              handlesucess(true)
               if (onSuccess) onSuccess();
               navigatewithoutparams({ruta:'/Admin/'})
              }
+            setloading({value:false,message:'Enviar'})
         }
     
     
