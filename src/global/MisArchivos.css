@@ -1,3 +1,4 @@
+/* Tus animaciones @keyframes están bien, no necesitan cambios aquí */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -20,6 +21,103 @@
         transform: translateY(0);
     }
 }
+
+/* --- Estilos para el Modal de Vista Previa --- */
+
+.preview-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.preview-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 900px;
+    height: 90%;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.preview-loading-text,
+.preview-error-text {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.preview-error-text {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.preview-modal-content iframe,
+.preview-modal-content img {
+    flex-grow: 1;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    display: block;
+    max-width: 100%; /* Asegura que la imagen no se desborde horizontalmente */
+    max-height: 100%; /* Asegura que la imagen no se desborde verticalmente */
+    object-fit: contain; /* Ajusta la imagen dentro de su contenedor manteniendo su relación de aspecto */
+}
+
+.preview-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* Ajustes para los botones del modal */
+.preview-buttons button { /* Apunta directamente a los botones dentro de .preview-buttons */
+    padding: 8px 15px;
+    font-size: 0.95rem;
+    /* Puedes añadir más estilos si quieres que sean diferentes de event-file-download-pro */
+}
+
+.preview-modal-buttons button {
+    /* Ajustes específicos si los necesitas para el modal */
+    padding: 8px 15px;
+    font-size: 0.95rem;
+}
+
+/* Media Queries para responsividad del modal */
+@media (max-width: 768px) {
+    .preview-modal-content {
+        width: 95%;
+        height: 95%;
+        padding: 15px;
+    }
+    .preview-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .preview-buttons button { /* Apila botones en pantallas pequeñas */
+        width: 100%;
+        margin-bottom: 5px; /* Un pequeño margen entre ellos */
+    }
+     
+     .preview-modal-buttons button {
+        width: 100%;
+    }
+}
+
 
 .mis-archivos-container {
     max-width: 1200px;
@@ -140,6 +238,7 @@
 }
 
 /* Botones */
+
 .btn-primary,
 .btn-submit,
 .btn-download,
@@ -189,6 +288,54 @@ button:disabled {
     transform: none !important;
 }
 
+
+
+/* Clase base para los botones, se aplicará a todos */
+.event-file-download-pro { /* Cambiado de btn-primary/btn-download/btn-delete */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1; /* Permite que los botones crezcan y se encojan dentro de flexbox */
+    min-width: 80px; /* Permite que el contenido interno de los botones se encoja */
+    white-space: nowrap; /* Evita que el texto del botón se rompa en varias líneas inicialmente */
+    text-align: center; /* Centra el texto en el botón */
+    display: inline-flex; /* Para centrar el contenido verticalmente si es necesario */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    font-size: 0.9rem;
+}
+
+/* Colores específicos para cada tipo de botón */
+.event-file-download-pro.download-button { /* Asume que en tu JSX es className="event-file-download-pro download-button" */
+    background-color: #2563eb; /* Azul para Descargar */
+    color: white;
+}
+
+.event-file-download-pro.preview-button { /* Asume que en tu JSX es className="event-file-download-pro preview-button" */
+    background-color: #f59e0b; /* Amarillo/naranja para Vista Previa */
+    color: white;
+}
+
+.event-file-download-pro.delete-button { /* Asume que en tu JSX es className="event-file-download-pro delete-button" */
+    background-color: #dc2626; /* Rojo para Eliminar */
+    color: white;
+}
+
+
+.event-file-download-pro:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
 /* Grid de archivos */
 .archivos-grid {
     display: grid;
@@ -223,13 +370,15 @@ button:disabled {
 
 .archivo-info {
     flex: 1;
+    min-width: 0; /* Esto permite que el contenido se encoja */
+    margin-bottom: 1rem; /* Espacio entre info y acciones */
 }
 
 .archivo-info h3 {
     margin: 0 0 1rem 0;
     font-size: 1.1rem;
     color: #333;
-    word-break: break-word;
+    word-break: break-word; /* Permite que palabras largas se rompan para ajustarse */
 }
 
 .archivo-info p {
@@ -239,9 +388,12 @@ button:disabled {
 }
 
 .archivo-actions {
-    margin-top: 1rem;
+    margin-top: auto; /* IMPORTANTE: Empuja las acciones al final de la tarjeta */
     display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap; /* Permitir que los botones envuelvan (salten de línea) si no hay espacio */
+    gap: 0.5rem; /* Espacio entre los botones */
+    justify-content: space-around; /* Distribuye los botones equitativamente si quedan en una sola línea */
+    /* o puedes usar justify-content: center; */
 }
 
 .loading,
@@ -254,9 +406,9 @@ button:disabled {
 }
 
 @media (max-width: 900px) {
-  .archivos-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
+    .archivos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
 }
 
 @media (max-width: 640px) {
@@ -270,10 +422,15 @@ button:disabled {
         font-size: 1rem;
     }
     .archivo-actions {
-        flex-direction: column;
+        flex-direction: column; /* Apila los botones verticalmente en pantallas muy pequeñas */
+        align-items: stretch; /* Estira los botones para que ocupen todo el ancho disponible */
+        gap: 0.75rem; /* Aumenta el espacio vertical un poco */
+    }
+    .event-file-download-pro { /* Asegura que los botones ocupen el 100% en columnas */
+        width: 100%;
+        max-width: 100%;
     }
     .archivos-grid {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-} 
-
+}
