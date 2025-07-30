@@ -20,7 +20,6 @@ export const EventRegistrationPopup = ({Modal,closeModal}) => {
                         type="email"
                         placeholder="Ingresa tu correo electrónico"
                         onChange={(e) => InscritosActions.updateGmail(e.target.value)}
-                        disabled={data != true ? false : true}
                         required
                     />
                      <input

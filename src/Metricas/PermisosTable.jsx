@@ -20,6 +20,7 @@ const {getListaDisertantesMetricas} = useDisertanteFilter()
      return data?.lista ?? [];
   },[data]) 
 
+
   const paginatedItems = lista.slice((page - 1) * itemsPerPage, page * itemsPerPage);
   const totalPages = Math.ceil(lista.length / itemsPerPage);
 const nextPage = () => {

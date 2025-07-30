@@ -87,7 +87,7 @@ const handlePresentacionesSubmitDisertantes = async (e) => {
               setLoading(true);
              const response = await postPresentaciones(formDataToSend)
               if(response.status == 201 && disertante.registered == false) {
-                crearDisertante({gmail:disertantegmail, fullName:disertantegmail ,IdEvento:_id})
+                crearDisertante({gmail:disertantegmail, fullName:disertantenombre ,IdEvento:_id})
               }
              setSucess(true);
             setData({ file: null });
