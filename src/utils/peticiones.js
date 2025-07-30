@@ -126,6 +126,7 @@ export const verificarCodigoDisertante = async (Code,id) => {
 export const obtenerListaDisertante  = async (id) => {
   const IdEvento = id
   const response = await axios.get(`${endpoints.disertantes}listadeDisertante/${IdEvento}`)
+  console.log(response)
   return response
 }
 
