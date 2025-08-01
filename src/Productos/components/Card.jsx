@@ -6,8 +6,7 @@ import { useNavegacion } from '../../hooks/useNavegacion'
 import { useEffect, useState } from 'react'
 import endpoints from '../../utils/endpoints'
 import axios from 'axios'
-import { formatDate } from '../../Files/utils/formatDate'
-import { formatSize } from '../../Files/utils/formatSize'
+
 
 export const Card = ({products}) => {
   
@@ -60,7 +59,7 @@ export const Card = ({products}) => {
     return(
         <>
         <div className="event-card" key={_id}>
-            <figure >
+            <figure>
                 <img className='img-container' src={imagen} alt="" loading='lazy' />
             </figure>
             <section className='text-event'>

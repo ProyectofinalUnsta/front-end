@@ -144,10 +144,9 @@
     }
     .padre-container {
         padding: 0;
-        min-width: 100vw;
+       width: 100%;
     }
     .sections-container {
-        padding: 0.5rem 0.2rem;
-        min-width: 100vw;
+        width: 100%;
     }
 }
