@@ -1,6 +1,6 @@
 import '../global/global.css'
 import '../global/layout.css'
-
+import '../Navbar/style/navbar.css'
 import React, { Suspense } from 'react'
 const  NavBar = React.lazy(()=> import('../Navbar/NavBar'))  
 const  Footer = React.lazy(()=> import('../footer/footer'))
