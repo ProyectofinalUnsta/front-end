@@ -108,7 +108,7 @@ body {
     display: flex;
     flex-direction: column; /* Por defecto, apilado para móviles */
     gap: 2rem;
-    align-items: flex-start; /* Alinea los elementos al inicio */
+    align-items: center; /* Alinea los elementos al inicio */
 }
 
 /* Imagen del Evento */
@@ -479,5 +479,22 @@ body {
         max-width: 1200px; /* Aumenta el ancho máximo del modal de vista previa */
         max-height: 800px; /* Aumenta el alto máximo */
         padding: 30px; /* Más padding para el modal */
+    }
+}
+
+
+
+@media (width < 500px) {
+    .event-image-pro {
+        width: 100%;
+        display: flex;
+        align-self: center;
+    }
+
+    .event-image-pro  img {
+      width: 348px;
+      max-width: 348px;
+      height: 300px;
+      max-height: 300px;
     }
 }

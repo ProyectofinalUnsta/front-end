@@ -303,6 +303,7 @@ export const CardDetails = ({
           }}
         >
           <div
+          className="flex flex-col sm:flex-row"
             style={{
               display: "flex",
               alignItems: "center",
