@@ -1,7 +1,7 @@
 import React  from 'react'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import { Suspense } from 'react'
-
+import { useServerActive } from '../hooks/useActiveServer'
 const   HomePage = React.lazy(()=> import('../pages/HomePage'))
 const  ProductsPage = React.lazy(()=> import('../pages/ProductsPage'))
 const  SobreNosotros = React.lazy(()=> import('../pages/SobreNosotros'))
@@ -24,6 +24,8 @@ const ContactanosPage = React.lazy(()=> import('../pages/ContactanosPage'))
 const UserProfilePage = React.lazy(()=> import('../pages/UserProfilePage'))
 
 export default function Router () {
+// hook mantiene "vivo" el servidor
+useServerActive()
     return(
         <>
            <BrowserRouter>
