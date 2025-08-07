@@ -40,6 +40,7 @@ export default function MisArchivos() {
       setLoadingArchivosInscriptos(true); // Iniciar carga
       setBuscado(true);
       const res = await getArchivosEvetnoInscripto(gmail);
+      console.log(res)
       setArchivos(res.data || []);
       if (res.data?.length === 0) {
         // Usar optional chaining y verificar la longitud
